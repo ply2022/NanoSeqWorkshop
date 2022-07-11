@@ -40,7 +40,7 @@ curriculum: "dc-bioinfomatics"
 # value of the variable below ("flavor") to get the schedule and installation
 # instructions updated accordingly (valid values are 'r' or 'python').
 # Note: this is only for Data Carpentry and SWC at this time.
-flavor: "FIXME"
+flavor: 
 
 # Overall title for the Workshop.
 # This variable is used to (optionally) add a title in the "jumbotron"
@@ -75,7 +75,8 @@ kind: "workshop"
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
 # Please don't change it: <USERNAME>/<PROJECT> is correct.
-repository: ply2022/2022-APS-Nanopore-sequencing-workshop
+repository: ply2022/NanoSeqWorkshop
+
 
 # Email address, no mailto:
 # (Don't change this -- the contact address for your workshop will be set
