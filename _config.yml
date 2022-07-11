@@ -40,7 +40,7 @@ curriculum: "dc-bioinfomatics"
 # value of the variable below ("flavor") to get the schedule and installation
 # instructions updated accordingly (valid values are 'r' or 'python').
 # Note: this is only for Data Carpentry and SWC at this time.
-flavor: 
+flavor: "python"
 
 # Overall title for the Workshop.
 # This variable is used to (optionally) add a title in the "jumbotron"
@@ -84,23 +84,12 @@ repository: ply2022/NanoSeqWorkshop
 email: "plyu@ufl.edu"
 
 # Sites.
-amy_site: "https://amy.carpentries.org"
-carpentries_github: "https://github.com/carpentries"
-carpentries_pages: "https://carpentries.github.io"
-carpentries_site: "https://carpentries.org/"
-dc_site: "https://datacarpentry.org"
-example_repo: "https://github.com/carpentries/lesson-example"
-example_site: "https://carpentries.github.io/lesson-example"
-incubator: 
-lc_site: "https://librarycarpentry.org/"
-swc_github: "https://github.com/swcarpentry"
-swc_pages: "https://swcarpentry.github.io"
-swc_site: "https://software-carpentry.org"
-template_repo: "https://github.com/carpentries/styles"
-training_site: "https://carpentries.github.io/instructor-training"
-workshop_repo: "https://github.com/carpentries/workshop-template"
-workshop_site: "https://carpentries.github.io/workshop-template"
-cc_by_human: "https://creativecommons.org/licenses/by/4.0/"
+baseSite: "https://ply2022.github.io/NanoSeqWorkshop/"
+github.url: "https://ply2022.github.io/NanoSeqWorkshop/"
+workshop_repo: "https://github.com/ply2022/NanoSeqWorkshop"
+faq: "faq.html"
+owner: "APS Nanopore Sequencing Workshop Team"
+ownerLink: "https://github.com/ply2022"
 
 # Surveys.
 pre_survey: "Survey site" # waiting for Josh to create the survey
