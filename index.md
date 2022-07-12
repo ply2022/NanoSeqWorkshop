@@ -23,7 +23,7 @@ eventbrite:           # optional: alphanumeric key for Eventbrite registration, 
 
 <h2 id="general">General Information</h2>
 
-{% comment %} INTRODUCTION {% endcomment %}
+{% comment %} Introduction {% endcomment %}
 {% include intro/intro.md %}
 
 
