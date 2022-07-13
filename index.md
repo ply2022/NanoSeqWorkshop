@@ -36,6 +36,9 @@ eventbrite: false           # optional: alphanumeric key for Eventbrite registra
 {: #when}
 **When:** {{page.humandate}}, {{page.humantime}} {{page.timezone}}.
 
+{% comment %} Pre-requisite {% endcomment %}
+{% include intro/prereq.md %}
+
 {% comment %} Accessibility {% endcomment %}
 {: #accessibility}
 **Accessibility:**
