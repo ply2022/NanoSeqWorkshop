@@ -24,5 +24,6 @@
 | &nbsp;&nbsp;03:50 - 04:45 pm | [Genome assembly](05-assembly){: target="_blank"} | 
 | &nbsp;&nbsp;04:45 - 04:55 pm | Follow up questions during workshop |
 | &nbsp;&nbsp;04:55 - 05:00 pm | Closing remarks (by Dr. Pei-Ling Yu) and [Post-workshop survey]({{ site.feedback }}){: target="_blank"} |
+
 </div>
 </div>
