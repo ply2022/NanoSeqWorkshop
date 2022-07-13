@@ -54,18 +54,17 @@ Andy is ...
 Owen is ...
 
 
-#Special Thanks
+# Special Thanks
 
 ### Jose C. Huguet-Tapia 
 
 Jose is a Research Assistant Scientist in the Plant Pathology Department at the University of Florida. He is a molecular microbiologist and bioinformatician and leads the Bioinformatics and Big Data Committee within the Department that focus on computational resources and research within the Department. His research aims to answer fundamental questions concerning bacterial pathogenicity. His expertise encompasses areas in genomics and molecular biology. He is also mainly specialized in the development of bioinformatics pipelines for the study of plant pathogenic bacteria.
 
-[Jose C. Huguet-Tapia](https://www.researchgate.net/profile/Jose_Huguet-Tapia){: .btn} |
+[Jose C. Huguet-Tapia](https://plantpath.ifas.ufl.edu/people/assistant-scientists/jose-huguet-tapia/){: .btn} |
 [Google Scholar](https://scholar.google.com/citations?user=ITJtCqQAAAAJ&hl=en&oi=ao){: .btn} | 
 [Twitter](https://twitter.com/Joxcar73){: .btn} |
 [Github](https://github.com/joscarhuguet){: .btn}
 
-
-
 #### Plant Pathology Department at University of Florida
+
 Find out more about the department [here](https://plantpath.ifas.ufl.edu/). 
