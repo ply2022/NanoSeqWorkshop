@@ -48,22 +48,7 @@ flavor: "python"
 # Most workshops don't use extra pages. More information about extra
 # pages are included in the README:
 # https://github.com/carpentries/workshop-template#creating-extra-pages
-title: " Oxford Nanopore sequencing applications for plant pathologists"
-
-#------------------------------------------------------------
-# Incubator workshop settings (only relevant for workshops teaching a lesson
-# in The Carpentries Incubator).
-#
-# For an Incubator workshop, uncomment the line below and add the URL of the lesson site.
-# incubator_lesson_site: "put the URL of the lesson being taught here"
-#
-# For an Incubator workshop, uncomment the line below and add the URL of your pre-workshop survey
-# incubator_pre_survey: "put the URL of your pre-workshop survey here"
-#
-# For an Incubator workshop, uncomment the line below and add the URL of your post-workshop survey
-# incubator_post_survey: "put the URL of your post-workshop survey here"
-#
-#------------------------------------------------------------
+title: "Oxford nanopore sequencing applications for plant pathologists"
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
@@ -88,12 +73,10 @@ baseSite: "https://ply2022.github.io/NanoSeqWorkshop/"
 github.url: "https://ply2022.github.io/NanoSeqWorkshop/"
 workshop_repo: "https://github.com/ply2022/NanoSeqWorkshop"
 faq: "faq.html"
+survey: "survey.html"
+feedback: "feedback.html"
 owner: "APS Nanopore Sequencing Workshop Team"
 ownerLink: "https://github.com/ply2022"
-
-# Surveys.
-pre_survey: "Survey site" # waiting for Josh to create the survey
-post_survey: "Survey site"
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 0
