@@ -25,34 +25,31 @@ Jeremy is an Assistant Professor in the Plant Pathology Department at University
 
 ### Abigail Stack
 
-Abby is a plant pathologist at Bayer Crop Science. Her specialties are virology, high throughput sequencing based disease detection, and molecular biology. The projects she is working on currently that she is the most excited about involve implementing new ideas and cutting-edge technologies for molecular plant disease diagnosis.
+Abbie is a Science Fellow and Discovery Pathology Research Lead at Bayer Crop Science in Woodland, CA. Her specialties include viruses of vegetables, high throughput sequencing based disease detection, and molecular biology. Prior to her time at Bayer, Abbie received a M.S. in Plant Pathology from UC Davis studying a fungal canker disease of almond trees. 
 
 [Linkedin](linkedin.com/in/abigail-stack-159353111){: .btn} 
 
 ### Kacie Quello
 
-Kacie is a Discovery Pathology Specialist Sr at Bayer Crop Science. She received her Master's in plant pathology at Purdue working on apple scab and brown rot of stone fruit. In recent years, she has worked with diseases on broccoli, lettuce and spinach. The pathogens include oomycetes, bacteria, and fungi. In addition, she has created primers and used published primers to detect specific RNA virus and tomato. 
+Kacie is a Discovery Pathology Specialist Sr at Bayer Crop Science. She received her Master's in plant pathology at Purdue working on apple scab and brown rot of stone fruit. In recent years, she has worked with diseases on broccoli, lettuce, and spinach. The pathogens include oomycetes, bacteria, and fungi. In addition, she works with new molecular technologies to detect plant pathogens for disease diagnosis.
 
 [Linkedin](https://www.linkedin.com/in/kacie-quello-84947b4b/){: .btn} 
 
 ### Joshua L. Konkol
 
-Josh is a graduate research assistant in the Plant Pathology Department working in Dr. Jeremy Brawner’s Forestry Genetics laboratory and Dr. Jeff Rollins’s Molecular Fungal Pathology laboratory. He is interested in the host-pathogen interactions of vascular wilt diseases and the development of plants with tolerance to these pathogens. Currently I am investigating the colonization and host responses to Raffaelea lauricola, the causal agent of laurel wilt disease that affects North American Lauracea, including avocado trees and several important forest species.
+Josh is a graduate research fellow at the University of Florida’s Department of Plant Pathology working in Dr. Jeremy Brawner’s Forestry Genetics laboratory and Dr. Jeff Rollins’s Molecular Fungal Pathology laboratory. He is interested in the host-pathogen interactions of fungi that cause vascular wilt disease and the development of germplasm with tolerance to them. He is currently investigating Harringtonia lauricola, the causal agent of laurel wilt disease, which is an extremely virulent and lethal pathogen that affects North American Lauracea trees such as avocado, bay and sassafras. 
 
-[Joshua Konkol](https://plantpath.ifas.ufl.edu/people/graduate-student-pages/joshua-konkol/){: .btn} 
-[Google Scholar](https://scholar.google.com/citations?hl=en&user=dTX4BqkAAAAJ&view_op=list_works&sortby=pubdate){: .btn} 
-[Linkedin](https://www.linkedin.com/in/joshua-konkol-5051a8176/){: .btn} 
+[Joshua Konkol](https://plantpath.ifas.ufl.edu/people/graduate-student-pages/joshua-konkol/){: .btn}  
+[Google Scholar](https://scholar.google.com/citations?hl=en&user=dTX4BqkAAAAJ&view_op=list_works&sortby=pubdate){: .btn}  
+[Linkedin](https://www.linkedin.com/in/joshua-konkol-5051a8176/){: .btn}   
 
 ### Andrew J. Gitto
 
-Andy is ...
-
-
+Andy is a PhD student working under Dr. Jeremy Brawner and Dr. Erica Goss at the University of Florida in the plant pathology department. 
 
 ### Owen H. Hudson 
 
-Owen is ...
-
+Owen Hudson is a PhD student working under Dr. Jeremy Brawner at the University of Florida in the plant pathology department. He obtained his master's degree in plant pathology from the University of Georgia working on novel methods of molecular disease detection. Currently he studies predictive genomics for developing disease resistance to Fusarium ear rot in maize with the use of machine learning for high throughput phenotyping.
 
 # Special Thanks
 
