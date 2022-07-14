@@ -3,7 +3,6 @@
 
 | Time | Particulars |
 | ------ | -------------------------------------- |
-| &nbsp;&nbsp;Before starting | [Pre-workshop survey]({{ site.survey }}){: target="_blank"} |
 | &nbsp;&nbsp;08:00 - 08:15 am | Registration
 | &nbsp;&nbsp;08:15 - 08:30 am | Introduction and Remarks (by Dr. Pei-Ling Yu) |
 | **Part 1** | **Introduction and sample loading** |
