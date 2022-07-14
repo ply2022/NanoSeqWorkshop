@@ -63,8 +63,7 @@ email [{{ page.technical }}](mailto:{{ page.technical}}).
 
 {% comment %} Survey {% endcomment %}
 <h2 id="surveys">Surveys</h2>
-<p>Please be sure to complete these surveys before and after the workshop.</p>
-<p><a href="{{ site.baseSite }}{{ site.survey }}">Pre-workshop Survey</a></p>
+<p>Please be sure to complete these surveys after the workshop.</p>
 <p><a href="{{ site.baseSite }}{{ site.feedback }}">Post-workshop Survey</a></p>
 <hr/>
 
