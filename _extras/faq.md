@@ -7,14 +7,14 @@ permalink: /faq/index.html
 ## General
 
 *Where can I get help?*
-:   Mail us at [{{site.email}}](mailto:{{site.email}}).
+:   Mail to [Pei-Ling Yu](mailto:plyu@ufl.edu) or [Josh Konkol](mailto:jkonkol@ufl.edu). 
 
 *Where can I report problems or suggest improvements?*
 :   Please file an issue against [this repository]({{site.workshop_repo}})
     or [mail us](mailto:plyu@ufl.edu).
 
 *Where is the information about setting up the computer?*
-:   Please check the [setup page](setup.html) for the 
+:   Please check the **setup page** for the 
     information regarding setting up your device.
 
 *Do I have to pay for any of the software?*

@@ -16,3 +16,5 @@ vendor/
 .docker-vendor/
 Gemfile.lock
 .*history
+.ruby-version
+.gitignore
