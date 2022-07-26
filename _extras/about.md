@@ -45,7 +45,7 @@ Josh is a graduate research fellow at the University of Florida’s Department o
 
 ### Andrew J. Gitto
 
-Andy is a PhD student working under Dr. Jeremy Brawner and Dr. Erica Goss at the University of Florida in the plant pathology department. 
+Need to copy from email
 
 ### Owen H. Hudson 
 

@@ -14,4 +14,5 @@ Thanks to American Phytopathological Society - Annual Meeting Board for facilita
 
 <img src="{{site.baseSite}}fig/APS_plant_health_banner.png" align="center">
 
+This website design was inspired by[**APS Basic Bioinformatics Workshop Team**](https://github.com/BioInfoAPS){: .btn}
 
