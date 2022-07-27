@@ -76,7 +76,7 @@ faq: "faq.html"
 survey: "survey.html"
 feedback: "feedback.html"
 owner: "APS Nanopore Sequencing Workshop Team"
-ownerLink: "https://github.com/ply2022"
+ownerLink: "https://github.com/ply2022/NanoSeqWorkshop"
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 0
