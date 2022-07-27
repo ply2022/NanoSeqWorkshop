@@ -1,5 +1,5 @@
 ---
-title: "SLURM workload manager"
+title: "Overview of library preparation and demonstration"
 teaching: 10
 exercises: 15
 questions:
