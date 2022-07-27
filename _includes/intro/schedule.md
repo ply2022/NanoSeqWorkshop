@@ -10,7 +10,7 @@
 | &nbsp;&nbsp;08:50 - 09:10 am | Applications of nanopore sequencing (by Abigail Stack) |
 | &nbsp;&nbsp;09:10 - 09:30 am | Sample multiplexing and case study in Plant Pathology (by Andrew J. Gitto) |
 | &nbsp;&nbsp;09:30 - 09:45 am | Coffee break |
-| &nbsp;&nbsp;09:45 - 10:30 am | [Overview of library preparation and demonstration](Demo-1){: target="_blank"} (by Dr. Pei-Ling Yu) |
+| &nbsp;&nbsp;09:45 - 10:30 am | [Overview of library preparation and demonstration](by Dr. Pei-Ling Yu) |
 | &nbsp;&nbsp;10:30 - 12:00 pm | Hands on - Flow cell loading |
 | &nbsp;&nbsp;12:00 - 01:30 pm | Lunch Break **Not providied** |
 | **Part 2** | **Data analysis** |

@@ -41,3 +41,45 @@ Double click on directory named as your username to find your files.
 
 {% comment %} Text editor {% endcomment %}
 {% include setup/editor.html %}
+
+{% comment %} Nanopore community {% endcomment %}
+<div id="community" markdown="1">
+### Join Nanopore Community 
+Creating an account for the Nanopore community is required to access the protocols and software dowloads such as MinKNOW, the operating software that drives nanopore sequencing devices. 
+Community also provide the online training, and plateform for discussion whithin the community.
+1. In your web browser, navigate to [Log in page](shorturl.at/fjBJO){: target="_blank"}. 
+2. Click **Register** at the top right corner to register a new account. 
+<img src="fig/ONT_login.png" align="center" height="400" width="400">
+3. Fill in the information that required for creating an account.
+<img src="fig/ONT_register.png" align="center" height="400" width="400">
+4. Sysytem will ask you to provide more detail about you. 
+<img src="fig/ONT_detail.png" align="center">
+5. Click submit, and then a verification email will be sent to the email you provide at step 3.
+<img src="fig/ONT_verify.png" align="center">
+6. Find the verification email in your email (could be in the Junk Email), and then **Click To Verify**
+<img src="fig/ONT_verify2.png" align="center">
+7. Please set your password. 
+<img src="fig/ONT_password.png" align="center">
+8. You will be redirect to the ONT home page. Click **Community**. If you are not at the ONT home page after password setting, navigate yourself to 
+[Community](https://community.nanoporetech.com/). After login, please proceed to **Download MinKnow**. 
+<img src="fig/ONT_home.png" align="center" height="500">
+</div>
+
+{% comment %} Download MinKNOW {% endcomment %}
+<div id="software" markdown="1">
+### Download MinKNOW
+Now you can access the Nanopore community, so we need to download MinKNOW, the operating software that drives nanopore sequencing devices.
+Also, feel free to explore the community. 
+1. Click on **Software Downloads** on the right pannel.
+<img src="fig/Community_download.png" align="center" height="500">
+2. You will be direct to *Software Downloads* page. Scroll down to find **MinION Software**(MinKNOW). Please download the software according to your laptop operation system, and
+and you can follow the on-screen instructions by clicking **Installation guide** next to the **Download**.
+
+[Note] Please **DO NOT** download MinION Mk1C software. It is a different seqeunce device with touchscreen, which is not used in this workshop. 
+<img src="fig/Community_MinION.png" align="center" height="500">
+3. Click on **MinKNOW icon** on your desktop
+4. You will need to log in before start sequecning
+<img src="fig/MinION_login.png" align="center" height="500">
+5. Once you get in the interface, the system will walk you through the menu.
+<img src="fig/MinION_tutorial.png" align="center" height="500">
+</div>
