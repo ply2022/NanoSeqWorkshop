@@ -47,7 +47,7 @@ Double click on directory named as your username to find your files.
 ### Join Nanopore Community 
 Creating an account for the Nanopore community is required to access the protocols and software dowloads such as MinKNOW, the operating software that drives nanopore sequencing devices. 
 Community also provide the online training, and plateform for discussion whithin the community.
-1. In your web browser, navigate to [Log in page](shorturl.at/fjBJO){: target="_blank"}. 
+1. In your web browser, navigate to [Log in page](https://id.nanoporetech.com/idp/SSO.saml2?SAMLRequest=jZLdS8MwFMX%2Flb7lqV%2FZ1rrQFsqGMJgfrOqDL5KldyzQJDU3Ufff23aIiii%2BXs7vnMO9t0Cuup7V3h31Dp49oAtqRLBOGr0yGr0C24B9kQLud9uSHJ3rkcWxOnEhjNcu0lyb3lhwII6RMCpGNDEXSIL14CY1H60%2BQdn%2BJGTbx01zE41lKAk265I8pft2P7%2FYJ2EyX9Jwnok85MssDZc0WxzocpZnfDZIET1sNDquXUloQmmY5CHN7xLKaM4WySMJHsDiVIFGCQneVKeRjUkl8VYzw1Ei01wBMidYU19t2SBk%2FGMLX5H%2Bb6a3xhlhOlIVo5pN7Wz1z50pcLzljhfxV7g4X%2Bh6CNusb00nxSmou868rixwByVx1gMJLo1V3P1eL43SaSLb8DBJmdfYg5AHCS2Jq3Po90%2Bo3gE%3D&SigAlg=http%3A%2F%2Fwww.w3.org%2F2000%2F09%2Fxmldsig%23rsa-sha1&Signature=Fiu%2BMIqwge3TF%2FdfZTpOuYbInmm0OJgijG3mJkaNebbn3exqdPPsfnmuXJvrhY3cIZMmnasyc1Kwmecc180Bv4TxQFxsiA%2B9tlCp5htjqzyuP6hWPW8HwrcFVZk3SNp%2FLvw9R4S03tuPBZNk8B2l3LiTXsIrib3WHiMoQFl8za%2F7sgU1tqpKJV7Op6XdyEQSQfBwe1usSRd5bpe3MQl49q83DIkpmTH7bnU5eXgaHgIRoSVy1XCSJXZ6IADIEd4K0eFnbvwYBtYHFf84UQoXyggAvN4zLoNghx5Os%2FbnNbMKYDTsLrYiMfqANIIqYdBy9nz6NitAqCiovqOU%2BdIHQw%3D%3D){: target="_blank"}. 
 2. Click **Register** at the top right corner to register a new account. 
 <img src="fig/ONT_login.png" align="center" height="400" width="400">
 3. Fill in the information that required for creating an account.
