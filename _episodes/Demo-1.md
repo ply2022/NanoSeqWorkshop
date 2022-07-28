@@ -28,7 +28,7 @@ Assessment of DNA samples includes: quality, quantiy, and integrity. We will int
 ### Spectrophotometer (UV-Vis)
 Absorbance measurements measure the absorbance of all molecules in the sample that absorb at the wavelength of interest. Nucleotides and proteins have highest absorbance at 260 nm and 280 nm, respectively. The ratio of absorbance at 260 nm and 280 nm is used to determine the purity of the DNA samples. The ratio of ~ 1.8 is cosidered as a pure for DNA samples. On the other hand, chemicals and organic compound (e.g., EDTA, carbohydrate, phenol) absorb at 230 nm. The ratio of 2.0-2.22 is expected as a pure for DNA sample.
 
-<img src="{{site.baseSite}}/fig/NanoDrop_spectra.png" align="center" height="500">
+<img src="{{site.baseSite}}/fig/NanoDrop_spectra.png" align="center" height="300">
 
 **Drawbacks** 
 1. Nonselctive method: could not differentiate DNA or RNA
