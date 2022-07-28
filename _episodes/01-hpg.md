@@ -45,7 +45,7 @@ When using the scripts in this workshop, you should not copy the `$` symbol when
 - When writing out the path to a file, Linux uses `/` instead of the `\` symbol used by Windows.
 - File extensions are not as important for Linux compared to an OS like Windows, and you can use your own arbitrary file extensions to help you sort files.
 
-## Basic Unix Commands
+## Navigating 
 
 ### Displaying your current path/location
 
@@ -122,7 +122,7 @@ $ pwd
 You can also combine commands in Linux using the `|` symbol. For example, if you know you will want to change your directory and look up the file contents, you could use this command:
 
 ~~~
-$ cd ***workshopname*** | ls
+$ cd blue/general_workshop | ls
 ~~~
 {: .language-bash}
 
@@ -152,5 +152,120 @@ The three different clusters represent:
 
 It is important to look at permissions if you are having trouble accessing a file or folder. Sometimes content from workshops or files downloaded from the internet have permissions that can restrict your access.
 
-### Creating directories
+### Creating, moving and copying directories and files
 
+## Making a directory
+
+Use `cd` to access the workshop directory with your username.
+
+We will create a new directory using the command `mkdir` followed by the name of the new directory `newdir`. Use `ls` or `cd` to see or navigate to your new directory
+
+~~~
+$ mkdir newdir 
+~~~
+{: .language-bash}
+
+## Linux path symbols
+
+There are shortcuts to navigate directory paths in Linux. Here are a few:
+
+- `..` represents the parent directory. We used this above with `cd` to move up to the parent directory from your current location.
+- `.` represents the current directory.
+- `/` represents the root directory.
+- `~` represents the home directory.
+
+We will use some of these shortcuts soon.
+
+## Copying a file
+
+You can copy a file with the command `cp` followed by the location of the file you want to copy and the location you want to put the new copy.
+
+~~~
+$ cp blue/general_workshop/share/file1.txt ./file1.txt
+$ ls
+~~~
+{: .language-bash}
+
+Note that we used the directory shorcut `./` to represent that the new file should be moved to your current directory. You could write out the full name of any other directory to have it moved there, or to put it in the directory you just created, you could change the location to `./newdir/file1.txt`.
+
+You can change the name of the file to anything you want when copying it. For example, we can copy the file again with a new name, but since it is in the current directory, we only need to list the name of the file.
+
+~~~
+$ cp file1.txt file2.txt
+$ ls
+~~~
+{: .language-bash}
+
+
+
+Be careful when copying files that a file does not exist with the same name in that directory, or it will replace it with the new copy.
+
+You can also use the `cp` command with the `-r` option to perform a recursive copy, which can copy entire directories and all of the subdirectories and folders.
+
+~~~
+$ cp -r blue/general_workshop/share/demo ./
+~~~
+{: .language-bash}
+
+## Moving a file
+
+You can move files with the command `mv`, followed by the file location and the location where you will move it. Moving a file removes it from its original location.
+
+~~~
+$ mv file2.txt newfile.txt
+$ ls
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+## Deleting files
+
+You can delete files using the command `rm`. To delete a directory and all of the files contained within it, you can use the recursive option `-r`.
+
+Be careful! Linux does not have a trash can like Windows and Mac operating systems. Once you delete a file, it is permanently erased!
+
+~~~
+$ rm newfile.txt
+$ ls
+~~~
+{: .language-bash}
+
+## Deleting directories
+
+Aside from using the recursive option for `rm`, you can also remove directories with the command `rmdir`.
+
+~~~
+$ rmdir newdir
+$ ls
+~~~
+{: .language-bash}
+
+### Reading and writing files
+
+## Reading file contents
+
+There are a number of ways to look at some or all of the contents of a file.
+
+The command `cat` reads the contents of a file. We can use this to view ` file1.txt`.
+
+~~~
+$ cat file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+Rather than viewing all of the content of a large file, you can use the commands `less` and `more` to view small pieces of the document at a time.
+
+
+
+## Learn more about unix commands
+> [Software carpentary reference](https://swcarpentry.github.io/shell-novice/reference/)
+{: .notes}
