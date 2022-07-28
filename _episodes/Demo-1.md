@@ -23,27 +23,30 @@ In the community, you can review the process in detail. Due to the time and equi
 
 Assessment of DNA samples includes: quality, quantiy, and integrity. We will introduce commonly used methods to perform quality control of DNA samples. 
 
-*Note: Here we listed the methods that our team commonly used. Alternative tools might also avalible. *
+*Note: Here we listed the methods that our team commonly used. Alternative tools might also avalible.*
 
 ### Spectrophotometer (UV-Vis)
 Absorbance measurements measure the absorbance of all molecules in the sample that absorb at the wavelength of interest. Nucleotides and proteins have highest absorbance at 260 nm and 280 nm, respectively. The ratio of absorbance at 260 nm and 280 nm is used to determine the purity of the DNA samples. The ratio of ~ 1.8 is cosidered as a pure for DNA samples. On the other hand, chemicals and organic compound (e.g., EDTA, carbohydrate, phenol) absorb at 230 nm. The ratio of 2.0-2.22 is expected as a pure for DNA sample.
 
-<img src="{{site.baseSite}}/fig/NanoDrop_spectra.png" align="center" height="300">
+<img src="{{site.baseSite}}/fig/NanoDrop_spectra.png" align="center" height="500">
 
 **Drawbacks** 
 1. Nonselctive method: could not differentiate DNA or RNA
 2. pH sensitive: acid solution and basic solution decrease or increase 260/280 ratio, rescpectively. 
 
-**Adventage**
+**Adventages**
 1. Cheaper: do not need extra plastic comsumables and kits
 2. Faster: no addtional reaction time
 
 ### Fluorometry
-Compare to 
+Compare to spectrophotometer, fluorometric measurement is more specific and sensitive despite the presence of contaminants due to the selective binding between flurogenic dyes and DNA. Using [Qubit dsDNA HS Assay Kit](https://assets.thermofisher.com/TFS-Assets/LSG/manuals/Qubit_dsDNA_HS_Assay_UG.pdf){: target="_blank"} as example, 
 
 
+### Spectrophotometer vs. Fluorometry
+So...which method is better? 
 
-
+<img src="{{site.baseSite}}/fig/NanoDropVSQubit.png" align="left" width="300">
+<img src="{{site.baseSite}}/fig/NanoDropVSQubit_2.png" align="right" width="300">
 
 
 
@@ -72,9 +75,10 @@ Please review this video for demonstration (you might might start from 00:18 to 
 {: .caution}
 
 
-> ## Other reading materials 
->1. [Assessment of Nucleic Acid Purity-Technical Note 52646](https://assets.thermofisher.com/TFS-Assets/CAD/Product-Bulletins/TN52646-E-0215M-NucleicAcid.pdf#:~:text=Small%20changes%20in%20the%20pH%20of%20the%20solution,the%20diluted%20sample%20measured%20on%20the%20conventional%20spectrophotometer.){: target="_blank"}
->2. [260/280 and 260/230 Rations-T042-Technical Bulletin](http://hpc.ilri.cgiar.org/beca/training/IMBB_2015/lectures/NanoDrop.pdf){: target="_blank"}
->3. [DNA Qualification Workflow for Next Generation Sequencing of Histopathological Samples](https://doi.org/10.1371/journal.pone.0062692){: target="_blank"}
+> ## Addtional reading materials 
+> 1. [Assessment of Nucleic Acid Purity-Technical Note 52646](https://assets.thermofisher.com/TFS-Assets/CAD/Product-Bulletins/TN52646-E-0215M-NucleicAcid.pdf#:~:text=Small%20changes%20in%20the%20pH%20of%20the%20solution,the%20diluted%20sample%20measured%20on%20the%20conventional%20spectrophotometer.){: target="_blank"}
+> 2. [260/280 and 260/230 Rations-T042-Technical Bulletin](http://hpc.ilri.cgiar.org/beca/training/IMBB_2015/lectures/NanoDrop.pdf){: target="_blank"}
+> 3. [Qubit fluorometric quantitation vs. spectrophotometer measurements](https://assets.thermofisher.com/TFS-Assets/LSG/Technical-Notes/fluorescence-UV-quantitation-comparison-tech-note.pdf){: target="_blank"}
+> 4. [DNA Qualification Workflow for Next Generation Sequencing of Histopathological Samples](https://doi.org/10.1371/journal.pone.0062692){: target="_blank"}
 {: .tips}
 
