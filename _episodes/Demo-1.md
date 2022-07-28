@@ -44,12 +44,7 @@ Compare to spectrophotometer, fluorometric measurement is more specific and sens
 
 ### Spectrophotometer vs. Fluorometry
 So...which method is better? 
-
-<img src="{{site.baseSite}}/fig/NanoDropVSQubit.png" align="left" width="300">
-<img src="{{site.baseSite}}/fig/NanoDropVSQubit_2.png" align="right" width="300">
-
-
-
+<img src="{{site.baseSite}}/fig/NanoDropVSQubit.png" align="center" width="600">
 
 
 ### Integrity assessment
