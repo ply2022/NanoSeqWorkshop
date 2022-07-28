@@ -30,6 +30,8 @@ Absorbance measurements measure the absorbance of all molecules in the sample th
 
 <img src="{{site.baseSite}}/fig/NanoDrop_spectra.png" align="center" height="500">
 
+**Figure**. Spectral profiles of pure DNA (A), and pure DNA with guanidine (B) and phenol (C).
+
 **Drawbacks** 
 1. Nonselctive method: could not differentiate DNA or RNA
 2. pH sensitive: acid solution and basic solution decrease or increase 260/280 ratio, rescpectively. 
@@ -39,17 +41,35 @@ Absorbance measurements measure the absorbance of all molecules in the sample th
 2. Faster: no addtional reaction time
 
 ### Fluorometry
-Compare to spectrophotometer, fluorometric measurement is more specific and sensitive despite the presence of contaminants due to the selective binding between flurogenic dyes and DNA. Using [Qubit dsDNA HS Assay Kit](https://assets.thermofisher.com/TFS-Assets/LSG/manuals/Qubit_dsDNA_HS_Assay_UG.pdf){: target="_blank"} as example, 
+Compare to spectrophotometer, fluorometric measurement is more specific and sensitive despite the presence of contaminants due to the selective binding between flurogenic dyes and DNA. Dyes emit fluorences only when specific binding happens, and the fluorences will be detected by fluorometer. Concentration of the nucelic acid is calculated using standard curve. Using [Qubit dsDNA HS Assay Kit](https://assets.thermofisher.com/TFS-Assets/LSG/manuals/Qubit_dsDNA_HS_Assay_UG.pdf){: target="_blank"} as example, it can measure sample concentration ranging from 10 pg/μL to 100 ng/μL. Yet, flurogenic dyes can not measure the purity of the DNA. 
 
+**Drawbacks** 
+1. Time consuming: reagent-sample reaction takes 2 min required for DNA assay
+2. Costly: reagents and single-use plastic comsumables (Qubit assay tubes) are required
 
 ### Spectrophotometer vs. Fluorometry
 So...which method is better? 
-<img src="{{site.baseSite}}/fig/NanoDropVSQubit.png" align="center">
+<img src="/fig/NanoDropVSQubit.png" align="center" height="500">
 
+**Figure A**. Comparisons of repeated measurements (n = 10) between commercial kits (Qubit) and spectrophotometer (NanoDrop). Serial dilution of DNA samples ranging from 50-0.5 ng/µl was used to evaluate two methods. 
+
+**Figure B**. Comparisons of sample concentration ranges among different methods. 
 
 ### Integrity assessment
-Gel-based method
+To evaluate integrity of DNA samples, we need gel electrophoresis systems, such as [Agilent 2200 TapeStation Systems](https://www.agilent.com/en/product/automated-electrophoresis/tapestation-systems/tapestation-software/2200-tapestation-software-228269#support). The software provides numerical number of DNA integrity called DNA Integrity Number (DIN) and sample concentration.  
 
+<img src="/fig/TapeStation.png" align="center" height="700">
+
+**Figure A**. The gel image with DNA Integrity Number (DIN). A1: DNA marker; B1-H2: degradation series of 15 g DNA samples (60 ng/µl).
+
+**Figure B**. A electropherogram of 15 samples from Figure A. Highly intact gDNA 
+samples (H2) has a narrow peak in the electropherogram above the largest ladder peak (48,500 bp). 
+
+
+### Size selection
+1. Beads
+2. Short reads eliminator
+3. ONT product
 
 ## Ligation sequencing gDNA (SQK-LSK110)
 
@@ -75,5 +95,10 @@ Please review this video for demonstration (you might might start from 00:18 to 
 > 2. [260/280 and 260/230 Rations-T042-Technical Bulletin](http://hpc.ilri.cgiar.org/beca/training/IMBB_2015/lectures/NanoDrop.pdf){: target="_blank"}
 > 3. [Qubit fluorometric quantitation vs. spectrophotometer measurements](https://assets.thermofisher.com/TFS-Assets/LSG/Technical-Notes/fluorescence-UV-quantitation-comparison-tech-note.pdf){: target="_blank"}
 > 4. [DNA Qualification Workflow for Next Generation Sequencing of Histopathological Samples](https://doi.org/10.1371/journal.pone.0062692){: target="_blank"}
+> 5. [DNA Integrity Number (DIN) with the Agilent 2200 TapeStation System and the Agilent Genomic DNA ScreenTape Assay](https://www.agilent.com/cs/library/applications/5991-5258EN.pdf){: target="_blank"}
+
+
+
 {: .tips}
+
 
