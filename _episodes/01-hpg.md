@@ -61,7 +61,7 @@ $ pwd
 `cd` followed by a directory name will change your current directory. Try navigating to the folder we will use for the workshop.
 
 ~~~
-$ cd /blue/***workshopname***/
+$ cd /blue/general_workshop/
 ~~~
 {: .language-bash}
 
@@ -71,7 +71,7 @@ $ cd /blue/***workshopname***/
 Now try using `pwd` again to see your current location.
 
 ~~~
-/blue/***workshopname***/
+/blue/general_workshop/
 ~~~
 {: .output}
 
@@ -263,6 +263,196 @@ $ cat file1.txt
 {: .output}
 
 Rather than viewing all of the content of a large file, you can use the commands `less` and `more` to view small pieces of the document at a time.
+
+Let's start with `less`. You can use the <kbd>&uparrow;</kbd> and <kbd>&downarrow;</kbd> keys to scroll up and down the text file. You can quit using `less` and return to the command prompt by pressing the <kbd>q</kbd> key.
+
+~~~
+$ less file1.txt
+~~~
+{: .language-bash}
+
+Now try `more`. You can scroll down the file using the <kbd>enter</kbd> key. Again, use the <kbd>q</kbd> key to return to the command line.
+
+~~~
+$ more file1.txt
+~~~
+{: .language-bash}
+
+## Previewing the top and bottom of a file
+
+You can preview the top of a file using the command `head`, and you can include the arguement `-n` followed by a number to specify the number of lines to show. The example below will show the first 12 lines of the file.
+
+~~~
+$ head -n 12 file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .language-bash}
+
+The command `tail` will show the end of the file, and can also be combined with `-n` to show a specific number of lines.
+
+~~~
+$ tail -n 7 file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+## Viewing the middle of a file
+
+You can view lines from the middle of a file using the command `sed` along with the command `-n` followed by the number of the first and last lines you want to view separated by a `,` and with the letter `p` as a suffix.
+
+~~~
+$ sed -n 7,15p file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+## Checking the length of a file
+
+The command `wc` can be combined with several arguments to measure the length of a file.
+
+- `-l` outputs the number of lines
+- `-c` outputs the number of characters
+- `w` outputs the number of words
+
+Try one of the three combinations below:
+
+~~~
+$ wc -l file1.txt
+$ wc -c file1.txt
+$ wc -w file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output*** file1.txt
+***output*** file1.txt
+***output*** file1.txt
+~~~
+
+
+
+### Writing or concatenating output to files
+
+## Writing files
+
+A command followed by the `>` operator will send that output to a new file name after the symbol.
+
+~~~
+$ head -n 8 file1.txt > top.txt
+$ tail -n 8 file1.txt > bottom.txt
+$ ls
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+The command `echo` will send text to the command prompt. This is more useful when it is combined with the `>` operator or other functions.
+
+~~~
+$ echo hello
+~~~
+{: .language-bash}
+
+~~~
+hello
+~~~
+{: .output}
+
+Now use this function with the `>` operator. We will include `.move` in the name to demonstrate how you can use extensions to manipulate files later on.
+
+~~~
+$ echo hello > hi.move.txt
+$ echo goodbye > bye.move.txt
+$ ls
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+Be careful not to use a file name that already exists with the `>` operator! Doing so will overwrite that file and replace it with the new content!
+{: .caution}
+
+## Concatenating files
+
+The `>>` operator concatenates data in a file instead of writing a new file. If that file does not exist, it will create one with the name after the `>>` operator. We will combine the two files we just created using `echo` in the last step. We are using `cat` to send the file contents to the command prompt and concatenating that information to a file.
+
+~~~
+$ cat hi.move.txt >> aloha.move.txt
+$ cat bye.move.txt >> aloha.move.txt
+$ cat aloha.move.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+The two lines are now combined in one text file. Consider how `tail`, `head` and `sed` can all be combined to send information to new files or combine lines of interest into one file.
+
+### Wildcards
+
+## Overview of some wildcards
+
+Wildcards provide tremendous power and flexibility when writing commands. Here are a few examples:
+- `*` represents any one or many characters. `ls *.txt` will list all of the files ending in the extension `.txt`
+- `?` represents any one character
+- `[0-9]` represents any one number
+- `[a-z]` represents any single lowercase letter
+- `[A-Z]` represents any single capital letter
+- `[!x]` represents any character except `x`, where the `x` can be substituted with any letter or number
+- `{x,y} represents either the character x or y, where either letter can be substituted with any letter or number
+
+## Using wildcards
+
+We can use a wildcard to write all of the files ending in the extension `.txt` to a file. This can be a useful command because this file could be used as future input for a script to move many large files from one directory to another. We will combine the `ls` command with the `>` operator to send a list of files ending in `.txt` to a new file.
+
+~~~
+$ ls *.txt > movelist.txt
+$ cat movelist.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+We have written several files with the extension `.move.txt`. Let's say we want to move these files, but not all of the files with the `.txt` extension. Wildcards provide a perfect solution to this problem.
+
+~~~
+$ mkdir aloha
+$ ls
+$ mv *.move* aloha/
+$ ls
+$ ls aloha/
+~~~
+{: .language-bash}
+
+~~~
+***output***
+***output***
+***output***
+~~~
+{: .output}
 
 
 
