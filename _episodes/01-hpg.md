@@ -560,7 +560,7 @@ The `sed` command is very powerful and has a wide range of complex arguments tha
 
 The `grep` command will find a string within `""` and return lines that match the string.
 
-~~
+~~~
 $ grep "downstream_gene_variant" file1.txt
 ~~~
 {: .language-bash}
