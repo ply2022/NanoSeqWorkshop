@@ -83,3 +83,7 @@ and you can follow the on-screen instructions by clicking **Installation guide**
 5. Once you get in the interface, the system will walk you through the menu.
 <img src="fig/MinION_tutorial.png" align="center" height="500">
 </div>
+
+> ## MinKNOW protocol
+> You can find complete protocol of sequencing software [here](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/experiment-companion-minknow/v/mke_1013_v1_revch_11apr2016)
+{: .tips}

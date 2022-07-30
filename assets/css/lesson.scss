@@ -16,7 +16,7 @@ $color-source:      #360084 !default;
 
 // blockquotes
 $color-callout:     #f4fd9c !default;
-$color-caution:     #cf000e !default;
+$color-caution:     #ee3440 !default;
 $color-challenge:   #eec275 !default;
 $color-checklist:   #dfd2a0 !default;
 $color-discussion:  #eec275 !default;
@@ -25,6 +25,8 @@ $color-objectives:  #daee84 !default;
 $color-prereq:      #9cd6dc !default;
 $color-solution:    #ded4b9 !default;
 $color-testimonial: #fc8dc1 !default;
+$color-tips:        #ee9775 !default;
+$color-notes:       #47acf0 !default;
 
 //----------------------------------------
 // Specialized code blocks.
@@ -38,58 +40,47 @@ $color-testimonial: #fc8dc1 !default;
     border-radius: 4px 0 0 4px;
 }
 
-// Generic setup. Has to come before .error, .warning, and .output
-div[class^='language-'] { @include cdSetup($color-source); }
+.error   { @include cdSetup($color-error); }
+.warning { @include cdSetup($color-warning); }
+.output  { @include cdSetup($color-output); }
+.source  { @include cdSetup($color-source); }
 
-div.source  { @include cdSetup($color-source); }
-div.error   { @include cdSetup($color-error); }
-div.warning { @include cdSetup($color-warning); }
-div.output  { @include cdSetup($color-output); }
+.bash, .language-bash     { @include cdSetup($color-source); }
+.terminal                 { @include cdSetup($color-output); }
+.make, .language-make     { @include cdSetup($color-source); }
+.matlab, .language-matlab { @include cdSetup($color-source); }
+.python, .language-python { @include cdSetup($color-source); }
+.r, .language-r           { @include cdSetup($color-source); }
+.sql, .language-sql       { @include cdSetup($color-source); }
 
-div.error::before,
-div.warning:before,
-div.output::before,
-div.source::before,
-div[class^='language-']::before {
+.error::before,
+.warning:before,
+.output::before,
+.source::before,
+.bash::before, .language-bash::before,
+.terminal::before,
+.make::before, .language-make::before,
+.matlab::before, .language-matlab::before,
+.python::before, .language-python::before,
+.r::before, .language-r::before,
+.sql::before, .language-sql::before {
     background-color: #f2eff6;
     display: block;
     font-weight: bold;
     padding: 5px 10px;
 }
 
-div[class^='language-']::before,
-div.source::before { content: "Code"; }
-
-div.error::before  { background-color: #ffebe6; content: "Error"; }
-div.warning:before { background-color: #f8f4e8; content:" Warning"; }
-div.output::before { background-color: #efefef; content: "Output"; }
-
-div.language-basic::before    { content: "Basic"; }
-div.language-bash::before     { content: "Bash"; }
-div.language-c::before        { content: "C"; }
-div.language-chapel::before   { content: "Chapel"; }
-div.language-cmake::before    { content: "CMake"; }
-div.language-cpp::before      { content: "C++"; }
-div.language-cuda::before     { content: "Cuda"; }
-div.language-d::before        { content: "D"; }
-div.language-fortran::before  { content: "Fortran"; }
-div.language-go::before       { content: "Go"; }
-div.language-html::before     { content: "HTML"; }
-div.language-java::before     { content: "Java"; }
-div.language-julia::before    { content: "Julia"; }
-div.language-kotlin::before   { content: "Kotlin"; }
-div.language-lua::before      { content: "Lua"; }
-div.language-make::before     { content: "Make"; }
-div.language-matlab::before   { content: "MATLAB"; }
-div.language-opencl::before   { content: "OpenCL"; }
-div.language-perl::before     { content: "Perl"; }
-div.language-python::before   { content: "Python"; }
-div.language-r::before        { content: "R"; }
-div.language-ruby::before     { content: "Ruby"; }
-div.language-rust::before     { content: "Rust"; }
-div.language-scala::before    { content: "Scala"; }
-div.language-sql::before      { content: "SQL"; }
-div.language-vulkan::before   { content: "Vulkan"; }
+.error::before  { background-color: #ffebe6; content: "Error"; }
+.warning:before { background-color: #f8f4e8; content:" Warning"; }
+.output::before { background-color: #efefef; content: "Output"; }
+.source::before { content: "Code"; }
+.bash::before, .language-bash::before { content: "Bash"; }
+.terminal::before { content: "Terminal"; }
+.make::before, .language-make::before { content: "Make"; }
+.matlab::before, .language-matlab::before { content: "Matlab"; }
+.python::before, .language-python::before { content: "Python"; }
+.r::before, .language-r::before { content: "R"; }
+.sql::before, .language-sql::before { content: "SQL"; }
 
 // Tab panels are used on Setup pages to show instructions for different Operating Systems
 .tab-pane {
@@ -185,6 +176,8 @@ $codeblock-padding: 5px !default;
 .prereq{ @include bkSetup($color-prereq, "\e124"); }
 .solution{ @include bkSetup($color-solution, "\e105"); }
 .testimonial{ @include bkSetup($color-testimonial, "\e143"); }
+.tips { @include bkSetup($color-tips, "\e086"); }
+.notes { @include bkSetup($color-notes, "\e043"); }
 
 .callout h3,
 .challenge h3,
@@ -194,11 +187,14 @@ $codeblock-padding: 5px !default;
 .objectives h3,
 .prereq h3,
 .solution h3,
-.testimonial h3 {
+.testimonial h3,
+.tips h3,
+.notes h3 {
 font-size: 18px;
 }
 
 .challenge    { background-color: #eec27520; }
+.caution      { background-color: #eb4d571c; }
 .callout      { background-color: #f4fd9c20; }
 .challenge    { background-color: #eec27520; }
 .checklist    { background-color: #dfd2a020; }
@@ -208,6 +204,8 @@ font-size: 18px;
 .prereq       { background-color: #9cd6dc20; }
 .solution     { background-color: #ded4b94d; }
 .testimonial  { background-color: #fc8dc120; }
+.tips         { background-color: #ee977525; }
+.notes        { background-color: #5da9f03d; }
 
 blockquote p {
     margin: 5px;
@@ -226,20 +224,6 @@ a code {
   color: #006cad;
 }
 
-a:link {
-  color: #196EBD;
-}
-
-a:active,
-a:hover {
-  outline: 0;
-  text-decoration: underline;
-}
-
-a:visited {
-  color: #1AA4DA;
-}
-
 code {
   white-space: nowrap;
   padding: 2px 5px;
@@ -256,11 +240,6 @@ article img {
     display: block;
     margin: 20px auto;
     max-width: 100%;
-}
-
-article img.inline {
-    display: inline-block;
-    margin: auto;
 }
 
 article h2 {
@@ -321,11 +300,18 @@ span.fold-unfold {
   opacity: 0.5;
 }
 
-
-p.image-with-shadow img,
-img.image-with-shadow {
-  box-shadow: 0 6px 24px 0 #888;
+input[type="text"] {
+  border-radius: 5px;
+  border: 1px #333 solid;
+  padding: 2px 5px;
+  background-color: #eef;
 }
+
+ul.dropdown-menu {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 
 //----------------------------------------
 // Life cycle box
@@ -357,17 +343,6 @@ div.life-cycle {
     background: #d9edf7;
 }
 
-.published {
-    color: #354711;
-    background: #effbd7;
-}
-
-// Remove border around spans of text within code blocks
-// that the highlighter (rouge) failed to recognize.
-pre.highlight span.err {
-    border: none;
-}
-
 
 //----------------------------------------
 // keyboard key style, from StackExchange.
@@ -390,12 +365,64 @@ kbd {
     font-style: normal;
 }
 
-//------------------------------------------
-// Show solution while printing (Ctrl + P)
-// -----------------------------------------
+//-------------------------------------------
 
-@media print {
-  blockquote.solution > * {
-    display: unset !important;
-  }
+details {
+  border: 2px black solid;
+  border-radius: 5px;
+  padding: 2px 10px;
+  background: #ffffff44;
+  margin: 0 10px;
+}
+
+details > summary {
+  outline: none;
+  cursor: pointer;
+}
+
+details > summary:after {
+  content: "Click here for answer."
+}
+
+details[open] > summary:after {
+  content: "Click here to hide the answer."
+}
+
+
+.bash::before, .language-bash::before {
+  counter-increment: bash;
+  content: "Bash | #" counter(bash);
+}
+
+.container {
+  counter-reset: bash;
+}
+
+@media print  
+{
+    div.highlighter-rouge, blockquote {
+        page-break-inside: avoid;
+    }
+
+    .highlight {
+      -webkit-print-color-adjust: exact;
+      background-color:  #f4f4f4 !important
+    }
+
+    .language-bash::before, .terminal::before, .output::before {
+      -webkit-print-color-adjust: exact;
+      background-color: #e7e7e7 !important
+    }
+
+    :not(pre) > code {
+      -webkit-print-color-adjust: exact; 
+      background-color: #e7e7e7 !important
+    }
+
+    h1, :not(blockquote) > h2 {page-break-before: always;}
+}
+
+// To prevent awesome bioinfo h1 from showing up
+body{
+  min-width: 425px;
 }
