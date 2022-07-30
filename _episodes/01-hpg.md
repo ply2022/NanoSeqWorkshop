@@ -152,9 +152,9 @@ The three different clusters represent:
 
 It is important to look at permissions if you are having trouble accessing a file or folder. Sometimes content from workshops or files downloaded from the internet have permissions that can restrict your access.
 
-### Creating, moving and copying directories and files
+## Creating, moving and copying directories and files
 
-## Making a directory
+### Making a directory
 
 Use `cd` to access the workshop directory with your username.
 
@@ -165,7 +165,7 @@ $ mkdir newdir
 ~~~
 {: .language-bash}
 
-## Linux path symbols
+### Linux path symbols
 
 There are shortcuts to navigate directory paths in Linux. Here are a few:
 
@@ -176,7 +176,7 @@ There are shortcuts to navigate directory paths in Linux. Here are a few:
 
 We will use some of these shortcuts soon.
 
-## Copying a file
+### Copying a file
 
 You can copy a file with the command `cp` followed by the location of the file you want to copy and the location you want to put the new copy.
 
@@ -207,7 +207,7 @@ $ cp -r blue/general_workshop/share/demo ./
 ~~~
 {: .language-bash}
 
-## Moving a file
+### Moving a file
 
 You can move files with the command `mv`, followed by the file location and the location where you will move it. Moving a file removes it from its original location.
 
@@ -222,7 +222,7 @@ $ ls
 ~~~
 {: .output}
 
-## Deleting files
+### Deleting files
 
 You can delete files using the command `rm`. To delete a directory and all of the files contained within it, you can use the recursive option `-r`.
 
@@ -234,7 +234,7 @@ $ ls
 ~~~
 {: .language-bash}
 
-## Deleting directories
+### Deleting directories
 
 Aside from using the recursive option for `rm`, you can also remove directories with the command `rmdir`.
 
@@ -244,9 +244,9 @@ $ ls
 ~~~
 {: .language-bash}
 
-### Reading and writing files
+## Reading and writing files
 
-## Reading file contents
+### Reading file contents
 
 There are a number of ways to look at some or all of the contents of a file.
 
@@ -278,7 +278,7 @@ $ more file1.txt
 ~~~
 {: .language-bash}
 
-## Previewing the top and bottom of a file
+### Previewing the top and bottom of a file
 
 You can preview the top of a file using the command `head`, and you can include the arguement `-n` followed by a number to specify the number of lines to show. The example below will show the first 12 lines of the file.
 
@@ -304,7 +304,7 @@ $ tail -n 7 file1.txt
 ~~~
 {: .output}
 
-## Viewing the middle of a file
+### Viewing the middle of a file
 
 You can view lines from the middle of a file using the command `sed` along with the command `-n` followed by the number of the first and last lines you want to view separated by a `,` and with the letter `p` as a suffix.
 
@@ -318,7 +318,7 @@ $ sed -n 7,15p file1.txt
 ~~~
 {: .output}
 
-## Checking the length of a file
+### Checking the length of a file
 
 The command `wc` can be combined with several arguments to measure the length of a file.
 
@@ -343,9 +343,9 @@ $ wc -w file1.txt
 
 
 
-### Writing or concatenating output to files
+## Writing or concatenating output to files
 
-## Writing files
+### Writing files
 
 A command followed by the `>` operator will send that output to a new file name after the symbol.
 
@@ -390,7 +390,7 @@ $ ls
 Be careful not to use a file name that already exists with the `>` operator! Doing so will overwrite that file and replace it with the new content!
 {: .caution}
 
-## Concatenating files
+### Concatenating files
 
 The `>>` operator concatenates data in a file instead of writing a new file. If that file does not exist, it will create one with the name after the `>>` operator. We will combine the two files we just created using `echo` in the last step. We are using `cat` to send the file contents to the command prompt and concatenating that information to a file.
 
@@ -408,9 +408,9 @@ $ cat aloha.move.txt
 
 The two lines are now combined in one text file. Consider how `tail`, `head` and `sed` can all be combined to send information to new files or combine lines of interest into one file.
 
-### Wildcards
+## Wildcards
 
-## Overview of some wildcards
+### Overview of some wildcards
 
 Wildcards provide tremendous power and flexibility when writing commands. Here are a few examples:
 - `*` represents any one or many characters. `ls *.txt` will list all of the files ending in the extension `.txt`
@@ -421,7 +421,7 @@ Wildcards provide tremendous power and flexibility when writing commands. Here a
 - `[!x]` represents any character except `x`, where the `x` can be substituted with any letter or number
 - `{x,y} represents either the character x or y, where either letter can be substituted with any letter or number
 
-## Using wildcards
+### Using wildcards
 
 We can use a wildcard to write all of the files ending in the extension `.txt` to a file. This can be a useful command because this file could be used as future input for a script to move many large files from one directory to another. We will combine the `ls` command with the `>` operator to send a list of files ending in `.txt` to a new file.
 
@@ -454,7 +454,225 @@ $ ls aloha/
 ~~~
 {: .output}
 
+## Sorting and manipulating files
 
+### Sorting
+
+The command `sort` will sort the lines in a file in alpanumeric order. If you follow it with the command `-r`, it will reverse the alphanumeric order.
+
+~~~
+$ sort file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+The `-k` argument followed by a number can sort a specific column of data in a file. We will combine this with the `-r` agumennt.
+
+~~~
+$ sort -r -k2 file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+The argument `-n` sorts in numerical order instead of alphanumerical order. Imagine you have a list with the numbers 3 and 27.
+- In alphanumerical order (the default order for `sort`), the number 27 will precede 3.
+- In numerical order using the argument `-n`, the number 3 would precede the number 27.
+
+We will repeat the last command, but use the `-n` numeric order for sorting. Additionally, instead of listing each argument separately, you can combine them together and use the command `-k2nr`.
+
+~~~
+$ sort -k2nr file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+### Extracting a column or part of a string from a file
+
+We can extract a specific column from a delimited file using the command `cut` along with the argument `-f` followed by the column number to extract. We will extract the first column of the data.
+
+~~~
+$ cut -f 1 file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+The default is for a tab delimited file. If the file is delimited in another way, you can use the `-d` argument followed by the delimiter character in between `""`.
+
+~~~
+$ cut -f 1 -d "." file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+Notice that with the `.` delimiter, the break occurs after the decimal point in the chromosome names.
+
+You can also extract a part of a string a certain number of characters long using the argument `-c` along with the command `cut`. Specify the number of characters after the `-c` argument.
+
+~~~
+$ cut -c 1-6 file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+This produces the same result as using the `.` as a delimiter in the example above.
+
+## Replacing text
+
+The `sed` command will replace text in a file and uses the format `sed 's/old/new/g'`, which would change all instances of the word `old` to `new` in the file.
+
+~~~
+$ sed 's/CM0084/Chr_/g' file1.txt > cleanfile.txt
+$ cat cleanfile.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+The `sed` command is very powerful and has a wide range of complex arguments that can be used to completely reformat data. You can find more information about `sed` here: ***site***
+{: .tips}
+
+The `grep` command will find a string within `""` and return lines that match the string.
+
+~~~
+$ grep "downstream_gene_variant" file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+Rather than output the lines, you can return the number of matches using the argument `-c` preceding the string.
+
+~~~
+$ grep -c "downstream_gene_variant" file1.txt
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+The `grep` command is similar to `sed` in that it has a large number of arguments that make it very powerful and versatile. You can learn more about grep here: ***site***
+{: .tips}
+
+## Piping commands
+
+The `|` operator can be used for piping, or creating a pipeline in which information from one command flows into another command. You can pipe output in a series to as many commands as is needed.
+
+Piping is useful because you don't need to write intermediate information to a file. We will sort the second column of `file1.txt` in numerical order and display the top 3 lines.
+
+~~~
+$ sort -k2 -n file1.txt | head -n 3
+~~~
+{: .language-bash}
+
+~~~
+***output***
+~~~
+{: .output}
+
+## Variables
+
+Variables allow you to assign a piece of information to a different name. You can assign variables by writing the shortcut name followed by an `=` sign, which is followed by the assigned name between `""`. You can use the command `echo` to call a variable that you assigned preceded by the `$` sign. In the example below, we will assign the phrase `APS` to the letter `x`, and use the command `echo` to call the variable `$x`.
+
+Be sure not to leave any spaces before or after the `=` sign!
+{: .caution}
+
+~~~
+$ x="APS"
+$ echo $x
+~~~
+{: .language-bash}
+
+~~~
+APS
+~~~
+{: .output}
+
+Variables can be combined to form new variables, and variable names can be longer than a single letter.
+
+~~~
+$ y=" Rocks"
+$ zebra="$x$y"
+$ echo $zebra
+~~~
+
+~~~
+APS Rocks
+~~~
+{: .output}
+
+Be certain to use `""` and not `''` when using variables! The two are not interchangeable!
+{: .caution}
+
+## Loops
+
+Rather than running the same command multiple times, you can use a loop to complete a series of tasks more efficiently. They oftentimes rely upon wildcards and variables to read multiple files or conditions.
+
+### The 'For' loop
+
+The 'For' loop iterates a process a number of times defined by a number, a range or an array.
+
+Codes for loops require multiple lines of code and cannot all be written in the same line, or the commands executed one after another in sequence!
+{: .caution}
+
+To overcome this hurdle, you have a few options:
+- Oftentimes code will accompany the `$` and `>` symbols so you cannot paste multiple lines directly into the command shell. Instead, you can paste them into another text editor and remove these symbols.
+- Alternatively, you can use the ***commandkey*** ***workformac?*** to start a new line of code without submitting the first line and paste each line one after the other.
+- Another alternative is the use of the `;` symbol, which will signify a line break without actually writing a second line of code.
+
+We will write out the code twice, first to show how it can be written one line at a time, and second using the the `;` symbol and pasting all of the code in one line, which is recommended for this workshop. However, normally if you are writing a script, it is easier to read and understand the loop if each part is written on a separate line.
+
+~~~
+$ for x in {0..5}
+> do
+>   echo $x
+done
+~~~
+{: .language-bash}
+
+~~~
+$ for x in {0..3}; do echo $x; done
+~~~
+{: .language-bash}
+
+~~~
+0
+1
+2
+3
+~~~
+{: .output}
 
 ## Learn more about unix commands
 > [Software carpentary reference](https://swcarpentry.github.io/shell-novice/reference/)
