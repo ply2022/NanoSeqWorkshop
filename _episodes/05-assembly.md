@@ -24,7 +24,7 @@ overlap-layout-consensus (OLC) algorithm.
 
 > ## Overlap-Layout-Consensus (OLC) algorith
 > An assembly methods finds overlaps among all the reads, and then build the overlap graph to sort into the contigs. Align those contigs to make a concensus sequence.
-> <img src="/fig/OLC.svg" align="center" width="400">
+> <img src="{{site.baseSite}}/fig/OLC.svg" align="center" width="400">
 {: .tips}
 
 ### SLURM scripts
@@ -619,29 +619,37 @@ Suw.utg.fa.amb     Suw.utg.fa.ann     Suw.utg.fa.bwt            Suw.utg.fa.sa   
 ~~~
 {: .output}
 
-# 
+# Assemblely polishing using Pilon
+Pilon is a software aims to automatically improve draft assembly. Pilon requires two inputs: a FASTA file of assembly and BAM file of Illumina reads aligned to the assembly. Pilon identifies inconsistencies between the assembly and reads. Pilon aims to improve the input assembly including: 1) Single base differences, 2) Small indels, 3) Larger indel or block substitution events, 4) Gap filling, and 5) Identification of local misassemblies. 
 
+Outputs from Pilon tool are: a FASTA file of improved assembly and optional VCF file to visulaize the discrepancy between FASTA file of assembly and Illumina reads.
 
+## Aligning Illumina reads to our assembly using Bowtie2
 
+## Correcting assembly using Pilon
 
+## Further polishing Pilon assembly using pilon
+Simpliy repeat the previous steps. 
 
+# Scaffolding: mapping the polished assembly to the reference genome
+<img src="{{site.baseSite}}/fig/Ragtag.svg" align="center" width="400">
 
+# Quality assessment of assemblies
+## Computing metrics of assemblies using QUAST
+To perform assembly evaluation, we will run QUAST. QUAST computes serveral common metrics including misassemblies, contig N50, genome fraction (aligned based in the assemblies/reference genome). QUAST provides several outputs including report.txt, assessement summary in plain text file, and HTML file, a report including interactive plots. You can read the complete manual [here](http://quast.sourceforge.net/docs/manual.html#sec3). 
 
-
-
-
-
-
+## Evaluate assembly completeness using BUSCO
 
 
 > ## References and addtional reading
 > 1. [SMARTdenovo](https://github.com/ruanjue/smartdenovo)
 > 2. [Overlap Layout Consensus assembly](https://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_olc.pdf)
 > 3. [BWA](https://github.com/lh3/bwa)
-> 4. [Racon]
-> 5. [Bowtie2]
-> 6. [Pilon]
-> 7. [BBMap]
-> 8. [BUSCO]
-> 9. [Comparative Genomics of Fusarium circinatum Isolates Used to Screen Southern Pines for Pitch Canker Resistance](https://doi.org/10.1094/mpmi-10-21-0247-r)
+> 4. [Racon](https://github.com/isovic/racon)
+> 5. [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
+> 6. [Pilon](https://github.com/broadinstitute/pilon/wiki)
+> 7. [Ragtag](https://github.com/malonge/RagTag)
+> 8. [QUAST](https://sourceforge.net/projects/quast/)
+> 9. [BUSCO](https://gitlab.com/ezlab/busco#how-to-cite-busco)
+> 10. [Comparative Genomics of Fusarium circinatum Isolates Used to Screen Southern Pines for Pitch Canker Resistance](https://doi.org/10.1094/mpmi-10-21-0247-r)
 {: .tips}
