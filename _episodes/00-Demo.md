@@ -49,7 +49,7 @@ Compare to spectrophotometer, fluorometric measurement is more specific and sens
 
 ### Spectrophotometer vs. Fluorometry
 So...which method is better? 
-<img src="/fig/NanoDropVSQubit.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/NanoDropVSQubit.png" align="center" width="700">
 
 **Figure A**. Comparisons of repeated measurements (n = 10) between commercial kits (Qubit) and spectrophotometer (NanoDrop). Serial dilution of DNA samples ranging from 50-0.5 ng/µl was used to evaluate two methods. 
 
@@ -58,7 +58,7 @@ So...which method is better?
 ### Integrity assessment
 To evaluate integrity of DNA samples, we need gel electrophoresis systems, such as [Agilent 2200 TapeStation Systems](https://www.agilent.com/en/product/automated-electrophoresis/tapestation-systems/tapestation-software/2200-tapestation-software-228269#support). The software provides numerical number of DNA integrity called DNA Integrity Number (DIN) and sample concentration.  
 
-<img src="/fig/TapeStation.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/TapeStation.png" align="center" width="700">
 
 **Figure A**. The gel image with DNA Integrity Number (DIN). A1: DNA marker; B1-H2: degradation series of 15 g DNA samples (60 ng/µl).
 
@@ -73,7 +73,7 @@ When should I performe fragmentation of genomic DNA (gDNA)?
 Although the protocol recommends starting DNA sample concentration is 1 µg, fragemntation might be useful for low input amount of DNA. Also, you might benefit from optimal fragmentation when you habdling very high molecular weight gDNA. [Oxford Nanopore Technologies (ONT)](https://community.nanoporetech.com/extraction_method_groups/optional-fragmentation-of-gdna) provides a review of how factors including fragment size, loding amount, and blocking affect the flow cell output. Here we will discuss how fragmentation affects read N50. 
 
 The following figures demonstrate that fragemnt length and read N50 do not have linear relationship. 
-<img src="/fig/Fragmentation&N50.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/Fragmentation&N50.png" align="center" width="700">
 
 **Figure A**. Sheared Human gDNA samples were sheared with different speed. The fragment size was analyzed. Increasing shearing speed leads to more fragmented DNA. 
 
@@ -81,7 +81,7 @@ The following figures demonstrate that fragemnt length and read N50 do not have 
 
 > ## Read N50
 > Definition of read N50 is "the sequence length of the shortest read at 50% of the total sequencing dataset sorted by read length" [(Logsdon et al., 2020)](https://doi.org/10.1038/s41576-020-0236-x).
-> <img src="/fig/N50.svg" align="center" width="700">
+> <img src="{{site.baseSite}}/fig/N50.svg" align="center" width="700">
 {: .tips}
 
 ### First step: DNA repair and end-repair
@@ -93,7 +93,7 @@ DNA fragments do not have homogeneousn blunt-ended fragments, so [NEBNext Ultra 
 
 Prepared DNA fragments is ligated with sequencing adapters (red) tagged with mortor protein (brown). Both template and complementary strands are tagged with mortor protein, so both strand will translocate the nanopore. Mortor protein has helicase activity and it also control the DNA translocation speed. Once the sequencing adapter inserts into the nanopore, double-strand DNA will be first unwound by motor protein. Eletric current drives negatively charged DNA pass through the pore (~450 bases per second).
 
-<img src="/fig/LibraryPrep.svg" align="center" width="700">
+<img src="{{site.baseSite}}/fig/LibraryPrep.svg" align="center" width="700">
 
 # Genomic DNA sequencing on the MinION sequencer
 
@@ -103,63 +103,63 @@ Prepared DNA fragments is ligated with sequencing adapters (red) tagged with mor
 
 The MinION Mk1B instrument connects the user’s PC and the nanopore sensor. It provides power to application-specific integrated circuit (ASIC), performs temperature control, protects sensor from electronic noise, and transfer data to the user's PC. The MinION Mk1B does not have active heating element. The heat generated from ASIC and control of fan speed maintain a steady temperatue at 37 °C. 
 
-<img src="/fig/MinION_Mk1B.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/MinION_Mk1B.png" align="center" width="700">
 
 ### Configuration test cell (CTC)
 
 CTC is used to test the communication between the MinION Mk1B and sequencing sofware, MinKNOW, on user's PC. 
 
-<img src="/fig/CTC.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/CTC.png" align="center" width="700">
 
 ### Anatomy of flow cell
 
 The flow cell is a comsumables that contains a fluidic interface allowing DNA samples being sequenced. Sensor chip is one of the major components of the flow cell. Sensor array is located on the the front of sensor chip. MinION Mk1B flow cell carries (ideally) 2048 active wells (nanopores) on the surface of sensor array. 
 
-<img src="/fig/SpotON_FlowCell.png" align="center" width="700">
-<img src="/fig/FlowCellChips.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/SpotON_FlowCell.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/FlowCellChips.png" align="center" width="700">
 
 
 ### Storage buffer
 
 The flow cells are shipped and preserved with the storage buffer (yellow). The storage buffer serves differen roles: 1) maintaining osmotic balance, 2) allowing current to run through the nanopores, 3) identifying functional pores during flow cell checking.  
 
-<img src="/fig/StorageBuffer.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/StorageBuffer.png" align="center" width="700">
 
 The flow cell is flused with priming mix (Flush Tether + Flush Buffer; colored in blue) through priming pore to replace the storage buffer in the bulk section before library loading. DNA library is loaded to sensor array through SpotON sample port.  
 
-<img src="/fig/Priming.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/Priming.png" align="center" width="700">
 
 ## Flow cell check 
 
 ### Purpose of the [flow cell check](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/flow-cell-check/v/pqe_1004_v1_revag_06jan2016)
 ONT offers a warranty within 3 months from purchase of MinION flow cell. If the active pore number below the warranty number, you can request a replacement. 
 
-<img src="/fig/FlowCellQC.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/FlowCellQC.png" align="center" width="700">
 
 ### Running the flow cell check
 Before you run the flow cell check, you need to have a PC connected with internet and MinION Mk1B device and your PC also need to be intalled with MinKNOW software. 
 
 [Step 1] Open the sequencer lid and insert the flow cell. First slide flow cell under the clip, and then press down the flow cell. **Note**: Do not touch the bottom of the flow cell. 
 
-<img src="/fig/IncertFlowCell.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/IncertFlowCell.png" align="center" width="700">
 
 [Step 2] Connect assembled sequencer to your PC. You will see the lights and hear sound of fan if the connection is successful. 
 
-<img src="/fig/ConnectedMinION.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/ConnectedMinION.png" align="center" width="700">
 
 [Step 3] Double-click the MinKNOW icon on your desktop, and log into software. 
 
-<img src="/fig/MinION_login.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/MinION_login.png" align="center" width="700">
 
 [Step 4] If you insert the new flow cell, the overview will show that the flow cell has not been checked (orange question mark). 
 
-<img src="/fig/MinKNOW_overview.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/MinKNOW_overview.png" align="center" width="700">
 
 [Step 5] Click start and select **Flow cell check**.
-<img src="/fig/StartFlowCellCheck.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/StartFlowCellCheck.png" align="center" width="700">
 
 [Step 6] The system detects MiinION Flow cell ID automatically. Click **Start**. 
-<img src="/fig/FlowCellCheck_1.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/FlowCellCheck_1.png" align="center" width="700">
 
 [Step 7] It will takes about 5 minutes to finish flow cell check.
 Two types of output:
@@ -167,7 +167,7 @@ Two types of output:
 **Yellow exclamation mark**: The numbe of active pores is below warranty number.
 
 **Green tick**: The number of active proes is above warranty number. **[Need a picture here]**
-<img src="/fig/FlowCellCheck_out.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/FlowCellCheck_out.png" align="center" width="700">
 
 Do not panic when you see a yellow exclamation mark in this workshop. We provided eveybody **used** flow cell. 
 
@@ -184,17 +184,17 @@ Due to the the space and time limitations. Participants ***will not* initiate se
 
 [Step 1] At the homepage, click **Start** and then select **Start sequencing**
 
-<img src="/fig/SeqExp_1.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/SeqExp_1.png" align="center" width="700">
 
 [Step 2] Fill in the following information:
 **(1)** Experiment name
 **(2)** Sample ID
 
 Click **Continue to kit selection**. 
-<img src="/fig/SeqExp_2.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/SeqExp_2.png" align="center" width="700">
 
 [Step 3] Select the **Ligation sequencing gDNA (SQK-LSK110)** used for this experiment. You can use options to narrow down the list: **Sample type**, **PCR-free**, **Multiplexing**. Click **Continue to run options**
-<img src="/fig/SeqExp_3.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/SeqExp_3.png" align="center" width="700">
 
 [Step 4] Select run options. Change Time and read length.
 Click **Continue to basecalling**
@@ -224,7 +224,7 @@ A report of flow cell pore health will be provided after first multiplexer (pore
 > 5. [DNA Integrity Number (DIN) with the Agilent 2200 TapeStation System and the Agilent Genomic DNA ScreenTape Assay](https://www.agilent.com/cs/library/applications/5991-5258EN.pdf){: target="_blank"}
 > 6. [Community-Online crouses](https://community.nanoporetech.com/nanopore_learning/courses/introduction-to-nanopore-sequencing){: target="_blank"}
 > 7. [Community-Documentation](https://community.nanoporetech.com/docs){: target="_blank"}
-> 8. [Priming and loading the SpotON flow cell for MinION](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/genomic-dna-by-ligation-sqk-lsk110/v/gde_9108_v110_revv_10nov2020/priming-and-loading-the-spoton-flow-cell?devices=minion){: target="_blank"}
+> 8. [Priming and loading the SpotON flow cell for MinION](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/genomic-dna-by-ligation-sqk-lsk110/v/gde_9108_v110_revv_10nov2020/priming-and-loading-the-spoton-flow-cell?devices=minion)
 {: .tips}
 
 
