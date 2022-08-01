@@ -175,7 +175,10 @@ Now we can look at the results of our SLURM script. List the files in your direc
 $ ls
 $ cat slurm_test_<jobid>.log
 ~~~
- Sat 06  02:04:05 EDT 2022
+{: .langage-bash}
+
+~~~
+Sat Sep 06  02:04:05 EDT 2022
 Sat Sep 06 02:04:15 EDT 2022
 Sat Sep 06 02:04:25 EDT 2022
 Sat Sep 06 02:04:35 EDT 2022
