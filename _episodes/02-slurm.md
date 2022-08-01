@@ -34,7 +34,7 @@ In the previous section, we covered creating and manipulating files, but we have
 You can use `nano` by typing the command `nano` followed by either the file name you want to create, or the location of a text file you want to edit. We will write our own script called `slurm.sh`. The `sh` extension is used for SLURM scripts.
 
 ~~~
-$ nano slurm.sh
+nano slurm.sh
 ~~~
 {: .language-bash}
 
@@ -115,7 +115,7 @@ Save the script with nano to return to the shell.
 Submit the script to SLURM using the command `sbatch` followed by the name of the script.
 
 ~~~
-$ sbatch slurm.sh
+sbatch slurm.sh
 ~~~
 {: .language-bash}
 
@@ -131,7 +131,7 @@ If you submit multiple jobs with the same name, the job id provided by SLURM can
 The command `squeue` allows you to check the status of a job. The `-u` argument followed by your username will list all of the jobs you have submitted. The `-A` argument lists all of the jobs running under a single account. If you have submitted a job and it has not run for an extended period of time, you should use the `-A` argument to determine if there are a large number of jobs scheduled ahead of yours.
 
 ~~~
-$ squeue -u <username>
+squeue -u <username>
 ~~~
 {: .language-bash}
 
@@ -149,7 +149,7 @@ The status listed under `ST` will either be `R` for running, or `PD` for pending
 Now lets look at all of the jobs submitted by users in this workshop.
 
 ~~~
-$ squeue -A general_workshop
+squeue -A general_workshop
 ~~~
 {: .language-bash}
 
@@ -166,14 +166,14 @@ The results will vary, but will look something like:
 You can view a log of all of the jobs that you have submitted in one day using the command `sacct`. This will give you a list that includes jobs that are running, completed or have failed. If you are running a large number of jobs it is useful as a quick status check.
 
 ~~~
-$ sacct
+sacct
 ~~~
 
 Now we can look at the results of our SLURM script. List the files in your directory and choose the log file from the script you submitted. Don't copy the last line provided below, instead use ls to find the name of the file because the `<jobid>` will be different for each user.
 
 ~~~
-$ ls
-$ cat slurm_test_<jobid>.log
+ls
+cat slurm_test_<jobid>.log
 ~~~
 {: .langage-bash}
 
