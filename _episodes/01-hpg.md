@@ -58,7 +58,7 @@ You can tell that you are logged on because the following should be displayed:
 
 The &lt;username&gt; will be your personal username. The `$` symbol indicates that you can input commands. When you submit a command and the `$` symbol disappears, any future commands that you enter will not be processed until after the previous command is complete. We can avoid long lag times before submitting a command or running an application using SLURM scripts, which we will discuss in the next section.
 
-When using the scripts in this workshop, you should not copy the `$` symbol when it is present at the beginning of the line.
+We have removed the `$` from the beginning of each line of code below so it is easier to copy and paste into the shell.
 
 ### Recommendations for naming files in a Linux 
 
@@ -71,10 +71,10 @@ When using the scripts in this workshop, you should not copy the `$` symbol when
 
 ### Displaying your current path/location
 
-`pwd` displays your "path", or your file location on HiperGator.
+`pwd` displays your "path", or your file location on HiperGator. This workshop will include code that you can copy directly from this page and paste into the shell. Right clicking is the same as pasting in Linux, so after copying the code, you can right click in the shell to paste it.
 
 ~~~
-$ pwd
+pwd
 ~~~
 {: .language-bash}
 
@@ -83,14 +83,11 @@ $ pwd
 `cd` followed by a directory name will change your current directory. Try navigating to the folder we will use for the workshop.
 
 ~~~
-$ cd /blue/general_workshop/
+cd /blue/general_workshop/
 ~~~
 {: .language-bash}
 
-> Do not copy the `$` sign!
-{: .caution}
-
-Now try using `pwd` again to see your current location.
+Now try using `pwd` again to see your current location. Instead of copying from this script or typing it out, you can highlight `pwd` in the shell by double clicking it and then right clicking to paste it into the shell. Long or complicated file and directory names can be time consuming to type out and it is easy to introduce errors. It is much easier to list the name of the files (see below) and copy and paste them in the shell using this method.
 
 ~~~
 /blue/general_workshop/
@@ -104,7 +101,7 @@ You can quickly go backwards from your current directory using the command `cd .
 You can use the command `ls` to display the file contents in your current folder.
 
 ~~~
-$ ls
+ls
 ~~~
 {: .language-bash}
 
@@ -117,7 +114,7 @@ The command `ls -l` will provide a list of additional information about the file
 
 
 ~~~
-$ ls -l
+ls -l
 ~~~
 {: .language-bash}
 
@@ -131,8 +128,8 @@ $ ls -l
 You can easily go back one directory from your current location using the command `cd ..` and then `pwd` to display your location
 
 ~~~
-$ cd ..
-$ pwd
+cd ..
+pwd
 ~~~
 {: .language-bash}
 
@@ -144,7 +141,7 @@ $ pwd
 You can also combine commands in Linux using the `|` symbol. For example, if you know you will want to change your directory and look up the file contents, you could use this command:
 
 ~~~
-$ cd blue/general_workshop | ls
+cd blue/general_workshop | ls
 ~~~
 {: .language-bash}
 
@@ -183,7 +180,7 @@ Use `cd` to access the workshop directory with your username.
 We will create a new directory using the command `mkdir` followed by the name of the new directory `newdir`. Use `ls` or `cd` to see or navigate to your new directory
 
 ~~~
-$ mkdir newdir 
+mkdir newdir 
 ~~~
 {: .language-bash}
 
@@ -203,8 +200,9 @@ We will use some of these shortcuts soon.
 You can copy a file with the command `cp` followed by the location of the file you want to copy and the location you want to put the new copy.
 
 ~~~
-$ cp blue/general_workshop/share/file1.txt ./file1.txt
-$ ls
+
+cp blue/general_workshop/share/file1.txt ./file1.txt
+ls
 ~~~
 {: .language-bash}
 
@@ -213,8 +211,8 @@ Note that we used the directory shorcut `./` to represent that the new file shou
 You can change the name of the file to anything you want when copying it. For example, we can copy the file again with a new name, but since it is in the current directory, we only need to list the name of the file.
 
 ~~~
-$ cp file1.txt file2.txt
-$ ls
+cp file1.txt file2.txt
+ls
 ~~~
 {: .language-bash}
 
@@ -225,7 +223,7 @@ Be careful when copying files that a file does not exist with the same name in t
 You can also use the `cp` command with the `-r` option to perform a recursive copy, which can copy entire directories and all of the subdirectories and folders.
 
 ~~~
-$ cp -r blue/general_workshop/share/demo ./
+cp -r blue/general_workshop/share/demo ./
 ~~~
 {: .language-bash}
 
@@ -234,8 +232,8 @@ $ cp -r blue/general_workshop/share/demo ./
 You can move files with the command `mv`, followed by the file location and the location where you will move it. Moving a file removes it from its original location.
 
 ~~~
-$ mv file2.txt newfile.txt
-$ ls
+mv file2.txt newfile.txt
+ls
 ~~~
 {: .language-bash}
 
@@ -251,8 +249,8 @@ You can delete files using the command `rm`. To delete a directory and all of th
 Be careful! Linux does not have a trash can like Windows and Mac operating systems. Once you delete a file, it is permanently erased!
 
 ~~~
-$ rm newfile.txt
-$ ls
+rm newfile.txt
+ls
 ~~~
 {: .language-bash}
 
@@ -261,8 +259,8 @@ $ ls
 Aside from using the recursive option for `rm`, you can also remove directories with the command `rmdir`.
 
 ~~~
-$ rmdir newdir
-$ ls
+rmdir newdir
+ls
 ~~~
 {: .language-bash}
 
@@ -275,7 +273,7 @@ There are a number of ways to look at some or all of the contents of a file.
 The command `cat` reads the contents of a file. We can use this to view ` file1.txt`.
 
 ~~~
-$ cat file1.txt
+cat file1.txt
 ~~~
 {: .language-bash}
 
@@ -289,14 +287,14 @@ Rather than viewing all of the content of a large file, you can use the commands
 Let's start with `less`. You can use the <kbd>&uparrow;</kbd> and <kbd>&downarrow;</kbd> keys to scroll up and down the text file. You can quit using `less` and return to the command prompt by pressing the <kbd>q</kbd> key.
 
 ~~~
-$ less file1.txt
+less file1.txt
 ~~~
 {: .language-bash}
 
 Now try `more`. You can scroll down the file using the <kbd>enter</kbd> key. Again, use the <kbd>q</kbd> key to return to the command line.
 
 ~~~
-$ more file1.txt
+more file1.txt
 ~~~
 {: .language-bash}
 
@@ -305,7 +303,7 @@ $ more file1.txt
 You can preview the top of a file using the command `head`, and you can include the arguement `-n` followed by a number to specify the number of lines to show. The example below will show the first 12 lines of the file.
 
 ~~~
-$ head -n 12 file1.txt
+head -n 12 file1.txt
 ~~~
 {: .language-bash}
 
@@ -317,7 +315,7 @@ $ head -n 12 file1.txt
 The command `tail` will show the end of the file, and can also be combined with `-n` to show a specific number of lines.
 
 ~~~
-$ tail -n 7 file1.txt
+tail -n 7 file1.txt
 ~~~
 {: .language-bash}
 
@@ -331,7 +329,7 @@ $ tail -n 7 file1.txt
 You can view lines from the middle of a file using the command `sed` along with the command `-n` followed by the number of the first and last lines you want to view separated by a `,` and with the letter `p` as a suffix.
 
 ~~~
-$ sed -n 7,15p file1.txt
+sed -n 7,15p file1.txt
 ~~~
 {: .language-bash}
 
@@ -351,9 +349,9 @@ The command `wc` can be combined with several arguments to measure the length of
 Try one of the three combinations below:
 
 ~~~
-$ wc -l file1.txt
-$ wc -c file1.txt
-$ wc -w file1.txt
+wc -l file1.txt
+wc -c file1.txt
+wc -w file1.txt
 ~~~
 {: .language-bash}
 
@@ -372,9 +370,9 @@ $ wc -w file1.txt
 A command followed by the `>` operator will send that output to a new file name after the symbol.
 
 ~~~
-$ head -n 8 file1.txt > top.txt
-$ tail -n 8 file1.txt > bottom.txt
-$ ls
+head -n 8 file1.txt > top.txt
+tail -n 8 file1.txt > bottom.txt
+ls
 ~~~
 {: .language-bash}
 
@@ -386,7 +384,7 @@ $ ls
 The command `echo` will send text to the command prompt. This is more useful when it is combined with the `>` operator or other functions.
 
 ~~~
-$ echo hello
+echo hello
 ~~~
 {: .language-bash}
 
@@ -398,9 +396,9 @@ hello
 Now use this function with the `>` operator. We will include `.move` in the name to demonstrate how you can use extensions to manipulate files later on.
 
 ~~~
-$ echo hello > hi.move.txt
-$ echo goodbye > bye.move.txt
-$ ls
+echo hello > hi.move.txt
+echo goodbye > bye.move.txt
+ls
 ~~~
 {: .language-bash}
 
@@ -417,9 +415,9 @@ Be careful not to use a file name that already exists with the `>` operator! Doi
 The `>>` operator concatenates data in a file instead of writing a new file. If that file does not exist, it will create one with the name after the `>>` operator. We will combine the two files we just created using `echo` in the last step. We are using `cat` to send the file contents to the command prompt and concatenating that information to a file.
 
 ~~~
-$ cat hi.move.txt >> aloha.move.txt
-$ cat bye.move.txt >> aloha.move.txt
-$ cat aloha.move.txt
+cat hi.move.txt >> aloha.move.txt
+cat bye.move.txt >> aloha.move.txt
+cat aloha.move.txt
 ~~~
 {: .language-bash}
 
@@ -448,8 +446,8 @@ Wildcards provide tremendous power and flexibility when writing commands. Here a
 We can use a wildcard to write all of the files ending in the extension `.txt` to a file. This can be a useful command because this file could be used as future input for a script to move many large files from one directory to another. We will combine the `ls` command with the `>` operator to send a list of files ending in `.txt` to a new file.
 
 ~~~
-$ ls *.txt > movelist.txt
-$ cat movelist.txt
+ls *.txt > movelist.txt
+cat movelist.txt
 ~~~
 {: .language-bash}
 
@@ -461,11 +459,11 @@ $ cat movelist.txt
 We have written several files with the extension `.move.txt`. Let's say we want to move these files, but not all of the files with the `.txt` extension. Wildcards provide a perfect solution to this problem.
 
 ~~~
-$ mkdir aloha
-$ ls
-$ mv *.move* aloha/
-$ ls
-$ ls aloha/
+mkdir aloha
+ls
+mv *.move* aloha/
+ls
+ls aloha/
 ~~~
 {: .language-bash}
 
@@ -483,7 +481,7 @@ $ ls aloha/
 The command `sort` will sort the lines in a file in alpanumeric order. If you follow it with the command `-r`, it will reverse the alphanumeric order.
 
 ~~~
-$ sort file1.txt
+sort file1.txt
 ~~~
 {: .language-bash}
 
@@ -495,7 +493,7 @@ $ sort file1.txt
 The `-k` argument followed by a number can sort a specific column of data in a file. We will combine this with the `-r` agumennt.
 
 ~~~
-$ sort -r -k2 file1.txt
+sort -r -k2 file1.txt
 ~~~
 {: .language-bash}
 
@@ -511,7 +509,7 @@ The argument `-n` sorts in numerical order instead of alphanumerical order. Imag
 We will repeat the last command, but use the `-n` numeric order for sorting. Additionally, instead of listing each argument separately, you can combine them together and use the command `-k2nr`.
 
 ~~~
-$ sort -k2nr file1.txt
+sort -k2nr file1.txt
 ~~~
 {: .language-bash}
 
@@ -525,7 +523,7 @@ $ sort -k2nr file1.txt
 We can extract a specific column from a delimited file using the command `cut` along with the argument `-f` followed by the column number to extract. We will extract the first column of the data.
 
 ~~~
-$ cut -f 1 file1.txt
+cut -f 1 file1.txt
 ~~~
 {: .language-bash}
 
@@ -537,7 +535,7 @@ $ cut -f 1 file1.txt
 The default is for a tab delimited file. If the file is delimited in another way, you can use the `-d` argument followed by the delimiter character in between `""`.
 
 ~~~
-$ cut -f 1 -d "." file1.txt
+cut -f 1 -d "." file1.txt
 ~~~
 {: .language-bash}
 
@@ -551,7 +549,7 @@ Notice that with the `.` delimiter, the break occurs after the decimal point in 
 You can also extract a part of a string a certain number of characters long using the argument `-c` along with the command `cut`. Specify the number of characters after the `-c` argument.
 
 ~~~
-$ cut -c 1-6 file1.txt
+cut -c 1-6 file1.txt
 ~~~
 {: .language-bash}
 
@@ -567,8 +565,8 @@ This produces the same result as using the `.` as a delimiter in the example abo
 The `sed` command will replace text in a file and uses the format `sed 's/old/new/g'`, which would change all instances of the word `old` to `new` in the file.
 
 ~~~
-$ sed 's/CM0084/Chr_/g' file1.txt > cleanfile.txt
-$ cat cleanfile.txt
+sed 's/CM0084/Chr_/g' file1.txt > cleanfile.txt
+cat cleanfile.txt
 ~~~
 {: .language-bash}
 
@@ -583,7 +581,7 @@ The `sed` command is very powerful and has a wide range of complex arguments tha
 The `grep` command will find a string within `""` and return lines that match the string.
 
 ~~~
-$ grep "downstream_gene_variant" file1.txt
+grep "downstream_gene_variant" file1.txt
 ~~~
 {: .language-bash}
 
@@ -595,7 +593,7 @@ $ grep "downstream_gene_variant" file1.txt
 Rather than output the lines, you can return the number of matches using the argument `-c` preceding the string.
 
 ~~~
-$ grep -c "downstream_gene_variant" file1.txt
+grep -c "downstream_gene_variant" file1.txt
 ~~~
 {: .language-bash}
 
@@ -614,7 +612,7 @@ The `|` operator can be used for piping, or creating a pipeline in which informa
 Piping is useful because you don't need to write intermediate information to a file. We will sort the second column of `file1.txt` in numerical order and display the top 3 lines.
 
 ~~~
-$ sort -k2 -n file1.txt | head -n 3
+sort -k2 -n file1.txt | head -n 3
 ~~~
 {: .language-bash}
 
@@ -631,8 +629,8 @@ Be sure not to leave any spaces before or after the `=` sign!
 {: .caution}
 
 ~~~
-$ x="APS"
-$ echo $x
+x="APS"
+echo $x
 ~~~
 {: .language-bash}
 
@@ -644,9 +642,9 @@ APS
 Variables can be combined to form new variables, and variable names can be longer than a single letter.
 
 ~~~
-$ y=" Rocks"
-$ zebra="$x$y"
-$ echo $zebra
+y=" Rocks"
+zebra="$x$y"
+echo $zebra
 ~~~
 
 ~~~
@@ -676,7 +674,7 @@ To overcome this hurdle, you have a few options:
 We will write out the code twice, first to show how it can be written one line at a time, and second using the the `;` symbol and pasting all of the code in one line, which is recommended for this workshop. However, normally if you are writing a script, it is easier to read and understand the loop if each part is written on a separate line.
 
 ~~~
-$ for x in {0..5}
+for x in {0..5}
 > do
 >   echo $x
 done
@@ -684,7 +682,7 @@ done
 {: .language-bash}
 
 ~~~
-$ for x in {0..3}; do echo $x; done
+for x in {0..3}; do echo $x; done
 ~~~
 {: .language-bash}
 
