@@ -70,7 +70,7 @@ You can find step by step guide including third party reagents, equipments and c
 
 ### Optional fragmentation 
 When should I performe fragmentation of genomic DNA (gDNA)?
-Although the protocol recommends starting DNA sample concentration is 1 µg, fragemntation might be useful for low input amount of DNA. Also, you might benefit from optimal fragmentation when you habdling very high molecular weight gDNA. [Oxford Nanopore Technologies (ONT)](https://community.nanoporetech.com/extraction_method_groups/optional-fragmentation-of-gdna) provides a review of how factors including fragment size, loding amount, and blocking affect the flow cell output. Here we will discuss how fragmentation affects read N50. 
+Although the protocol recommends starting DNA sample concentration is 1 µg, fragemntation might be useful for low input amount of DNA. Also, you might benefit from optimal fragmentation when you are handling very high molecular weight gDNA. [Oxford Nanopore Technologies (ONT)](https://community.nanoporetech.com/extraction_method_groups/optional-fragmentation-of-gdna) provides a review of how factors including fragment size, loding amount, and blocking affect the flow cell output. Here we will discuss how fragmentation affects read N50. 
 
 The following figures demonstrate that fragemnt length and read N50 do not have linear relationship. 
 <img src="{{site.baseSite}}/fig/Fragmentation&N50.png" align="center" width="700">
