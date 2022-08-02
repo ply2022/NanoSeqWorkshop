@@ -13,6 +13,23 @@ title: Setup
   <a href = "{{ site.baseSite }}{{ site.faq }}">FAQ page</a>.
 </p>
 
+{% comment %} Multi-Factor Authentication for UF {% endcomment %}
+<div id="authentication" markdown="1">
+### Setup Multi-Factor Authentication 
+In 2021, UF is mandating the use of multi-factor authentication for anyone accessing university- wide systems. 
+1. Visit [Getting Started (https://it.ufl.edu/2fa/get-started/)](https://it.ufl.edu/2fa/get-started/){: target="_blank"}.
+2. Click “UF GATORLINK ENROLL” on that site
+3. Sign in with username and password emailed to you earlier. 
+4. Click **Enroll Now**.
+5. Click **Start setup**.
+6. Select device that you prefer. Please note that you will need to verify your identity everytime you login with GatorLink account, so Mobile phone is recommended. If you do not have USA phone number, please select other options that you can access duing the workshop. 
+7. Enter your phone number.
+8. Click**Call me** to verify ownership of phone number.
+9. Accept the phone call and type in the 6-digit number in the recording to verify.
+</div>
+
+
+
 {% comment %} UF VPN Access {% endcomment %}
 <div id="vpn" markdown="1">
 ### Connecting to Gatorlink VPN
