@@ -51,6 +51,10 @@ The &lt;username&gt; will be your personal username. The `$` symbol indicates th
 
 We have removed the `$` from the beginning of each line of code below so it is easier to copy and paste into the shell.
 
+### Help! I made a typo or executed a large command!
+
+We have provided commands in this workshop that you can copy and paste directly into the shell to avoid typos. But when you are using the shell on your own, or you accidently don't copy a portion of a command, your shell can execute a process indefinitely. Similarly, if you open an entire 100 Gb text file, the shell will print all of the text from the file and scroll from the top to the bottom until it is finished, which will take a very long time. You can avoid these situations by using the command <kbd>Ctrl</kbd> <kbd>c</kbd> command to terminate the last command you sent to the shell. Remember this command because eventually this happens to everyone.
+
 ### Recommendations for naming files in a Linux 
 
 - Never include spaces in file or directory names. Instead, use the `_` symbol instead.
