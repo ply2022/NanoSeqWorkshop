@@ -125,7 +125,7 @@ The flow cells are shipped and preserved with the storage buffer (yellow). The s
 
 <img src="{{site.baseSite}}/fig/StorageBuffer.png" align="center" width="700">
 
-The flow cell is flused with priming mix (Flush Tether + Flush Buffer; colored in blue) through priming pore to replace the storage buffer in the bulk section before library loading. DNA library is loaded to sensor array through SpotON sample port.  
+The flow cell is flused with priming mix (Flush Tether + Flush Buffer; colored in blue) through priming pore to replace the storage buffer in the bulk section before library loading. Priming mix contains tether proteins guiding DNA fragements toward nanopores. DNA library is loaded to sensor array through SpotON sample port.  
 
 <img src="{{site.baseSite}}/fig/Priming.png" align="center" width="700">
 
