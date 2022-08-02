@@ -131,11 +131,12 @@ Signal                   Dataset {3624/Inf}
 ~~~
 {: .output}
 
-These are the individual pico-amp signals measured by the Nanopore device, but unfortunately, this information is not very imformative, especially considering that this data is provided for each read in the file. We can measure the number of reads in the file with the command `h5ls`, but instead of listing them all we will count the number of lines in the output:
+These are the individual pico-amp signals measured by the Nanopore device, but unfortunately, this information is not very informative, especially considering that this data is provided for each read in the file. We can measure the number of reads in the file with the command `h5ls`, but instead of listing them all we will count the number of lines in the output:
 
 ~~~
 h5ls FAL75110_0b0467ce_152.fast5 | wc -l
 ~~~
+{: .language-bash}
 
 ~~~
 4000
