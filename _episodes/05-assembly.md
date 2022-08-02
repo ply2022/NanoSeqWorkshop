@@ -632,7 +632,7 @@ Outputs from Pilon tool are: a FASTA file of improved assembly and optional VCF 
 Simpliy repeat the previous steps. 
 
 # Scaffolding: mapping the polished assembly to the reference genome
-<img src="{{site.baseSite}}/fig/Ragtag.svg" align="center" width="400">
+<img src="{{site.baseSite}}/fig/Ragtag.svg" align="center" width="600">
 
 # Quality assessment of assemblies
 ## Computing metrics of assemblies using QUAST
