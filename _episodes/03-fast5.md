@@ -143,6 +143,16 @@ h5ls FAL75110_0b0467ce_152.fast5 | wc -l
 ~~~
 {: .output}
 
-This file contains 4,000 different reads, each with a large amount of data associated with the electrical signals read by the Nanopore device.
+This file contains 4,000 different reads, each with a large amount of data associated with the electrical signals read by the Nanopore device. However, this is not the only fast5 file with raw data. Nanopore separates the results across a number of different files. Let's check how many files are in the directory:
 
-In the next section, we will use the application `Guppy` to convert these electrical signals into genetic information in a fastQ format. This format provides information about the actual sequence nucleotides `ATGC` and includes a code to indicate the certainty of this read by the basecaller. Sometimes sequence signals are difficult to interpret, so it is helpful for bioinformatics applications to know how clear and certain the basecalls are. We will cover basecaller results and quality in the next section.
+~~~
+ls /blue/general_workshop/share/Suwannee/20200808_1457_MN33357_FAL75110_031a874e/fast5/ | wc -l
+~~~
+{: .language-bash}
+
+~~~
+265
+~~~
+{: .output}
+
+Overall, this is a tremendous amount of data that we really are not able to read. In the next section, we will use the application `Guppy` to convert these electrical signals into genetic information in a fastQ format. This format provides information about the actual sequence nucleotides `ATGC`, and it includes a code to indicate the certainty of this read by the basecaller. Sometimes sequence signals are difficult to interpret, so it is helpful for bioinformatics applications to know how certain the basecalls are. We will cover basecaller results and quality in the next section.
