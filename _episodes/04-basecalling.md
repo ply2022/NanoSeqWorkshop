@@ -245,7 +245,7 @@ The `--target_bases` option assumes that there is very high coverage of the geno
 After Filtlong has run, the quality of the sequences is improved for downstream analysis. Filtlong provides the following example of 1.3 Gbp of reads before and after it was filtered using the `target_bases` argument to reduce the data to 0.5 Gbp of reads.
 
 #### Before
-<img src="{{site.baseSite}}/fig/filtlong_before.png" align="left" width="700">
+<img src="{{site.baseSite}}/fig/filtlong_before.png" align="center" width="700">
 
 #### After
 <img src="{{site.baseSite}}/fig/filtlong_after.png" align="left" width="700">
@@ -299,11 +299,11 @@ The script produces an html file along with associated image files and data. Sin
   
 First, open the tab that first appeared when you logged into UFRC On Demand and click on files in the top lefthand corner, then click on /blue/general_workshop/ from the menu:
 
-<img src="{{site.baseSite}}/fig/login_files.png" align="left" width="700">
+<img src="{{site.baseSite}}/fig/login_files.png" align="center" width="700">
   
 A new screen will load. Click on `Go To...` at the top left, which will load a text entry box.
   
-<img src="{{site.baseSite}}/fig/go_to_nanoplot.png" align="left" width="700">
+<img src="{{site.baseSite}}/fig/go_to_nanoplot.png" align="center" width="700">
   
 Now enter the following location:
   
@@ -314,7 +314,7 @@ Now enter the following location:
 
 Click on the directory "Nanoplot_Suw2_filtered_out" and then click on the download button:
 
-<img src="{{site.baseSite}}/fig/download_nanoplot.png" align="left" width="700">
+<img src="{{site.baseSite}}/fig/download_nanoplot.png" align="center" width="700">
   
 Also click and download the directory "NanoplotOUT", which contains the unfiltered reads.
   
