@@ -19,33 +19,34 @@ In the community, you can review the process in detail. Due to the time and equi
 
 ## Quality controls of DNA samples
 
-**A sucessful sequencing starts with a high quality DNA sample.**
+**A successful sequencing starts with a high-quality DNA sample.**
 
 Assessment of DNA samples includes: quality, quantiy, and integrity. We will introduce commonly used methods to perform quality control of DNA samples. 
 
 *Note: Here we listed the methods that our team commonly used. Alternative tools might also avalible.*
 
 ### Spectrophotometer (UV-Vis)
-Absorbance measurements measure the absorbance of all molecules in the sample that absorb at the wavelength of interest. Nucleotides and proteins have highest absorbance at 260 nm and 280 nm, respectively. The ratio of absorbance at 260 nm and 280 nm is used to determine the purity of the DNA samples. The ratio of ~ 1.8 is cosidered as a pure for DNA samples. On the other hand, chemicals and organic compound (e.g., EDTA, carbohydrate, phenol) absorb at 230 nm. The ratio of 2.0-2.22 is expected as a pure for DNA sample.
+Absorbance measurements measure the absorbance of all molecules in the sample that absorb at the wavelength of interest. Nucleotides and proteins have highest absorbance at 260 nm and 280 nm, respectively. The ratio of absorbance at 260 nm and 280 nm is used to determine the purity of the DNA samples. The ratio of ~ 1.8 is considered as a pure for DNA samples. On the other hand, chemicals and organic compound (e.g., EDTA, carbohydrate, phenol) absorb at 230 nm. The ratio of 2.0-2.22 is expected as a pure for DNA sample.
 
 <img src="{{site.baseSite}}/fig/NanoDrop_spectra.png" align="center" width="700">
 
 **Figure**. Spectral profiles of pure DNA (A), and pure DNA with guanidine (B) and phenol (C).
 
 **Drawbacks** 
-1. Nonselctive method: could not differentiate DNA or RNA
-2. pH sensitive: acid solution and basic solution decrease or increase 260/280 ratio, rescpectively. 
+1. Nonselective method: could not differentiate DNA or RNA.
+2. pH sensitive: acid solution and basic solution decrease or increase 260/280 ratio, respectively.
+ 
 
 **Adventages**
-1. Cheaper: do not need extra plastic comsumables and kits
-2. Faster: no addtional reaction time
+1. Cheaper: do not need extra plastic consumables and kits.
+2. Faster: no additional reaction time
 
 ### Fluorometry
-Compare to spectrophotometer, fluorometric measurement is more specific and sensitive despite the presence of contaminants due to the selective binding between flurogenic dyes and DNA. Dyes emit fluorences only when specific binding happens, and the fluorences will be detected by fluorometer. Concentration of the nucelic acid is calculated using standard curve. Using [Qubit dsDNA HS Assay Kit](https://assets.thermofisher.com/TFS-Assets/LSG/manuals/Qubit_dsDNA_HS_Assay_UG.pdf){: target="_blank"} as example, it can measure sample concentration ranging from 10 pg/μL to 100 ng/μL. Yet, flurogenic dyes can not measure the purity of the DNA. 
+Compare to spectrophotometer, fluorometric measurement is more specific and sensitive despite the presence of contaminants due to the selective binding between fluorogenic dyes and DNA. Dyes emit fluorenes only when specific binding happens, and the fluorenes will be detected by fluorometer. Concentration of the nucleic acid is calculated using standard curve. Using [Qubit dsDNA HS Assay Kit](https://assets.thermofisher.com/TFS-Assets/LSG/manuals/Qubit_dsDNA_HS_Assay_UG.pdf){: target="_blank"} as an example, it can measure sample concentration ranging from 10 pg/μL to 100 ng/μL. Yet, fluorogenic dyes can not measure the purity of the DNA. 
 
 **Drawbacks** 
 1. Time consuming: reagent-sample reaction takes 2 min required for DNA assay
-2. Costly: reagents and single-use plastic comsumables (Qubit assay tubes) are required
+2. Costly: reagents and single-use plastic consumables (Qubit assay tubes) are required
 
 ### Spectrophotometer vs. Fluorometry
 So...which method is better? 
