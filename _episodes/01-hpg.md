@@ -66,7 +66,12 @@ We have provided commands in this workshop that you can copy and paste directly 
 
 ### Displaying your current path/location
 
-`pwd` displays your "path", or your file location on HiperGator. This workshop will include code that you can copy directly from this page and paste into the shell. Right clicking is the same as pasting in Linux, so after copying the code, you can right click in the shell to paste it.
+`pwd` displays your "path", or your file location on HiperGator. This workshop will include code that you can copy directly from this page and paste into the shell. Right clicking is the same as pasting in Linux, but your shell through UFRC On Demand does not support this feature. Instead, you will need to use the usual keyboard shortcut to paste with your operating system.
+
+~~~
+We are using UFRC On Demand for this workshop because all users can use the same Secure SHell (SSH) application. There are many differnt free SSH applications for every operation system that combine the shell with a Graphical User Interface (GUI), and these support features such as editing files in separate color coded text editors outside of the shell and easy file transfers and directory navigation. If you plan on doing a lot of bioinformatics work, we strongly recommend finding an application that works for your operating system. There are a number that are both free, but you should ensure it supports features required for accessing HiPerGator outside of UFRC On Demand, such as 2-factor authentication.
+~~~
+{: .tips}
 
 ~~~
 pwd
@@ -82,7 +87,7 @@ cd /blue/general_workshop/
 ~~~
 {: .language-bash}
 
-Now try using `pwd` again to see your current location. Instead of copying from this script or typing it out, you can highlight `pwd` in the shell by double clicking it and then right clicking to paste it into the shell. Long or complicated file and directory names can be time consuming to type out and it is easy to introduce errors. It is much easier to list the name of the files (see below) and copy and paste them in the shell using this method.
+Now try using `pwd` again to see your current location. Instead of copying from this script or typing it out, you can highlight `pwd` in the shell by double clicking it and then pasting it into the shell. Long or complicated file and directory names can be time consuming to type out and it is easy to introduce errors. It is much easier to list the name of the files (see below) and copy and paste them in the shell using this method. Outside of UFRC On Demand, this is as simple as a double click followed by a right click.
 
 ~~~
 /blue/general_workshop/
