@@ -9,7 +9,7 @@ objectives:
 keypoints:
 - Guppy converts the unreadable electrical signals to actual nucleotide data.
 - Porechop removes the adapter sequences so we only view nucelotide data from our reads.
-- Filtlong ***filters reads by their length and quality***
+- Filtlong filters reads by their length and quality
 - NanoPlot summarizes our data
 
 ---
@@ -196,7 +196,7 @@ Let's review the options we used:
  - `-i` is the input fastq file
  - `-o` is the output fastq file for the filtered results
  - `-t` is the number of threads or CPUs assigned for the task. You can include more for multithreading if you allocate additonal CPUs for the job.
- - Porechop includes many other options you might be interested in using. You can review these on their github support site: *** https://github.com/rrwick/Porechop#install-from-source
+ - Porechop includes many other options you might be interested in using. You can review these on their github support site: [Porechop]https://github.com/rrwick/Porechop#install-from-source{: target="_blank"}.
 
  
 Now that Porechop is finsihed we can filter our reads for quality.
@@ -245,18 +245,80 @@ The `--target_bases` option assumes that there is very high coverage of the geno
 After Filtlong has run, the quality of the sequences is improved for downstream analysis. Filtlong provides the following example of 1.3 Gbp of reads before and after it was filtered using the `target_bases` argument to reduce the data to 0.5 Gbp of reads.
 
 #### Before
-***image***
+<img src="{{site.baseSite}}/fig/filtlong_before.png" align="left" width="700">
 
-### After
-***image***
+#### After
+<img src="{{site.baseSite}}/fig/filtlong_after.png" align="left" width="700">
 
-Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: *** https://github.com/rrwick/Filtlong
+Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: [Filtlong]https://github.com/rrwick/Filtlong{: target="_blank"}
 
 ### Producing reports with Nanoplot
 
-We can produce a report with all of our results using Nanoplot. Let's take a look at the script:
+We can produce a report that summarizes our results using the application Nanoplot. We are going to create our own before and after reports to view how Porechop and Filtlong have changed our sequencing data for downstream analysis. First, we will produce a report for our filtered reads.
+  
+Let's take a look at the script:
   
 ~~~
-cat ./bash_files/nanoplot.sh
+cat ./bash_files/nanoplot_filtered.sh
 ~~~
+  
+~~~
+#!/bin/bash
+#SBATCH --job-name=nanoplot
+#SBATCH --account=general_workshop
+#SBATCH --qos=general_workshop
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=USERNAME@ufl.edu
+#SBATCH --ntasks=1
+#SBATCH --mem=1gb
+#SBATCH --time=12:00:00
+#SBATCH --output=nanoplot_%j.out
+pwd; hostname; date
+
+module purge
+module load nanoplot
+
+NanoPlot --fastq /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/PorechopOutSuw2.fastq \
+-o /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/Nanoplot_Suw2_filtered_out -t 1
+~~~
+{: .output}
+
+Let's review the options above:
+- `--fastq` is the input file type followed by its location. Other file types are supported, such as `fasta`, `fastq_rich`, `bam`, `ubam`, `cram`, `pickle` and more.
+- `-o` is the output location and file name.
+- `-t` is the number of threads, if additional CPUs are allocated you can increase this value.
+  
+We have included another script that produces a report from the reads prior to sending them to Porechop and Filtlong, but it is identical except the input source and output directory are different. We won't view this script now, but if you want to view it later you can view it using the following command:
+  
+~~~
+cat /blue/general_workshop/share/bash_files/nanoplot.sh
+~~~
+{: .language-bash}
+  
+The script produces an html file along with associated image files and data. Since the shell cannot render graphics, we will download all of the contents of this file to your desktop and load the html file to view the results.
+  
+First, open the tab that first appeared when you logged into UFRC On Demand and click on files in the top lefthand corner, then click on /blue/general_workshop/ from the menu:
+
+<img src="{{site.baseSite}}/fig/login_files.png" align="left" width="700">
+  
+A new screen will load. Click on `Go To...` at the top left, which will load a text entry box.
+  
+<img src="{{site.baseSite}}/fig/go_to_nanoplot.png" align="left" width="700">
+  
+Now enter the following location:
+  
+~~~
+/blue/general_workshop/share/Suwannee/
+~~~
+{: .language-bash}
+
+Click on the directory "Nanoplot_Suw2_filtered_out" and then click on the download button:
+
+<img src="{{site.baseSite}}/fig/download_nanoplot.png" align="left" width="700">
+  
+Also click and download the directory "NanoplotOUT", which contains the unfiltered reads.
+  
+Now you can cick on the file "NanoPlot-report.html" contained in each file to view the report and the corresponding plots. Load both files. Can you see the differences between them?
+
+  
   
