@@ -3,14 +3,17 @@ title: "Basecalling and quality control"
 teaching: 10
 exercises: 25
 questions:
-- How to interpret and use sequencing results?
+- How do you perform basecalling and filter reads for analysis?
 objectives:
-- Learn about the fast5 format.
+- Learn about basecalling with Guppy.
+- Learn how to use Porechop to remove adapter sequences.
+- Learn how Filtlong improves the quality of your data.
+- Use Nanoplot to produce summary reports of your dataset.
 keypoints:
 - Guppy converts the unreadable electrical signals to actual nucleotide data.
 - Porechop removes the adapter sequences so we only view nucelotide data from our reads.
-- Filtlong filters reads by their length and quality
-- NanoPlot summarizes our data
+- Filtlong filters reads by their length and quality.
+- NanoPlot produces reports that summarize our data.
 
 ---
 
