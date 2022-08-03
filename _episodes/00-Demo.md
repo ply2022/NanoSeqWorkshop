@@ -181,7 +181,10 @@ Please review this video for demonstration (you might might start from 00:18 to 
 {: .caution}
 
 ## [Start sequencing]
-Due to the the space and time limitations. Participants ***will not* initiate sequencing. Yet, instructor will demonstrate the sequencing process. 
+Due to the the space and time limitations. Participants ***will not** initiate sequencing. Yet, instructor will demonstrate the sequencing process. 
+
+[Step 0] Running the flow cell check with the new or washed flow cell.
+<img src="{{site.baseSite}}/fig/Sequencing_overview1.png" align="center" width="700"> 
 
 [Step 1] At the homepage, click **Start** and then select **Start sequencing**
 
