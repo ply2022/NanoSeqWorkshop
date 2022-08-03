@@ -107,7 +107,6 @@ module spider guppy
 {: .language-bash}
 
 ~~~
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
   guppy:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -241,8 +240,7 @@ Filtlong can filter the quality of de novo reads (the method used in this pipeli
 - `--target_bases` will remove the worst reads in the dataset until there are fewer than this threshold (it has no effect if the input has fewer than this number of reads).
 - These options are followed by the location of the fastq sequences and the location where the output is written.
 
-The `--target_bases` option assumes that there is very high coverage of the genome from the sequencing results, and the threshold 3600000000 above was used to give about 60X coverage. If sequencing coverage is lower, there are other options you may prefer:
-- `keep_percent 90` will remove the worst 10% of the reads. The value can be changed to increase or decrease the percentage of reads that are thrown out.
+The `--target_bases` option assumes that there is very high coverage of the genome from the sequencing results, and the threshold 3600000000 above was used to give about 60X coverage. If sequencing coverage is lower, you can use the option `keep_percent 90`, which will remove the worst 10% of the reads. The value can be changed to increase or decrease the percentage of reads that are thrown out.
 
 After Filtlong has run, the quality of the sequences is improved for downstream analysis. Filtlong provides the following example of 1.3 Gbp of reads before and after it was filtered using the `target_bases` argument to reduce the data to 0.5 Gbp of reads.
 
@@ -252,6 +250,13 @@ After Filtlong has run, the quality of the sequences is improved for downstream 
 ### After
 ***image***
 
-Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results.
+Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: *** https://github.com/rrwick/Filtlong
 
-### Producing 
+### Producing reports with Nanoplot
+
+We can produce a report with all of our results using Nanoplot. Let's take a look at the script:
+  
+~~~
+cat ./bash_files/nanoplot.sh
+~~~
+  
