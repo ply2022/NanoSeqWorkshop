@@ -197,23 +197,39 @@ Due to the the space and time limitations. Participants ***will not** initiate s
 Click **Continue to kit selection**. 
 <img src="{{site.baseSite}}/fig/SeqExp_2.png" align="center" width="700">
 
-[Step 3] Select the **Ligation sequencing gDNA (SQK-LSK110)** used for this experiment. You can use options to narrow down the list: **Sample type**, **PCR-free**, **Multiplexing**. Click **Continue to run options**
+[Step 3] Select the **Ligation sequencing gDNA (SQK-LSK110)** used for this experiment. Select options to narrow down the list of kits.
 <img src="{{site.baseSite}}/fig/SeqExp_3.png" align="center" width="700">
 
 [Step 4] Select run options. Change Time and read length.
 Click **Continue to basecalling**
+<img src="{{site.baseSite}}/fig/SeqExp_4.png" align="center" width="700">
 
-[Step 5] Choose basecalling, barcoding and alignment options.
+[Step 5] Choose basecalling, barcoding and alignment options. To save the disk space, we will not perform real-time basecalling. 
 Click **Continue to output**
+<img src="{{site.baseSite}}/fig/SeqExp_5.png" align="center" width="700">
 
 [Step 6] Select the output data location, format and filtering options.
 Click **Continue to final review**
+<img src="{{site.baseSite}}/fig/SeqExp_6.png" align="center" width="700">
 
 [Step 7] This Review page is an overview of the selected options.
 Click **Start**
+<img src="{{site.baseSite}}/fig/SeqExp_7.png" align="center" width="700">
 
-[Step 8] You will be redirected to the sequencing overview once sequencing starts. 
-A report of flow cell pore health will be provided after first multiplexer (pore) scan.
+[Step 8] You will be redirected to the sequencing overview once sequencing starts. A report of flow cell pore health will be provided after first multiplexer (pore) scan.
+<img src="{{site.baseSite}}/fig/SeqExp_8.png" align="center" width="700">
+
+<img src="{{site.baseSite}}/fig/SeqExp_9.png" align="center" width="700">
+
+[Step 9] Click **Experiments**. You can access to the realtime report of the sequencing report. 
+<img src="{{site.baseSite}}/fig/SeqExp_10.png" align="center" width="700">
+
+<img src="{{site.baseSite}}/fig/SeqExp_11.png" align="center" width="700">
+
+<img src="{{site.baseSite}}/fig/SeqExp_12.png" align="center" width="700">
+
+<img src="{{site.baseSite}}/fig/SeqExp_13.png" align="center" width="700">
+
 
 > ## The multiplexer (MUX) scan
 > Once the sequencing protocol is initiated, a pore scan will start before sequencing. MUX run allows MinKNOW to divide active pores into four groups, which let MinION to prioritise the order of the pores to be used for sequencing. Group 1 will be used in the first 8-hour run. Pore prioritising maximize the data output. 
