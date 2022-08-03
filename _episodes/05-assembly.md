@@ -45,7 +45,7 @@ Note: `.sh` is commonly used extension for shell scripts. Using a extension is n
 
 ### Adding information to SLURM script
 
-We have to modify some information in the template to make the provide more information to SLURM about the job.
+We have to modify some information in the template to provide more information to SLURM about the job.
 
 We can use a small text editor program called `nano` to edit a file.
 This will open a basic text editor.
@@ -66,6 +66,7 @@ $ nano Smartdenovo.sh
 #SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=<email_address>   # You need provide your email address
 #SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=80gb                    # Job memory request
 #SBATCH --time 12:00:00               # Time limit hrs:min:sec
 #SBATCH --output=SuwSamrtdenovo_%j.out   # Standard output and error log
@@ -75,7 +76,7 @@ pwd; hostname; date
 module load smartdenovo/20180219
 
 # Run genome assembly
-smartdenovo.pl -p Suw -c 1 /blue/general_workshop/share/Suwannee2/Suw2_filtered_3000bp_60X.fastq > Suw.mak
+smartdenovo.pl -p Suw -c 1 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq > Suw.mak
 
 make -f Suw.mak
 
@@ -89,7 +90,8 @@ make -f Suw.mak
 
 ### Checking usage of `smartdenovo.pl`
 ~~~
-$ smartdenovo.pl 
+$ module load smartdenovo/20180219  
+$ smartdenovo.pl
 ~~~
 {: .language-bash}
 
@@ -132,7 +134,7 @@ Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 To submit the job to SLURM, `sbatch` command is used.
 
 ~~~
-$ sbatch SMARTdenovo.sh 
+$ sbatch Smartdenovo.sh
 ~~~
 {: .language-bash}
 
@@ -154,8 +156,8 @@ $ squeue -u <username>
 {: .language-bash}
 
 ~~~
-    JOBID PARTITION        NAME   USER ST       TIME  NODES NODELIST(REASON)
-  <jobid> hpg2-comp SMARTdenovo <user>  R       0:07      1 c29a-s2
+             JOBID PARTITION     NAME     USER        ST       TIME  NODES NODELIST(REASON)
+          43807246 hpg-milan Smartden     <username>   R       0:14      1 c0709a-s3
 ~~~
 {: .output}
 
@@ -171,9 +173,9 @@ $ squeue -A general_workshop
 
 ~~~
     JOBID PARTITION        NAME    USER  ST       TIME  NODES NODELIST(REASON)
-  <jobid> hpg2-comp SMARTdenovo <user1>   R       0:07      1 c29a-s2
-  <jobid> hpg2-comp SMARTdenovo <user2>   R       1:32      1 c15a-s1
-  <jobid> hpg2-comp SMARTdenovo <user3>   R       2:01      1 c09a-s4
+  <jobid> hpg2-comp    Smartden <user1>   R       0:07      1 c29a-s2
+  <jobid> hpg2-comp    Smartden <user2>   R       1:32      1 c15a-s1
+  <jobid> hpg2-comp    Smartden <user3>   R       2:01      1 c09a-s4
 
 ~~~
 {: .output}
@@ -190,10 +192,10 @@ $ squeue -A general_workshop
 
 The SLURM submission script containas a line `#SBATCH --output Samrtdenovo_%j.out`. Thus the output for this job with be in the file `Samrtdenovo_<jobid>.log`.
 
-The job might takes about a day, so we **will not** have the output by the end of today. Let's copy the output file from `/blue/general_workshop/share/Suwanee2/Smartdenovo` directory.
+The job might takes about a day, so we **will not** have the output by the end of today. Let's copy the log file from `/blue/general_workshop/share/Suwanee2/Smartdenovo` directory.
 
 ~~~
-$ cp /blue/general_workshop/share/Suwanee2/Smartdenovo/SuwSmartdenovo_58583802.out .
+$ cp /blue/general_workshop/share/Suwannee/Smartdenovo/SuwSmartdenovo_58583802.out .
 ~~~
 {: .language-bash}
 
@@ -203,7 +205,8 @@ $ ls
 {: .language-bash}
 
 ~~~
-SuwSmartdenovo_<jobid>.log  SuwSmartdenovo_58583802.out
+Smartdenovo.sh  Suw.fa.gz  SuwSamrtdenovo_<jobid>.out
+Suw.dmo.ovl     Suw.mak    SuwSmartdenovo_58583802.out
 ~~~
 {: .output}
 
@@ -213,8 +216,8 @@ $ head SuwSmartdenovo_58583802.out
 {: .language-bash}
 
 ~~~
-/blue/general_workshop/USERNAME/SMARTdenovo # working directory
-c5a-s23.ufhpc  # hostname (a label that is assigned to a device connected to a computer network)
+/blue/jeremybrawner/smithk/F_Cir/Suwannee2/Smartdenovo # wroking directory
+c5a-s23.ufhpc # hostname (a label that is assigned to a device connected to a computer network)
 Sat Sep 12 12:02:30 EDT 2020 (Date)
 /apps/smartdenovo/20180219/bin/wtpre -J 5000 /blue/jeremybrawner/smithk/F_Cir/Suwannee2/Suw2_filtered_3000bp_60X.fastq | gzip -c -1 > Suw.fa.gz
 /apps/smartdenovo/20180219/bin/wtzmo -t 8 -i Suw.fa.gz -fo Suw.dmo.ovl -k 16 -z 10 -Z 16 -U -1 -m 0.1 -A 1000
@@ -245,7 +248,7 @@ $ tail SuwSmartdenovo_58583802.out
 ~~~
 {: .output}
 
-The end of log file provides a important information that Nanopore reads were assembled into 21 unitgs. 
+The end of log file provides a important information that Nanopore reads were assembled into **21 unitgs**. 
 
 > ## Unitig vs Contig
 > Contig is a set of overlapped DNA fragements. While unitig contains multiple contigs.
@@ -269,14 +272,14 @@ $ mkdir Polishing
 
 $ cd Polishing
 
-$ cp /blue/general_workshop/share/bash_files/BMW.sh ./BWA.sh
+$ cp /blue/general_workshop/share/bash_files/bwa.sh ./bwa.sh
 ~~~
 {: .language-bash}
 
 Once you copy the script to your working directory, we need to edit the script. 
 
 ~~~
-$ nano BWA.sh
+$ nano bwa.sh
 ~~~
 {: .language-bash}
 
@@ -301,11 +304,11 @@ pwd; hostname; date
 module load bwa/0.7.17
 
 # First generate index file of assembly
-bwa index /blue/general_workshop/share/Suwannee2/Smartdenovo/Suw.utg.fa
+bwa index /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa
 
 # Align filtered Nanopore reads to the assembly
-bwa mem -t 14 -x ont2d /blue/general_workshop/share/Suwannee2/Smartdenovo/Suw.utg.fa \
-/blue/general_workshop/share/Suwannee2/Suw2_filtered_3000bp_60X.fastq > Suw.sam
+bwa mem -t 14 -x ont2d /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa \
+/blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq > Suw.sam
 
 
 -----------------------------------------------------------------------------------------------
@@ -317,6 +320,7 @@ bwa mem -t 14 -x ont2d /blue/general_workshop/share/Suwannee2/Smartdenovo/Suw.ut
 
 ### Checking usage of `bwa mem`
 ~~~
+$ module load bwa
 $ bwa mem
 ~~~
 {: .language-bash}
@@ -346,11 +350,18 @@ Change the &lt;email_address&gt; to your email address where you can check email
 {: .tips}
 
 ### Submitting a BWA job
+Before we submit a new job, we need to cancel your previous job. 
+~~~
+$ squeue -u <username>
+$ scancel <jobid> 
+$ squeue -u <username>
+~~~
+{: .language-bash}
 
 To submit the job to SLURM, `sbatch` command is used
 
 ~~~
-$ sbatch BWA.sh 
+$ sbatch bwa.sh 
 ~~~
 {: .language-bash}
 
@@ -360,10 +371,10 @@ Submitted batch job <jobid>
 {: .output}
 
 ### Checking the log file
-Mapping will take about 3 hours. Let’s copy the output file from /blue/general_workshop/share/Suwanee2/Polishing directory.
+Mapping will take about 3 hours. Let’s copy the output file from /blue/general_workshop/share/Suwannee/Polishing directory.
 
 ~~~
-$ cp /blue/general_workshop/share/Suwanee2/Polishing/Suw_index_58628076.out .
+$ cp /blue/general_workshop/share/Suwannee/Polishing/Suw_index_58628076.out .
 ~~~
 {: .language-bash}
 
@@ -373,7 +384,7 @@ $ ls
 {: .language-bash}
 
 ~~~
-BWA.sh   Suw_index_<jobid>.log   Suw_index_58628076.out
+bwa.sh  Suw_index_<jobid>.out  Suw_index_58628076.out 
 ~~~
 {: .output}
 
@@ -426,49 +437,41 @@ You will see how long does the program take to finish aligning Nnaopore reads to
 
 ### Checking the output files
 
-Constructing the index from the assembly only takes about a minute. You will see 5 output files from this step.
+Constructing the index from the assembly only takes about a minute but alignment will take about an hours. Therefore, we will use pre-computed result to proceed to the next step.
 
 ~~~
-$ ls
+$ head /blue/general_workshop/share/Suwannee/Polishing/Suw.sam
 ~~~
 {: .language-bash}
 
-~~~
-BWA.sh          Suw_index_<jobid>.log     Suw_index_58628076.out     Suw.utg.fa.amb          
-Suw.utg.fa.ann  Suw.utg.fa.bwt            Suw.utg.fa.sa
-~~~
-{: .output}
-
-Alignment will take about an hour. Therefore, we need copy the output file before we proceed to the next step.
-
-~~~
-$ cp /blue/general_workshop/share/Suwanee2/Polishing/Suw.sam.
-~~~
-{: .language-bash}
-
-~~~
-$ ls
-~~~
-{: .language-bash}
-
-~~~
-BWA.sh            Suw_index_<jobid>.log     Suw_index_58628076.out     Suw.utg.fa.amb          
-Suw.utg.fa.ann    Suw.utg.fa.bwt            Suw.utg.fa.sa              Suw.sam
-~~~
+~~
+@SQ     SN:utg1 LN:2979294
+@SQ     SN:utg4 LN:3616438
+@SQ     SN:utg7 LN:3191532
+@SQ     SN:utg8 LN:4361335
+@SQ     SN:utg10        LN:4900582
+@SQ     SN:utg16        LN:791247
+@SQ     SN:utg17        LN:1362414
+@SQ     SN:utg20        LN:6384136
+@SQ     SN:utg28        LN:349949
+@SQ     SN:utg31        LN:1440739
+~~
 {: .output}
 
 ## Run Racon
-Let's copy a submission script template from /blue/general_workshop/share/bash_files directory. First, make sure that you still at the working directory /blue/general_workshop/<username>/Polishing
+Let's copy a submission script template from /blue/general_workshop/share/bash_files directory. 
 
+Check your current working directory. 
 ~~~
 $ pwd
 ~~~
 {: .language-bash}
 
+If for some reasons you are not at /blue/general_workshop/username/Polishing, navigate yourself to the right directory.
 ~~~
-/blue/general_workshop/<username>/Polishing
+$ cd /blue/general_workshop/<username>/Polishing
 ~~~
-{: .output}
+{: .language-bash}
 
 ~~~
 $ cp /blue/general_workshop/share/bash_files/Racon.sh ./Racon.sh
@@ -500,12 +503,12 @@ $ nano Racon.sh
 
 pwd; hostname; date
 
-module load racon/1.4.13
+module load racon
 
-racon -t 14 /blue/general_workshop/share/Suwannee2/Suw2_filtered_3000bp_60X.fastq \
-/blue/general_workshop/share/Suwannee2/Polishing/Suw.sam \
-/blue/general_workshop/share/Suwannee2/Smartdenovo/Suw.utg.fa \
-> /blue/general_workshop/share/Suwannee2/Polishing/SuwRacon.fasta
+racon -t 14 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq \
+/blue/general_workshop/share/Suwannee/Polishing/Suw.sam \
+/blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa\
+> ./SuwRacon.fasta
 
 
 -----------------------------------------------------------------------------------------------
@@ -548,8 +551,15 @@ Change the &lt;email_address&gt; to your email address where you can check email
 
 ### Submitting a Racon job
 
-To submit the job to SLURM, `sbatch` command is used
+Before we submit a new job, we need to cancel your previous job. 
+~~~
+$ squeue -u <username>
+$ scancel <jobid> 
+$ squeue -u <username>
+~~~
+{: .language-bash}
 
+To submit the job to SLURM, `sbatch` command is used
 ~~~
 $ sbatch Racon.sh 
 ~~~
@@ -561,10 +571,10 @@ Submitted batch job <jobid>
 {: .output}
 
 ### Checking the log file
-Correction will take about 30 minutes. Let’s copy the output file from /blue/general_workshop/share/Suwanee2/Polishing directory.
+Correction will take about 30 minutes. Let’s copy the output file from /blue/general_workshop/share/Suwanee/Polishing directory.
 
 ~~~
-$ cp /blue/general_workshop/share/Suwanee2/Polishing/Racon_Suw_58629660.out .
+$ cp /blue/general_workshop/share/Suwannee/Polishing/Racon_Suw_58629660.out .
 ~~~
 {: .language-bash}
 
@@ -574,8 +584,8 @@ $ ls
 {: .language-bash}
 
 ~~~
-BWA.sh             Racon.sh           Racon_Suw_58629660.out    Suw_index_<jobid>.log     Suw_index_58628076.out     Suw.utg.fa.amb          
-Suw.utg.fa.ann     Suw.utg.fa.bwt     Suw.utg.fa.sa  Suw.sam
+bwa.sh    Racon_Suw_<jobid>.out   Suw_index_<jobid>.out   SuwRacon.fasta
+Racon.sh  Racon_Suw_58629660.out  Suw_index_58628076.out  Suw.sam
 ~~~
 {: .output}
 
@@ -598,47 +608,178 @@ Mon Sep 14 21:03:13 EDT 2020
 ~~~
 {: .output}
 
-You can see how long does the program take to finish correcting our assembly.
-
-### Checking the output files
-We will not have enough time to finish the racon program. That is alright. Let's copy the output file from /blue/general_workshop/share/Suwanee2/Polishing
-
-~~~
-$ cp /blue/general_workshop/share/Suwanee2/Polishing/SuwRacon.fasta .
-~~~
-{: .language-bash}
-
-~~~
-$ ls
-~~~
-{: .language-bash}
-
-~~~
-BWA.sh             Racon.sh           Racon_Suw_58629660.out    SuwRacon.fasta  Suw_index_<jobid>.log     Suw_index_58628076.out     
-Suw.utg.fa.amb     Suw.utg.fa.ann     Suw.utg.fa.bwt            Suw.utg.fa.sa   Suw.sa
-~~~
-{: .output}
+Racon will take about 30 minutes to finish correcting our assembly. We might not have enough time to finish the racon program. That is alright. We have also provided pre-computed output (corrected draft assembly) at /blue/general_workshop/share/Suwanee2/Polishing.
 
 # Assemblely polishing using Pilon
-Pilon is a software aims to automatically improve draft assembly. Pilon requires two inputs: a FASTA file of assembly and BAM file of Illumina reads aligned to the assembly. Pilon identifies inconsistencies between the assembly and reads. Pilon aims to improve the input assembly including: 1) Single base differences, 2) Small indels, 3) Larger indel or block substitution events, 4) Gap filling, and 5) Identification of local misassemblies. 
+[Pilon](https://github.com/broadinstitute/pilon/wiki) is a software aims to automatically improve draft assembly. Pilon requires two inputs: a FASTA file of assembly and BAM file of Illumina reads aligned to the assembly. Pilon identifies inconsistencies between the assembly and reads. Pilon aims to improve the input assembly including: 1) Single base differences, 2) Small indels, 3) Larger indel or block substitution events, 4) Gap filling, and 5) Identification of local misassemblies. Outputs from Pilon tool are: a FASTA file of improved assembly and optional VCF file to visulaize the discrepancy between FASTA file of assembly and Illumina reads.
 
-Outputs from Pilon tool are: a FASTA file of improved assembly and optional VCF file to visulaize the discrepancy between FASTA file of assembly and Illumina reads.
+## Polishing Racon-correcred assembly using Pilon
+Three major steps are involved: 
+1. Align Illumina reads to Racon-correcred assembly using BWA 
+2. Covert SAM file to BAM file and sort the bam file based on reads position in the Racon assembly
+3. Correcting assembly using Pilon using sorted BAM file consisting of Illumina paired-end alignments, aligned to the Racon-corrected assembly.
 
-## Aligning Illumina reads to our assembly using Bowtie2
-
-## Correcting assembly using Pilon
-
-## Further polishing Pilon assembly using pilon
-Simpliy repeat the previous steps. 
+## Further polishing Pilon assembly using Pilon
+Simpliy repeat the previous steps. Mapping Illumina reads to 1st Pilon-polished assembly to obtained 2nd Pilon-polished assembly. 
 
 # Scaffolding: mapping the polished assembly to the reference genome
-<img src="{{site.baseSite}}/fig/Ragtag.svg" align="center" width="600">
+RagTag is a collection of software tools for scaffolding and improving genome assemblies. RagTag performs:
+1. Homology-based misassembly correction
+2. Homology-based assembly scaffolding and patching
+3. Scaffold merging
+
+[Rephrase Correction]
+RagTag offers a correction module that uses a reference genome to identify and correct potential misassemblies in a query assembly. RagTag also provides the option to verify putative misassemblies by aligning reads (from the same genotype) to the query assembly and observing read coverage near misassembly break points. In all cases, sequence is never added or subtracted. Query sequences are only broken at points of putative misassembly.
+
+[Rephrase: Scaffold]
+Scaffolding is the process of ordering and orienting draft assembly (query) sequences into longer sequences. Gaps (stretches of "N" characters) are placed between adjacent query sequences to indicate the presence of unknown sequence. RagTag uses whole-genome alignments to a reference assembly to scaffold query sequences. RagTag does not alter input query sequence in any way and only orders and orients sequences, joining them with gaps.
+
+[Rephrase: Patch]
+RagTag 'patch' uses one genome assembly to "patch" another genome assembly. We define two types of patches: Fills and Joins:
+
+1. Fills are patches that fill assembly gaps. This process is like traditional gap-filling, though it uses an assembly instead of WGS sequencing reads.
+
+2. Joins are patches that join distinct contigs. This is essentially scaffolding and gap-filling in a single step.
+
+[Rephase: Merge]
+RagTag merge is a tool to merge and reconcile different scaffoldings of the same assembly. In this way, one can leverage the advantages of multiple techniques to synergistically improve scaffolding.
+
+
+
+
+
 
 # Quality assessment of assemblies
 ## Computing metrics of assemblies using QUAST
 To perform assembly evaluation, we will run QUAST. QUAST computes serveral common metrics including misassemblies, contig N50, genome fraction (aligned based in the assemblies/reference genome). QUAST provides several outputs including report.txt, assessement summary in plain text file, and HTML file, a report including interactive plots. You can read the complete manual [here](http://quast.sourceforge.net/docs/manual.html#sec3). 
 
+
+
+
 ## Evaluate assembly completeness using BUSCO
+A measure for quantitative assessment of genome assembly and annotation completeness based on evolutionarily informed expectations of gene content was proposed. A oopen-source software, with sets of Benchmarking Universal Single-Copy Orthologs, named BUSCO, is avalible [(Simao et al., 2015)](https://doi.org/10.1093/bioinformatics/btv351). 
+
+### Run BUSCO analysis
+First, create a BUSCO folder at your home folder, then copy the configuration of BUSCO containing all the required dependencies from /blue/general_workshop/share/BUSCO/augustus. 
+
+~~~
+$ mkdir BUSCO
+$ cd BUSCO
+$ cp -r /blue/general_workshop/share/BUSCO/augustus /blue/general_workshop/<username>/
+$ cp /blue/general_workshop/share/bash_files/busco.sh ./busco.sh
+~~~
+{: .language-bash}
+
+### Adding information to SLURM script
+
+We have to modify some information in the template to provide more information to SLURM about the job.
+
+~~~
+$ nano busco.sh
+~~~
+{: .language-bash}
+
+~~~
+-----------------------------------------------------------------------------------------------
+ GNU nano 3.3 beta 02                     File: Smartdenovo.sh
+-----------------------------------------------------------------------------------------------
+#!/bin/bash
+#SBATCH --job-name=BUSCO              # Job name
+#SBATCH --account=general_workshop    # Account to run the computational task
+#SBATCH --qos=general_workshop        # Account allocation
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=<email_address>   # You need provide your email address
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=20gb                    # Job memory request
+#SBATCH --time 12:00:00               # Time limit hrs:min:sec
+#SBATCH --output=BUSCO_%j.out         # Standard output and error log
+
+pwd; hostname; date
+
+module load busco/5.3.0
+
+busco -f -i /blue/general_workshop/share/Suwannee/Polishing/ragtag/ragtag_output/ragtag.scaffolds.fasta\
+-o BUSCO_out_Suw --lineage_dataset hypocreales_odb10 -m genome 
+
+
+
+
+-----------------------------------------------------------------------------------------------
+^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
+^X Exit         ^J Justify      ^W Where Is      ^V Next Page     ^U UnCut Text     ^T To Spell
+-----------------------------------------------------------------------------------------------
+~~~
+{: .terminal}
+
+### Checking usage of `busco`
+~~~
+$ module load busco/5.3.0  
+$ busco -h
+~~~
+{: .language-bash}
+
+~~~
+usage: busco -i [SEQUENCE_FILE] -l [LINEAGE] -o [OUTPUT_NAME] -m [MODE] [OTHER OPTIONS]
+
+optional arguments:
+  -i FASTA FILE, --in FASTA FILE
+                        Input sequence file in FASTA format. Can be an assembled genome or transcriptome (DNA), or protein sequences from an annotated gene set.
+-o OUTPUT, --out OUTPUT
+                        Give your analysis run a recognisable short name. Output folders and files will be labelled with this name. WARNING: do not provide a path
+-l LINEAGE, --lineage_dataset LINEAGE
+                        Specify the name of the BUSCO lineage to be used.
+-m MODE, --mode MODE  Specify which BUSCO analysis mode to run.
+                        There are three valid modes:
+                        - geno or genome, for genome assemblies (DNA)
+~~~
+{: .output}
+
+
+Change the &lt;email_address&gt; to your email address where you can check email.
+Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
+
+## Running a job in SLURM
+
+### Submitting a BUSCO job
+
+To submit the job to SLURM, `sbatch` command is used.
+
+~~~
+$ sbatch busco.sh
+~~~
+{: .language-bash}
+
+~~~
+Submitted batch job <jobid>
+~~~
+{: .output}
+
+BUSCO analysis will take about an hour, so we prepared the pre-computed output. 
+
+~~~
+$ cp /blue/general_workshop/plyu/BUSCO/BUSCO_out_Suw/short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt .
+$ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt
+~~~
+{: .language-bash}
+
+~~~
+
+~~~
+{: .output}
+
+~~~
+$ tail BUSCO_43815083.out
+~~~
+{: .language-bash}
+
+~~~
+~~~
+{: .output}
+
+How to interpret the output?
+
 
 
 > ## References and addtional reading
