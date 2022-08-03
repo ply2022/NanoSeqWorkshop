@@ -20,7 +20,7 @@ keypoints:
 
 ### Basecalling with Guppy
 
-The application Guppy converts the fast5 files we viewed earlier into fastQ files that we can use for bioinformatics applications. It is STRONGLY recommended that you allocate a GPU when running this application. We know a researcher who used Guppy for basecalling while only using CPUs, which took 2-4 days to process their Nanopore results. However, when they used a GPU it only took 1-2 hours to process the same results.
+The application Guppy converts the fast5 files we viewed earlier into fastQ files that we can use for bioinformatics applications. It is **strongly** recommended that you allocate a GPU when running this application. We know a researcher who used Guppy for basecalling while only using CPUs, which took 2-4 days to process their Nanopore results. However, when they used a GPU it only took 1-2 hours to process the same results.
 
 Whether you use a CPU or GPU, 0's and 1's are interpreted by each processing core in a linear fashion. However, CPUs typically have 4-8 cores that are very powerful and can execute a relatively large number of tasks. GPUs, on the other hand, usually have at least 300 cores upwards to a thousand that are less powerful and can execute more simplistic and repetitive tasks. Since processing the fast5 electrical signals into nucleotides `ATGC` is a very simple and repetitive task, a GPU will outperform the CPU by a very large margin, although a CPU will work (much more slowly) if your work group does not have access to a GPU on the cluster.
 
