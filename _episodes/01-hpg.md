@@ -1039,6 +1039,10 @@ x=0; while(($x < 4)); do; echo $x; ((++x)); done
 {: .language-bash}
 
 ~~~
+0
+1
+2
+3
 ~~~
 {: .output}
 
