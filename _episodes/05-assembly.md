@@ -6,7 +6,7 @@ questions:
 - How can I assemble a genome with the reads generated from the nanopore sequencers.
 objectives:
 - Hybrid genome assembly using Nanopore and Illumina reads.
-- Scaffolding assembled contigs using Ragtag.
+- Scaffolding assembled contigs using RagTag.
 - Accessing genome assembly quality using BBMap and BUSCO.
 keypoints:
 - Don't forget to edit the email in the SLURM scripts. 
@@ -370,71 +370,6 @@ Submitted batch job <jobid>
 ~~~
 {: .output}
 
-### Checking the log file
-Mapping will take about 3 hours. Let’s copy the output file from /blue/general_workshop/share/Suwannee/Polishing directory.
-
-~~~
-$ cp /blue/general_workshop/share/Suwannee/Polishing/Suw_index_58628076.out .
-~~~
-{: .language-bash}
-
-~~~
-$ ls
-~~~
-{: .language-bash}
-
-~~~
-bwa.sh  Suw_index_<jobid>.out  Suw_index_58628076.out 
-~~~
-{: .output}
-
-~~~
-$ head -n 17 Suw_index_58628076.out
-~~~
-{: .language-bash}
-
-~~~
-/blue/jeremybrawner/smithk/F_Cir/Suwannee2/mapping
-c6a-s2.ufhpc
-Mon Sep 14 18:36:05 EDT 2020
-[bwa_index] Pack FASTA... 0.86 sec
-[bwa_index] Construct BWT for the packed sequence...
-[BWTIncCreate] textLength=93800066, availableWord=18599936
-[BWTIncConstructFromPacked] 10 iterations done. 30680818 characters processed.
-[BWTIncConstructFromPacked] 20 iterations done. 56678786 characters processed.
-[BWTIncConstructFromPacked] 30 iterations done. 79781826 characters processed.
-[bwt_gen] Finished constructing BWT in 37 iterations.
-[bwa_index] 34.53 seconds elapse.
-[bwa_index] Update BWT... 0.54 sec
-[bwa_index] Pack forward-only FASTA... 0.46 sec
-[bwa_index] Construct SA from BWT and Occ... 13.23 sec
-[main] Version: 0.7.17-r1188
-[main] CMD: bwa index /blue/jeremybrawner/smithk/F_Cir/Suwannee2/Smartdenovo/Suw.utg.fa
-[main] Real time: 50.028 sec; CPU: 49.637 sec
-~~~
-{: .output}
-
-~~~
-$ tail Suw_index_58628076.out
-~~~
-{: .language-bash}
-
-~~~
-[M::process] read 3594 sequences (140002026 bp)...
-[M::mem_process_seqs] Processed 3628 reads in 2522.069 CPU sec, 318.417 real sec
-[M::process] read 3692 sequences (140067494 bp)...
-[M::mem_process_seqs] Processed 3594 reads in 2457.334 CPU sec, 310.467 real sec
-[M::process] read 2507 sequences (99040690 bp)...
-[M::mem_process_seqs] Processed 3692 reads in 2483.281 CPU sec, 317.457 real sec
-[M::mem_process_seqs] Processed 2507 reads in 1751.574 CPU sec, 224.243 real sec
-[main] Version: 0.7.17-r1188
-[main] CMD: bwa mem -t 14 -x ont2d /blue/jeremybrawner/smithk/F_Cir/Suwannee2/Smartdenovo/Suw.utg.fa /blue/jeremybrawner/smithk/F_Cir/Suwannee2/Suw2_filtered_3000bp_60X.fastq
-[main] Real time: 8212.070 sec; CPU: 64626.020 sec
-~~~
-{: .output}
-
-You will see how long does the program take to finish aligning Nnaopore reads to our assembly.
-
 ### Checking the output files
 
 Constructing the index from the assembly only takes about a minute but alignment will take about an hours. Therefore, we will use pre-computed result to proceed to the next step.
@@ -680,7 +615,7 @@ export _JAVA_OPTIONS="-Xmx45g"
 # Run pilon 
 pilon --genome /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
 --fix all --changes --frags pilon1.sorted.bam --threads 8 --output Suw_pilon1 \
---outdir /blue/general_workshop/<username>/Pilon
+--outdir /blue/general_workshop/<username>/Polishing/Pilon
 
 
 
@@ -779,7 +714,7 @@ Submitted batch job <jobid>
 ## Further polishing Pilon assembly using Pilon
 Simpliy repeat the previous steps. Mapping Illumina reads to 1st Pilon-polished assembly to obtained 2nd Pilon-polished assembly. 
 
-Pilon program takes about 30 minutes. We might not be able to finish. We can copy the pre-computed Pilon-corrected assembly from 
+Pilon program takes about 30 minutes. We might not be able to finish. We have prepared the pre-computed Pilon-corrected assembly.
 
 # Scaffolding: mapping the polished assembly to the reference genome
 RagTag is a collection of software tools for scaffolding and improving genome assemblies. RagTag performs:
@@ -787,27 +722,120 @@ RagTag is a collection of software tools for scaffolding and improving genome as
 2. Homology-based assembly scaffolding and patching
 3. Scaffold merging
 
+In our case, we will use the scaffolding function. 
+
 > ## RagTag
 > <img src="https://raw.githubusercontent.com/malonge/RagTag/master/logo/descriptive_diagram.svg" align="center" width="900">
-> 1. Correction: Ragtag identies and correct protential misaassembles in the query assembly using referecne genome.
-> 2. Scaffold: Ragtag orders and orients draft query assembly into longer sequences using 
-> 3. Patch:
-> 4. Merge: 
+> 1. Correction: RagTag identies and correct protential misaassembles in the query assembly using referecne genome.
+> 2. Scaffold: RagTag orders and orients sequences of draft query assembly into longer sequences using reference genome. Sequences will be jointed with gap without altering the sequences. 
+> 3. Patch: RagTag fills the gaps in the query assembly using reference genomeor. 
+> 4. Merge: RagTag merges different scaffoldings of the same query assembly, which can improve scaffolding using different scaffolding tools. 
 {: .tips}
 
+### Run RagTag
+First, create a RagTag folder under /blue/general_workshop/username/Polishing, then copy script from /blue/general_workshop/share/bash_files
 
-[Rephrase: Scaffold]
-Scaffolding is the process of ordering and orienting draft assembly (query) sequences into longer sequences. Gaps (stretches of "N" characters) are placed between adjacent query sequences to indicate the presence of unknown sequence. RagTag uses whole-genome alignments to a reference assembly to scaffold query sequences. RagTag does not alter input query sequence in any way and only orders and orients sequences, joining them with gaps.
+~~~
+$ cd /blue/general_workshop/username/Polishing
+$ mkdir RagTag
+$ cd RagTag
+$ cp /blue/general_workshop/share/bash_files/ragtag.sh .
+~~~
+{: .language-bash}
 
-[Rephrase: Patch]
-RagTag 'patch' uses one genome assembly to "patch" another genome assembly. We define two types of patches: Fills and Joins:
+### Adding information to SLURM script
 
-1. Fills are patches that fill assembly gaps. This process is like traditional gap-filling, though it uses an assembly instead of WGS sequencing reads.
+We have to modify some information in the template to provide more information to SLURM about the job.
 
-2. Joins are patches that join distinct contigs. This is essentially scaffolding and gap-filling in a single step.
+~~~
+$ nano busco.sh
+~~~
+{: .language-bash}
 
-[Rephase: Merge]
-RagTag merge is a tool to merge and reconcile different scaffoldings of the same assembly. In this way, one can leverage the advantages of multiple techniques to synergistically improve scaffolding.
+~~~
+-----------------------------------------------------------------------------------------------
+ GNU nano 3.3 beta 02                     File: ragtag.sh
+-----------------------------------------------------------------------------------------------
+#!/bin/bash
+#SBATCH --job-name=RagTag             # Job name
+#SBATCH --account=general_workshop    # Account to run the computational task
+#SBATCH --qos=general_workshop        # Account allocation
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=<email_address>   # You need provide your email address
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=1GB                     # Job memory request
+#SBATCH --time 1:00:00                # Time limit hrs:min:sec
+#SBATCH --output=Ragtag_%j.out        # Standard output and error log
+
+module load ragtag/2.0.1
+#module load minimap
+ 
+ragtag.py scaffold /blue/general_workshop/share/GCA_000497325.3/GCA_000497325.3_OldRef.fna \
+/blue/general_workshop/share/Suwannee/Polishing/pilon_round2/Suw_pilon2.fasta
+
+
+
+-----------------------------------------------------------------------------------------------
+^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
+^X Exit         ^J Justify      ^W Where Is      ^V Next Page     ^U UnCut Text     ^T To Spell
+-----------------------------------------------------------------------------------------------
+~~~
+{: .terminal}
+
+Change the &lt;email_address&gt; to your email address where you can check email.
+Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
+
+## Running a job in SLURM
+
+### Submitting a RagTag job
+
+To submit the job to SLURM, `sbatch` command is used.
+
+~~~
+$ sbatch ragtag.sh
+~~~
+{: .language-bash}
+
+~~~
+Submitted batch job <jobid>
+~~~
+{: .output}
+
+RagTag only takes a minutes, so let's check the output in /blue/general_workshop/username/Polishing/Ragtag/ragtag_output. 
+
+~~~
+$ cd /blue/general_workshop/username/Polishing/Ragtag/ragtag_output
+$ ls
+~~~
+{: .language-bash}
+
+~~~
+ragtag.scaffold.agp          ragtag.scaffold.confidence.txt  ragtag.scaffold.stats
+ragtag.scaffold.asm.paf      ragtag.scaffold.err
+ragtag.scaffold.asm.paf.log  ragtag.scaffold.fasta
+~~~
+{: .output}
+
+> ## Outputs of RagTag
+> 1. ragtag.scaffold.agp: The order and orientation of query assembly in [AGP format](https://www.ncbi.nlm.nih.gov/assembly/agp/AGP_Specification/).
+> 2. ragtag.scaffold.fasta: Scaffold in FASTA format, defined by the ragtag.scaffold.agp
+> 3. ragtag.scaffold.stats: Summary statistics for the scaffolding process. 
+{: .tips}
+
+Let's look at the statistics report.
+~~~
+cat ragtag.scaffold.stats
+~~~
+{: .language-bash}
+
+~~~
+placed_sequences        placed_bp       unplaced_sequences      unplaced_bp     gap_bp  gap_sequences
+19                      46269058        2                       917303          600     6
+~~~
+{: .output}
+
 
 
 
@@ -825,12 +853,13 @@ To perform assembly evaluation, we will run QUAST. QUAST computes serveral commo
 A measure for quantitative assessment of genome assembly and annotation completeness based on evolutionarily informed expectations of gene content was proposed. A oopen-source software, with sets of Benchmarking Universal Single-Copy Orthologs, named BUSCO, is avalible [(Simao et al., 2015)](https://doi.org/10.1093/bioinformatics/btv351). 
 
 ### Run BUSCO analysis
-First, create a BUSCO folder at your home folder, then copy the configuration of BUSCO containing all the required dependencies from /blue/general_workshop/share/BUSCO/augustus. 
+First, create a BUSCO folder under your folder, then copy the configuration of BUSCO containing all the required dependencies from /blue/general_workshop/share/BUSCO/augustus. 
 
 ~~~
+$ cd /blue/general_workshop/<username>
 $ mkdir BUSCO
 $ cd BUSCO
-$ cp -r /blue/general_workshop/share/BUSCO/augustus /blue/general_workshop/<username>/
+$ cp -r /blue/general_workshop/share/BUSCO/augustus .
 $ cp /blue/general_workshop/share/bash_files/busco.sh ./busco.sh
 ~~~
 {: .language-bash}
@@ -958,7 +987,7 @@ How to interpret the output?
 > 4. [Racon](https://github.com/isovic/racon)
 > 5. [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 > 6. [Pilon](https://github.com/broadinstitute/pilon/wiki)
-> 7. [Ragtag](https://github.com/malonge/RagTag)
+> 7. [RagTag](https://github.com/malonge/RagTag)
 > 8. [QUAST](https://sourceforge.net/projects/quast/)
 > 9. [BUSCO](https://gitlab.com/ezlab/busco#how-to-cite-busco)
 > 10. [Comparative Genomics of Fusarium circinatum Isolates Used to Screen Southern Pines for Pitch Canker Resistance](https://doi.org/10.1094/mpmi-10-21-0247-r)
