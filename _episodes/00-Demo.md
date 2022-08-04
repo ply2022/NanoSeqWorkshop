@@ -94,7 +94,7 @@ DNA fragments do not have homogeneousn blunt-ended fragments, so [NEBNext Ultra 
 
 Prepared DNA fragments is ligated with sequencing adapters (red) tagged with mortor protein (brown). Both template and complementary strands are tagged with mortor protein, so both strand will translocate the nanopore. Mortor protein has helicase activity and it also control the DNA translocation speed. Once the sequencing adapter inserts into the nanopore, double-strand DNA will be first unwound by motor protein. Eletric current drives negatively charged DNA pass through the pore (~450 bases per second).
 
-<img src="{{site.baseSite}}/fig/LibraryPrep.svg" align="center" width="700">
+<img src="{{site.baseSite}}/fig/LibraryPrep.svg" align="center" width="800">
 
 # Genomic DNA sequencing on the MinION sequencer
 
