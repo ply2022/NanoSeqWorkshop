@@ -108,13 +108,13 @@ The MinION Mk1B instrument connects the user’s PC and the nanopore sensor. It 
 
 ### Configuration test cell (CTC)
 
-CTC is used to test the communication between the MinION Mk1B and sequencing sofware, MinKNOW, on user's PC. 
+CTC is used to test the communication between the MinION Mk1B and sequencing software, MinKNOW, on user's PC. 
 
 <img src="{{site.baseSite}}/fig/CTC.png" align="center" width="700">
 
 ### Anatomy of flow cell
 
-The flow cell is a comsumables that contains a fluidic interface allowing DNA samples being sequenced. Sensor chip is one of the major components of the flow cell. Sensor array is located on the the front of sensor chip. MinION Mk1B flow cell carries (ideally) 2048 active wells (nanopores) on the surface of sensor array. 
+The flow cell is a consumable that contains a fluidic interface allowing DNA samples being sequenced. Sensor chip is one of the major components of the flow cell. Sensor array is located on the front of sensor chip. MinION Mk1B flow cell carries (ideally) 2048 active wells (nanopores) on the surface of sensor array. 
 
 <img src="{{site.baseSite}}/fig/SpotON_FlowCell.png" align="center" width="700">
 <img src="{{site.baseSite}}/fig/FlowCellChips.png" align="center" width="700">
@@ -122,11 +122,11 @@ The flow cell is a comsumables that contains a fluidic interface allowing DNA sa
 
 ### Storage buffer
 
-The flow cells are shipped and preserved with the storage buffer (yellow). The storage buffer serves differen roles: 1) maintaining osmotic balance, 2) allowing current to run through the nanopores, 3) identifying functional pores during flow cell checking.  
+The flow cells are shipped and preserved with the storage buffer (yellow). The storage buffer serves different roles: 1) maintaining osmotic balance, 2) allowing current to run through the nanopores, 3) identifying functional pores during flow cell checking.  
 
 <img src="{{site.baseSite}}/fig/StorageBuffer.png" align="center" width="700">
 
-The flow cell is flused with priming mix (Flush Tether + Flush Buffer; colored in blue) through priming pore to replace the storage buffer in the bulk section before library loading. Priming mix contains tether proteins guiding DNA fragements toward nanopores. DNA library is loaded to sensor array through SpotON sample port.  
+The flow cell is flushed with priming mix (Flush Tether + Flush Buffer; colored in blue) through priming pore to replace the storage buffer in the bulk section before library loading. Priming mix contains tether proteins guiding DNA fragments toward nanopores. DNA library is loaded to sensor array through SpotON sample port.  
 
 <img src="{{site.baseSite}}/fig/Priming.png" align="center" width="700">
 
@@ -181,7 +181,7 @@ Please review this video for demonstration (you might might start from 00:18 to 
 {: .caution}
 
 ## [Start sequencing]
-Due to the the space and time limitations. Participants ***will not** initiate sequencing. Yet, instructor will demonstrate the sequencing process. 
+Due to the space and time limitations. Participants ***will not** initiate sequencing. Yet, instructor will demonstrate the sequencing process. 
 
 [Step 0] Running the flow cell check with the new or washed flow cell.
 <img src="{{site.baseSite}}/fig/Sequencing_overview1.png" align="center" width="700"> 
