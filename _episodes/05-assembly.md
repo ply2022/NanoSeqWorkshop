@@ -929,15 +929,15 @@ quast.log           report.tx
 {: .output}
 
 Let's download `report.html` file. On your dashborad of UFRC OnDemand:
-<img src="{{site.baseSite}}/fig/Dowload_1.png" align="center" width="400">
+<img src="{{site.baseSite}}/fig/Dowload_1.png" align="center" width="700">
 
 1. Click Files, then /blue/general_workshop.
-<img src="{{site.baseSite}}/fig/Dowload_2.png" align="center" width="400">
+<img src="{{site.baseSite}}/fig/Dowload_2.png" align="center" width="700">
 2. Find your folder, click QUAST, then click quastResult.
-<img src="{{site.baseSite}}/fig/Dowload_3.png" align="center" width="400">
-<img src="{{site.baseSite}}/fig/Dowload_4.png" align="center" width="400">
+<img src="{{site.baseSite}}/fig/Dowload_3.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/Dowload_4.png" align="center" width="700">
 3. Select report.html, then click `Download`.
-<img src="{{site.baseSite}}/fig/Dowload_5.png" align="center" width="400">
+<img src="{{site.baseSite}}/fig/Dowload_5.png" align="center" width="700">
 
 Open the HTML file where you saved it. 
 
@@ -989,8 +989,6 @@ busco -f -i /blue/general_workshop/share/Suwannee/Polishing/ragtag/ragtag_output
 -o BUSCO_out_Suw --lineage_dataset hypocreales_odb10 -m genome 
 
 
-
-
 -----------------------------------------------------------------------------------------------
 ^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
 ^X Exit         ^J Justify      ^W Where Is      ^V Next Page     ^U UnCut Text     ^T To Spell
@@ -1021,7 +1019,6 @@ optional arguments:
 ~~~
 {: .output}
 
-
 Change the &lt;email_address&gt; to your email address where you can check email.
 Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
 Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
@@ -1048,9 +1045,20 @@ We will copy the output of BUSCO analyses from our assembly,refernece genome (GC
 ~~~
 $ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Suw/short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt .
 $ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Fc_ref/short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt .
-$ cp 
+$ /blue/general_workshop/share/BUSCO/BUSCO_out_Fc_oldref/short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_oldref.txt .
+$ ls
 ~~~
 {: .language-bash}
+
+~~~
+augustus
+busco.sh
+BUSCO_<username>.out
+short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_oldref.txt
+short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt
+short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt
+~~~
+{: .output}
 
 ~~~
 $ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt
@@ -1058,19 +1066,83 @@ $ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt
 {: .language-bash}
 
 ~~~
+# BUSCO version is: 5.3.0 
+# The lineage dataset is: hypocreales_odb10 (Creation date: 2020-08-05, number of genomes: 50, number of BUSCOs: 4494)
+# Summarized benchmarking in BUSCO notation for file /blue/general_workshop/share/Suwannee/Polishing/ragtag/ragtag_output/ragtag.scaffolds.fasta
+# BUSCO was run in mode: genome
+# Gene predictor used: metaeuk
+
+        ***** Results: *****
+
+        C:98.0%[S:97.7%,D:0.3%],F:0.3%,M:1.7%,n:4494       
+        4401    Complete BUSCOs (C)                        
+        4389    Complete and single-copy BUSCOs (S)        
+        12      Complete and duplicated BUSCOs (D)         
+        12      Fragmented BUSCOs (F)                      
+        81      Missing BUSCOs (M)                         
+        4494    Total BUSCO groups searched                
+
+Dependencies and versions:
+        hmmsearch: 3.1
+        metaeuk: 5.34c21f2
+~~~
+{: .output}
+
+~~~
+$ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_oldref.txt
+~~~
+{: .language-bash}
+
+~~~
+# BUSCO version is: 5.3.0 
+# The lineage dataset is: hypocreales_odb10 (Creation date: 2020-08-05, number of genomes: 50, number of BUSCOs: 4494)
+# Summarized benchmarking in BUSCO notation for file /blue/general_workshop/share/BUSCO/GCA_000497325.3/GCA_000497325.3_old_ref.fna
+# BUSCO was run in mode: genome
+# Gene predictor used: metaeuk
+
+        ***** Results: *****
+
+        C:94.0%[S:93.9%,D:0.1%],F:3.1%,M:2.9%,n:4494       
+        4225    Complete BUSCOs (C)                        
+        4219    Complete and single-copy BUSCOs (S)        
+        6       Complete and duplicated BUSCOs (D)         
+        139     Fragmented BUSCOs (F)                      
+        130     Missing BUSCOs (M)                         
+        4494    Total BUSCO groups searched                
+
+Dependencies and versions:
+        hmmsearch: 3.1
+        metaeuk: 5.34c21f2
+~~~
+{: .output}
+
+~~~
 $ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt
 ~~~
 {: .language-bash}
 
 ~~~
-$ cat 
+# BUSCO version is: 5.3.0 
+# The lineage dataset is: hypocreales_odb10 (Creation date: 2020-08-05, number of genomes: 50, number of BUSCOs: 4494)
+# Summarized benchmarking in BUSCO notation for file /blue/general_workshop/share/BUSCO/GCA_024047395.1/GCA_024047395.1_assembly_ref.fa
+# BUSCO was run in mode: genome
+# Gene predictor used: metaeuk
+
+        ***** Results: *****
+
+        C:97.6%[S:97.3%,D:0.3%],F:0.6%,M:1.8%,n:4494       
+        4384    Complete BUSCOs (C)                        
+        4372    Complete and single-copy BUSCOs (S)        
+        12      Complete and duplicated BUSCOs (D)         
+        28      Fragmented BUSCOs (F)                      
+        82      Missing BUSCOs (M)                         
+        4494    Total BUSCO groups searched                
+
+Dependencies and versions:
+        hmmsearch: 3.1
+        metaeuk: 5.34c21f2
 ~~~
-{: .language-bash}
-
-How to interpret the output?
-
-
-
+{:. output}
 
 > ## References and addtional reading
 > 1. [SMARTdenovo](https://github.com/ruanjue/smartdenovo)
