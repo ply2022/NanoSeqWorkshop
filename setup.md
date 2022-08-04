@@ -6,7 +6,7 @@ title: Setup
 {% comment %} Setup {% endcomment %}
 <h2 id="setup">Setup</h2>
 <p>
-  To participate in a this workshop, you will need access to UF Hipergator and the software described below.
+  To participate in this workshop, you will need access to UF Hipergator and the software described below.
 </p>
 <p>
   We maintain a list of common issues that occur during installation as a reference for instructors that may be useful on the
@@ -53,7 +53,7 @@ Community also provide the online training, and plateform for discussion whithin
 <img src="fig/ONT_login.png" align="center" height="400" width="400">
 3. Fill in the information that required for creating an account.
 <img src="fig/ONT_register.png" align="center" height="400" width="400">
-4. Sysytem will ask you to provide more detail about you. 
+4. System will ask you to provide more detail about you. 
 <img src="fig/ONT_detail.png" align="center">
 5. Click submit, and then a verification email will be sent to the email you provide at step 3.
 <img src="fig/ONT_verify.png" align="center">
