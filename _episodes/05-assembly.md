@@ -9,7 +9,7 @@ objectives:
 - Scaffolding assembled contigs using RagTag.
 - Accessing genome assembly quality using BBMap and BUSCO.
 keypoints:
-- Don't forget to edit the email in the SLURM scripts. 
+- Don't forget to edit the email in the SLURM scripts and username. 
 - There are several other ways to submit the job. Some software support multithread and you can write the array scripts request resources. 
 ---
 
