@@ -444,7 +444,7 @@ $ head /blue/general_workshop/share/Suwannee/Polishing/Suw.sam
 ~~~
 {: .language-bash}
 
-~~
+~~~
 @SQ     SN:utg1 LN:2979294
 @SQ     SN:utg4 LN:3616438
 @SQ     SN:utg7 LN:3191532
@@ -455,7 +455,7 @@ $ head /blue/general_workshop/share/Suwannee/Polishing/Suw.sam
 @SQ     SN:utg20        LN:6384136
 @SQ     SN:utg28        LN:349949
 @SQ     SN:utg31        LN:1440739
-~~
+~~~
 {: .output}
 
 ## Run Racon
