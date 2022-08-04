@@ -3,14 +3,17 @@ title: "Basecalling and quality control"
 teaching: 10
 exercises: 25
 questions:
-- How to interpret and use sequencing results?
+- How do you perform basecalling and filter reads for analysis?
 objectives:
-- Learn about the fast5 format.
+- Learn about basecalling with Guppy.
+- Learn how to use Porechop to remove adapter sequences.
+- Learn how Filtlong improves the quality of your data.
+- Use Nanoplot to produce summary reports of your dataset.
 keypoints:
 - Guppy converts the unreadable electrical signals to actual nucleotide data.
 - Porechop removes the adapter sequences so we only view nucelotide data from our reads.
-- Filtlong filters reads by their length and quality
-- NanoPlot summarizes our data
+- Filtlong filters reads by their length and quality.
+- NanoPlot produces reports that summarize our data.
 
 ---
 
@@ -20,7 +23,7 @@ keypoints:
 
 ### Basecalling with Guppy
 
-The application Guppy converts the fast5 files we viewed earlier into fastQ files that we can use for bioinformatics applications. It is STRONGLY recommended that you allocate a GPU when running this application. We know a researcher who used Guppy for basecalling while only using CPUs, which took 2-4 days to process their Nanopore results. However, when they used a GPU it only took 1-2 hours to process the same results.
+The application Guppy converts the fast5 files we viewed earlier into fastQ files that we can use for bioinformatics applications. It is **strongly** recommended that you allocate a GPU when running this application. We know a researcher who used Guppy for basecalling while only using CPUs, which took 2-4 days to process their Nanopore results. However, when they used a GPU it only took 1-2 hours to process the same results.
 
 Whether you use a CPU or GPU, 0's and 1's are interpreted by each processing core in a linear fashion. However, CPUs typically have 4-8 cores that are very powerful and can execute a relatively large number of tasks. GPUs, on the other hand, usually have at least 300 cores upwards to a thousand that are less powerful and can execute more simplistic and repetitive tasks. Since processing the fast5 electrical signals into nucleotides `ATGC` is a very simple and repetitive task, a GPU will outperform the CPU by a very large margin, although a CPU will work (much more slowly) if your work group does not have access to a GPU on the cluster.
 
@@ -245,7 +248,7 @@ The `--target_bases` option assumes that there is very high coverage of the geno
 After Filtlong has run, the quality of the sequences is improved for downstream analysis. Filtlong provides the following example of 1.3 Gbp of reads before and after it was filtered using the `target_bases` argument to reduce the data to 0.5 Gbp of reads.
 
 #### Before
-<img src="{{site.baseSite}}/fig/filtlong_before.png" align="left" width="700">
+<img src="{{site.baseSite}}/fig/filtlong_before.png" align="center" width="700">
 
 #### After
 <img src="{{site.baseSite}}/fig/filtlong_after.png" align="left" width="700">
@@ -299,11 +302,11 @@ The script produces an html file along with associated image files and data. Sin
   
 First, open the tab that first appeared when you logged into UFRC On Demand and click on files in the top lefthand corner, then click on /blue/general_workshop/ from the menu:
 
-<img src="{{site.baseSite}}/fig/login_files.png" align="left" width="700">
+<img src="{{site.baseSite}}/fig/login_files.png" align="center" width="700">
   
 A new screen will load. Click on `Go To...` at the top left, which will load a text entry box.
   
-<img src="{{site.baseSite}}/fig/go_to_nanoplot.png" align="left" width="700">
+<img src="{{site.baseSite}}/fig/go_to_nanoplot.png" align="center" width="700">
   
 Now enter the following location:
   
@@ -314,7 +317,7 @@ Now enter the following location:
 
 Click on the directory "Nanoplot_Suw2_filtered_out" and then click on the download button:
 
-<img src="{{site.baseSite}}/fig/download_nanoplot.png" align="left" width="700">
+<img src="{{site.baseSite}}/fig/download_nanoplot.png" align="center" width="700">
   
 Also click and download the directory "NanoplotOUT", which contains the unfiltered reads.
   
