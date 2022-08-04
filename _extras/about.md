@@ -45,7 +45,7 @@ Josh is a graduate research fellow at the University of Florida’s Department o
 
 ### Andrew J. Gitto
 
-Need to copy from email
+Andrew Gitto is a PhD student in the Department of Plant Pathology at the University of Florida, Gainesville Campus. His PhD project focuses on identifying and predicting disease resistance in *Theobroma cacao*, the chocolate tree, using genotypic and phenotypic data. The major disease of study is black pod rot caused predominantly by *Phytophthora palmivora* and *Phytophthora megakarya*. Prior to attending graduate school at the University of Florida, Andrew worked as a lab manager and research assistant at the Clemson University, Clemson, South Carolina, in the department of Plant and Environmental Sciences.
 
 ### Owen H. Hudson 
 
