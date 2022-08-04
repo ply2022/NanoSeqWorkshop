@@ -285,7 +285,7 @@ $ nano bwa.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: Smartdenovo.sh
+ GNU nano 3.3 beta 02                     File: bwa.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=BWA                # Job name
@@ -487,7 +487,7 @@ $ nano Racon.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: Smartdenovo.sh
+ GNU nano 3.3 beta 02                     File: Racon.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=Racon              # Job name
@@ -619,8 +619,167 @@ Three major steps are involved:
 2. Covert SAM file to BAM file and sort the bam file based on reads position in the Racon assembly
 3. Correcting assembly using Pilon using sorted BAM file consisting of Illumina paired-end alignments, aligned to the Racon-corrected assembly.
 
+### Run Pilon 
+Let's create new directory in your work directory and copy a submission script template from /blue/general_workshop/share/bash_files directory.
+
+~~~
+$ cd /blue/general_workshop/<username>/Polishing
+
+$ mkdir Pilon
+
+$ cd Pilon
+
+$ cp /blue/general_workshop/share/bash_files/pilonRound1.sh .
+~~~
+{: .language-bash}
+
+Once you copy the script to your working directory, we need to edit the script. 
+
+~~~
+$ nano pilonRound1.sh
+~~~
+{: .language-bash}
+
+~~~
+-----------------------------------------------------------------------------------------------
+ GNU nano 3.3 beta 02                     File: pilonRound1.sh
+-----------------------------------------------------------------------------------------------
+#!/bin/bash
+#SBATCH --job-name=Pilon                    # Job name
+#SBATCH --account=general_workshop          # Account to run the computational task
+#SBATCH --qos=general_workshop              # Account allocation
+#SBATCH --mail-type=END,FAIL                # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=<email_address>         # You need provide your email address
+#SBATCH --ntasks=1                          # Run on a single CPU
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=25gb                          # Job memory request
+#SBATCH --time 12:00:00                     # Time limit hrs:min:sec
+#SBATCH --output=SuwGenome_pilon_%j.out     # Standard output and error log
+
+pwd; hostname; date
+
+module load bwa/0.7.17 samtools/1.15 pilon/1.24
+
+# First create index of Racon-corrected assembly.
+bwa index /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta
+
+# Two steps here: 
+# 1. mapping illumina reads to Racon-corrected assembly
+# 2. sorted outout SAM file into BAM file sorted by the mapping evidence
+bwa mem -t 14 /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
+/blue/general_workshop/share/Suwannee/TrimFastX_R1.fq \
+/blue/general_workshop/share/Suwannee/TrimFastX_R2.fq | 
+samtools view - -Sb | samtools sort - -@14 -o pilon1.sorted.bam
+
+# Create index of mapping evidence
+samtools index pilon1.sorted.bam
+
+# Specifying Java options and system properties
+export _JAVA_OPTIONS="-Xmx45g"
+
+# Run pilon 
+pilon --genome /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
+--fix all --changes --frags pilon1.sorted.bam --threads 8 --output Suw_pilon1 \
+--outdir /blue/general_workshop/<username>/Pilon
+
+
+
+-----------------------------------------------------------------------------------------------
+^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
+^X Exit         ^J Justify      ^W Where Is      ^V Next Page     ^U UnCut Text     ^T To Spell
+-----------------------------------------------------------------------------------------------
+~~~
+{: .terminal}
+
+### Checking usage of `samtools view`
+~~~
+$ module load samtools 
+$ samtools view
+~~~
+{: .language-bash}
+
+~~~
+Usage: samtools view [options] <in.bam>|<in.sam>|<in.cram> [region ...]
+Output options:
+  -b, --bam                  Output BAM
+General options:
+  -S           Ignored (input format is auto-detected)
+~~~
+{: .output}
+**Note**: Due to the page size limitation, only partial options are shown.
+
+~~~
+samtools sort 
+~~~
+{: .language-bash}
+
+~~~
+Usage: samtools sort [options...] [in.bam]
+Options:
+-o FILE    Write final output to FILE rather than standard output
+-@, --threads INT
+               Number of additional threads to use [0]
+~~~
+{:. output}
+**Note**: Due to the page size limitation, only partial options are shown.
+
+~~~
+module load pilon 
+pilon --help
+~~~
+{: .language-bash}
+
+~~~
+Usage: pilon --genome genome.fasta [--frags frags.bam] [--jumps jumps.bam] [--unpaired unpaired.bam]
+                 [...other options...]
+--genome genome.fasta
+              The input genome we are trying to improve, which must be the reference used
+              for the bam alignments.  At least one of --frags or --jumps must also be given.
+--frags frags.bam
+              A bam file consisting of fragment paired-end alignments, aligned to the --genome
+              argument using bwa or bowtie2.  This argument may be specifed more than once.
+ --changes
+              If specified, a file listing changes in the <output>.fasta will be generated.
+--fix fixlist
+              A comma-separated list of categories of issues to try to fix:
+                "snps": try to fix individual base errors;
+                "indels": try to fix small indels;
+                "gaps": try to fill gaps;
+                "local": try to detect and fix local misassemblies;
+                "all": all of the above (default);
+                "bases": shorthand for "snps" and "indels" (for back compatibility);
+                "none": none of the above; new fasta file will not be written.
+~~~
+{:. output}
+
+Change the &lt;email_address&gt; to your email address where you can check email. Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt. Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
+
+### Submitting a Pilon job
+Before we submit a new job, we need to cancel your previous job. 
+~~~
+$ squeue -u <username>
+$ scancel <jobid> 
+$ squeue -u <username>
+~~~
+{: .language-bash}
+
+To submit the job to SLURM, `sbatch` command is used
+
+~~~
+$ sbatch pilonRound1.sh
+~~~
+{: .language-bash}
+
+~~~
+Submitted batch job <jobid>
+~~~
+{: .output}
+
+
 ## Further polishing Pilon assembly using Pilon
 Simpliy repeat the previous steps. Mapping Illumina reads to 1st Pilon-polished assembly to obtained 2nd Pilon-polished assembly. 
+
+Pilon program takes about 30 minutes. We might not be able to finish. We can copy the pre-computed Pilon-corrected assembly from 
 
 # Scaffolding: mapping the polished assembly to the reference genome
 RagTag is a collection of software tools for scaffolding and improving genome assemblies. RagTag performs:
@@ -628,8 +787,14 @@ RagTag is a collection of software tools for scaffolding and improving genome as
 2. Homology-based assembly scaffolding and patching
 3. Scaffold merging
 
-[Rephrase Correction]
-RagTag offers a correction module that uses a reference genome to identify and correct potential misassemblies in a query assembly. RagTag also provides the option to verify putative misassemblies by aligning reads (from the same genotype) to the query assembly and observing read coverage near misassembly break points. In all cases, sequence is never added or subtracted. Query sequences are only broken at points of putative misassembly.
+> ## RagTag
+> <img src="https://raw.githubusercontent.com/malonge/RagTag/master/logo/descriptive_diagram.svg" align="center" width="900">
+> 1. Correction: Ragtag identies and correct protential misaassembles in the query assembly using referecne genome.
+> 2. Scaffold: Ragtag orders and orients draft query assembly into longer sequences using 
+> 3. Patch:
+> 4. Merge: 
+{: .tips}
+
 
 [Rephrase: Scaffold]
 Scaffolding is the process of ordering and orienting draft assembly (query) sequences into longer sequences. Gaps (stretches of "N" characters) are placed between adjacent query sequences to indicate the presence of unknown sequence. RagTag uses whole-genome alignments to a reference assembly to scaffold query sequences. RagTag does not alter input query sequence in any way and only orders and orients sequences, joining them with gaps.
@@ -681,7 +846,7 @@ $ nano busco.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: Smartdenovo.sh
+ GNU nano 3.3 beta 02                     File: busco.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=BUSCO              # Job name
@@ -691,8 +856,8 @@ $ nano busco.sh
 #SBATCH --mail-user=<email_address>   # You need provide your email address
 #SBATCH --ntasks=1                    # Run on a single CPU
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=20gb                    # Job memory request
-#SBATCH --time 12:00:00               # Time limit hrs:min:sec
+#SBATCH --mem=2gb                    # Job memory request
+#SBATCH --time 1:00:00               # Time limit hrs:min:sec
 #SBATCH --output=BUSCO_%j.out         # Standard output and error log
 
 pwd; hostname; date
@@ -758,27 +923,31 @@ Submitted batch job <jobid>
 
 BUSCO analysis will take about an hour, so we prepared the pre-computed output. 
 
+We will copy the output of BUSCO analyses from our assembly,refernece genome (GCA_024047395.1) and previous reference genome avalibled on NCBI (GCA_000497325.3). 
 ~~~
-$ cp /blue/general_workshop/plyu/BUSCO/BUSCO_out_Suw/short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt .
-$ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt
+$ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Suw/short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt .
+$ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Fc_ref/short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt .
+$ cp 
 ~~~
 {: .language-bash}
 
 ~~~
-
+$ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt
 ~~~
 {: .output}
 
 ~~~
-$ tail BUSCO_43815083.out
+$ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt
 ~~~
-{: .language-bash}
+{: .output}
 
 ~~~
+$ cat 
 ~~~
 {: .output}
 
 How to interpret the output?
+
 
 
 
