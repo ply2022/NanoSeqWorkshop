@@ -126,6 +126,28 @@ Submitted batch job <job_id>
 
 If you submit multiple jobs with the same name, the job id provided by SLURM can be used to track your jobs.
 
+### Canceling a job
+
+If a job appears to have stalled because of an error in your code such as an infinite loop, or maybe you noticed a minor mistake just after submitting your script, you can always cancel your job. Let's try that now. First, submit the job like we did above:
+
+~~~
+sbatch slurm.sh
+~~~
+{: .language-bash}
+
+~~~
+Submitted batch job <job_id>
+~~~
+{: .output}
+
+Now you can use the command  `scancel` followed by the job id number listed above to cancel the submission to SLURM. Any jobs running at this time will be terminated.
+
+~~~
+scancel <job_id>
+~~~
+
+You won't receive any output after you cancel the script. In the next section we will look at ways to check on the status of jobs you submit to SLURM.
+
 ### Checking the status of a SLURM job
 
 The command `squeue` allows you to check the status of a job. The `-u` argument followed by your username will list all of the jobs you have submitted. The `-A` argument lists all of the jobs running under a single account. If you have submitted a job and it has not run for an extended period of time, you should use the `-A` argument to determine if there are a large number of jobs scheduled ahead of yours.
