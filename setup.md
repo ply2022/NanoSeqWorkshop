@@ -20,7 +20,7 @@ title: Setup
 Gatorlink VPN is required to access University if Florida Research Computing OnDemand
 service, which will provide access to HiperGator cluster.
 1. Visit [UF VPN webpage (vpn.ufl.edu)](https://vpn.ufl.edu){: target="_blank"}.
-2. Login using the username and password that was emailed to you.
+2. Login using the username and password that was emailed to you. [Note] For participants associated with University of Florida, please use your regular GatorLink account and password to login. 
 3. In the next page, download **Cisco Anyconnect** software and install it.
 4. Once installed, run **Cisco Anyconnect** and click **Connect**.
 5. Enter the username and password provided and click **OK**. 
