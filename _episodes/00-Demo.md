@@ -174,7 +174,8 @@ Do not panic when you see a yellow exclamation mark in this workshop. We provide
 
 ## Priming and loding the flow cell
 Please review this video for demonstration (you might might start from 00:18 to skip th intro):
-<iframe width="700" height="480" src="https://www.youtube.com/embed/Pt-iaemrM88" title="Priming and loading your flow cell" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="500" height="480" src="https://www.youtube.com/embed/Pt-iaemrM88" title="Priming and loading your flow cell" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 > ## Loading the flow cell
 > **DO NOT** pipette while you priming or loading the flowcell. Pipetting might lead to irreversibly damage to the membrane.
