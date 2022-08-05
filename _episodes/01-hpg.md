@@ -68,9 +68,7 @@ We have provided commands in this workshop that you can copy and paste directly 
 
 `pwd` displays your "path", or your file location on HiperGator. This workshop will include code that you can copy directly from this page and paste into the shell. Right clicking is the same as pasting in Linux, but your shell through UFRC On Demand does not support this feature. Instead, you will need to use the usual keyboard shortcut to paste with your operating system.
 
-~~~
-We are using UFRC On Demand for this workshop because all users can use the same Secure SHell (SSH) application. There are many differnt free SSH applications for every operation system that combine the shell with a Graphical User Interface (GUI), and these support features such as editing files in separate color coded text editors outside of the shell and easy file transfers and directory navigation. If you plan on doing a lot of bioinformatics work, we strongly recommend finding an application that works for your operating system. There are a number that are both free, but you should ensure it supports features required for accessing HiPerGator outside of UFRC On Demand, such as 2-factor authentication.
-~~~
+> We are using UFRC On Demand for this workshop because all users can use the same Secure SHell (SSH) application. There are many differnt free SSH applications for every operation system that combine the shell with a Graphical User Interface (GUI), and these support features such as editing files in separate color coded text editors outside of the shell and easy file transfers and directory navigation. If you plan on doing a lot of bioinformatics work, we strongly recommend finding an application that works for your operating system. There are a number that are both free, but you should ensure it supports features required for accessing HiPerGator outside of UFRC On Demand, such as 2-factor authentication.
 {: .tips}
 
 ~~~
@@ -892,9 +890,7 @@ Chr_59.1        8234325823      C       T       intron_variant
 ~~~
 {: .output}
 
-~~~
-The `sed` command is very powerful and has a wide range of complex arguments that can be used to completely reformat data. You can find more information about `sed` here: [sed manual](https://www.gnu.org/software/sed/manual/sed.html){: target="_blank"}
-~~~
+> The `sed` command is very powerful and has a wide range of complex arguments that can be used to completely reformat data. You can find more information about `sed` here: [sed manual](https://www.gnu.org/software/sed/manual/sed.html){: target="_blank"}
 {: .tips}
 
 The `grep` command will find a string within `""` and return lines that match the string.
@@ -922,9 +918,7 @@ grep -c "intron_variant" file2.txt
 ~~~
 {: .output}
 
-~~~
-The `grep` command is similar to `sed` in that it has a large number of arguments that make it very powerful and versatile. You can learn more about grep here: [grep manual](https://www.gnu.org/software/grep/manual/grep.html){: target="_blank"}
-~~~
+> The `grep` command is similar to `sed` in that it has a large number of arguments that make it very powerful and versatile. You can learn more about grep here: [grep manual](https://www.gnu.org/software/grep/manual/grep.html){: target="_blank"}
 {: .tips}
 
 ## Piping commands
@@ -987,9 +981,7 @@ Be certain to use `""` and not `''` when using variables! The two are not interc
 
 Rather than running the same command multiple times, you can use a loop to complete a series of tasks more efficiently. They oftentimes rely upon wildcards and variables to read multiple files or conditions.
 
-~~~
-It is good to remember the <kdb>Ctrl</kbd> <kbd>c</kbd> shortcut to terminate a command in the shell in case you accidently write an infinite loop that will never end!
-~~~
+> It is good to remember the <kdb>Ctrl</kbd> <kbd>c</kbd> shortcut to terminate a command in the shell in case you accidently write an infinite loop that will never end!
 {: .tips}
 
 ### The 'For' loop
