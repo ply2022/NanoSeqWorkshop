@@ -14,19 +14,19 @@ keypoints:
 
 # Library preparation 
 
-In this workshop, we will introduce you the [Ligation Sequecning Kit](https://store.nanoporetech.com/us/ligation-sequencing-kit110.html){: target="_blank"}, which is a genome sequencing kit. We are going to use the protocol [Ligation sequencing gDNA (SQK-LSK110)](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/genomic-dna-by-ligation-sqk-lsk110/v/gde_9108_v110_revv_10nov2020){: target="_blank"}.
-In the community, you can review the process in detail. Due to the time and equipemnts limitation. We **will not** perform actual library preparation process. We will focus on the flow cell loading and setting the MinKonw software.
+In this workshop, we will introduce you the [Ligation Sequencing Kit](https://store.nanoporetech.com/us/ligation-sequencing-kit110.html){: target="_blank"}, which is a genome sequencing kit. We are going to use the protocol [Ligation sequencing gDNA (SQK-LSK110)](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/genomic-dna-by-ligation-sqk-lsk110/v/gde_9108_v110_revv_10nov2020){: target="_blank"}.
+In the community, you can review the process in detail. Due to the time and equipment limitation. We **will not** perform actual library preparation process. We will focus on the flow cell loading and setting the MinKnow software.
 
 ## Quality controls of DNA samples
 
 **A successful sequencing starts with a high-quality DNA sample.**
 
-Assessment of DNA samples includes: quality, quantiy, and integrity. We will introduce commonly used methods to perform quality control of DNA samples. 
+Assessment of DNA samples includes quality, quantity, and integrity. We will introduce commonly used methods to perform quality control of DNA samples. 
 
 *Note: Here we listed the methods that our team commonly used. Alternative tools might also avalible.*
 
 ### Spectrophotometer (UV-Vis)
-Absorbance measurements measure the absorbance of all molecules in the sample that absorb at the wavelength of interest. Nucleotides and proteins have highest absorbance at 260 nm and 280 nm, respectively. The ratio of absorbance at 260 nm and 280 nm is used to determine the purity of the DNA samples. The ratio of ~ 1.8 is considered as a pure for DNA samples. On the other hand, chemicals and organic compound (e.g., EDTA, carbohydrate, phenol) absorb at 230 nm. The ratio of 2.0-2.22 is expected as a pure for DNA sample.
+Absorbance measurements measure the absorbance of all molecules in the sample that absorb at the wavelength of interest. Nucleotides and proteins have highest absorbance at 260 nm and 280 nm, respectively. The ratio of absorbance at 260 nm and 280 nm is used to determine the purity of the DNA samples. The ratio of ~ 1.8 is considered as a pure for DNA samples. On the other hand, chemicals, and organic compound (e.g., EDTA, carbohydrate, phenol) absorb at 230 nm. The ratio of 2.0-2.22 is expected as a pure for DNA sample.
 
 <img src="{{site.baseSite}}/fig/NanoDrop_spectra.png" align="center" width="700">
 
@@ -37,19 +37,19 @@ Absorbance measurements measure the absorbance of all molecules in the sample th
 2. pH sensitive: acid solution and basic solution decrease or increase 260/280 ratio, respectively.
  
 
-**Adventages**
+**Advantages**
 1. Cheaper: do not need extra plastic consumables and kits.
 2. Faster: no additional reaction time
 
 ### Fluorometry
-Compare to spectrophotometer, fluorometric measurement is more specific and sensitive despite the presence of contaminants due to the selective binding between fluorogenic dyes and DNA. Dyes emit fluorenes only when specific binding happens, and the fluorenes will be detected by fluorometer. Concentration of the nucleic acid is calculated using standard curve. Using [Qubit dsDNA HS Assay Kit](https://assets.thermofisher.com/TFS-Assets/LSG/manuals/Qubit_dsDNA_HS_Assay_UG.pdf){: target="_blank"} as an example, it can measure sample concentration ranging from 10 pg/μL to 100 ng/μL. Yet, fluorogenic dyes can not measure the purity of the DNA. 
+Compared to spectrophotometer, fluorometric measurement is more specific and sensitive despite the presence of contaminants due to the selective binding between fluorogenic dyes and DNA. Dyes emit fluorenes only when specific binding happens, and the fluorenes will be detected by fluorometer. Concentration of the nucleic acid is calculated using standard curve. Using [Qubit dsDNA HS Assay Kit](https://assets.thermofisher.com/TFS-Assets/LSG/manuals/Qubit_dsDNA_HS_Assay_UG.pdf){: target="_blank"} as an example, it can measure sample concentration ranging from 10 pg/μL to 100 ng/μL. Yet, fluorogenic dyes cannot measure the purity of the DNA. 
 
 **Drawbacks** 
 1. Time consuming: reagent-sample reaction takes 2 min required for DNA assay
 2. Costly: reagents and single-use plastic consumables (Qubit assay tubes) are required
 
 ### Spectrophotometer vs. Fluorometry
-So...which method is better? 
+So... which method is better? 
 <img src="{{site.baseSite}}/fig/NanoDropVSQubit.png" align="center" width="700">
 
 **Figure A**. Comparisons of repeated measurements (n = 10) between commercial kits (Qubit) and spectrophotometer (NanoDrop). Serial dilution of DNA samples ranging from 50-0.5 ng/µl was used to evaluate two methods. 
@@ -63,17 +63,17 @@ To evaluate integrity of DNA samples, we need gel electrophoresis systems, such 
 
 **Figure A**. The gel image with DNA Integrity Number (DIN). A1: DNA marker; B1-H2: degradation series of 15 g DNA samples (60 ng/µl).
 
-**Figure B**. A electropherogram of 15 samples from Figure A. Highly intact gDNA 
-samples (H2) has a narrow peak in the electropherogram above the largest ladder peak (48,500 bp). 
+**Figure B**. An electropherogram of 15 samples from Figure A. Highly intact gDNA 
+sample (H2) has a narrow peak in the electropherogram above the largest ladder peak (48,500 bp). 
 
 ## Ligation sequencing gDNA (SQK-LSK110)
-You can find step by step guide including third party reagents, equipments and consumables in the [protocol](https://community.nanoporetech.com/protocols/genomic-dna-by-ligation-sqk-lsk110/checklist.pdf?devices=minion) for MinION (R9.4.1). Here we will provide a overview of the workflow. 
+You can find step by step guide including third party reagents, equipment and consumables in the [protocol](https://community.nanoporetech.com/protocols/genomic-dna-by-ligation-sqk-lsk110/checklist.pdf?devices=minion) for MinION (R9.4.1). Here we will provide a overview of the workflow. 
 
 ### Optional fragmentation 
-When should I performe fragmentation of genomic DNA (gDNA)?
-Although the protocol recommends starting DNA sample concentration is 1 µg, fragemntation might be useful for low input amount of DNA. Also, you might benefit from optimal fragmentation when you are handling very high molecular weight gDNA. [Oxford Nanopore Technologies (ONT)](https://community.nanoporetech.com/extraction_method_groups/optional-fragmentation-of-gdna) provides a review of how factors including fragment size, loding amount, and blocking affect the flow cell output. Here we will discuss how fragmentation affects read N50. 
+When should I perform fragmentation of genomic DNA (gDNA)?
+Although the protocol recommends starting DNA sample concentration is 1 µg, fragmentation might be useful for low input amount of DNA. Also, you might benefit from optimal fragmentation when you are handling very high molecular weight gDNA. [Oxford Nanopore Technologies (ONT)](https://community.nanoporetech.com/extraction_method_groups/optional-fragmentation-of-gdna) provides a review of how factors including fragment size, loading amount, and blocking affect the flow cell output. Here we will discuss how fragmentation affects read N50. 
 
-The following figures demonstrate that fragemnt length and read N50 do not have linear relationship. 
+The following figures demonstrate that fragment length and read N50 do not have linear relationship. 
 <img src="{{site.baseSite}}/fig/Fragmentation&N50.png" align="center" width="700">
 
 **Figure A**. Sheared Human gDNA samples were sheared with different speed. The fragment size was analyzed. Increasing shearing speed leads to more fragmented DNA. 
@@ -86,13 +86,13 @@ The following figures demonstrate that fragemnt length and read N50 do not have 
 {: .tips}
 
 ### First step: DNA repair and end-repair
-Histopathological or histology samples are preserved with formalin fixed paraffin embedded (FFPE) method. However FFPE significantly compromises the DNA quality from the specimens.[NEBNext FFPE DNA Repair Mix](https://www.neb.com/products/m6630-nebnext-ffpe-dna-repair-mix#Product%20Information), a cocktail of enzymes, is used to repair DNA. 
+Histopathological or histology samples are preserved with formalin fixed paraffin embedded (FFPE) method. However FFPE significantly compromises the DNA quality from the specimens. [NEBNext FFPE DNA Repair Mix](https://www.neb.com/products/m6630-nebnext-ffpe-dna-repair-mix#Product%20Information), a cocktail of enzymes, is used to repair DNA. 
 
-DNA fragments do not have homogeneousn blunt-ended fragments, so [NEBNext Ultra II End Repair/dA-Tailing Module](https://www.neb.com/products/e7546-nebnext-ultra-ii-end-repair-da-tailing-module#Product%20Information) is used to repair overhangs by 5' Phosphorylation (P). Adding non-template dAMP (dA) to the 3′ end of blunt-ended fragments prevents a continous DNA molecule (concatemer) formation in the following ligation step and permits subsequent ligation of adapter that has complementary 3′-dT overhangs. 
+DNA fragments do not have homogeneous blunt-ended fragments, so [NEBNext Ultra II End Repair/dA-Tailing Module](https://www.neb.com/products/e7546-nebnext-ultra-ii-end-repair-da-tailing-module#Product%20Information) is used to repair overhangs by 5' Phosphorylation (P). Adding non-template dAMP (dA) to the 3′ end of blunt-ended fragments prevents a continous DNA molecule (concatemer) formation in the following ligation step and permits subsequent ligation of adapter that has complementary 3′-dT overhangs. 
 
 ### Second step: Adapter ligation 
 
-Prepared DNA fragments is ligated with sequencing adapters (red) tagged with mortor protein (brown). Both template and complementary strands are tagged with mortor protein, so both strand will translocate the nanopore. Mortor protein has helicase activity and it also control the DNA translocation speed. Once the sequencing adapter inserts into the nanopore, double-strand DNA will be first unwound by motor protein. Eletric current drives negatively charged DNA pass through the pore (~450 bases per second).
+Prepared DNA fragments is ligated with sequencing adapters (red) tagged with motor protein (brown). Both template and complementary strands are tagged with motor protein, so both strands will translocate the nanopore. Motor protein has helicase activity and it also control the DNA translocation speed. Once the sequencing adapter inserts into the nanopore, double-strand DNA will be first unwound by motor protein. Electric current drives negatively charged DNA pass through the pore (~450 bases per second).
 
 <img src="{{site.baseSite}}/fig/LibraryPrep.svg" align="center" width="800">
 
@@ -102,7 +102,7 @@ Prepared DNA fragments is ligated with sequencing adapters (red) tagged with mor
 
 ### The MinION Mk1B
 
-The MinION Mk1B instrument connects the user’s PC and the nanopore sensor. It provides power to application-specific integrated circuit (ASIC), performs temperature control, protects sensor from electronic noise, and transfer data to the user's PC. The MinION Mk1B does not have active heating element. The heat generated from ASIC and control of fan speed maintain a steady temperatue at 37 °C. 
+The MinION Mk1B instrument connects the user’s PC and the nanopore sensor. It provides power to application-specific integrated circuit (ASIC), performs temperature control, protects sensor from electronic noise, and transfer data to the user's PC. The MinION Mk1B does not have active heating element. The heat generated from ASIC and control of fan speed maintain a steady temperature at 37 °C. 
 
 <img src="{{site.baseSite}}/fig/MinION_Mk1B.png" align="center" width="700">
 
@@ -138,7 +138,7 @@ ONT offers a warranty within 3 months from purchase of MinION flow cell. If the 
 <img src="{{site.baseSite}}/fig/FlowCellQC.png" align="center" width="700">
 
 ### Running the flow cell check
-Before you run the flow cell check, you need to have a PC connected with internet and MinION Mk1B device and your PC also need to be intalled with MinKNOW software. 
+Before you run the flow cell check, you need to have a PC connected with internet and MinION Mk1B device and your PC also need to be installed with MinKNOW software. 
 
 [Step 1] Open the sequencer lid and insert the flow cell. First slide flow cell under the clip, and then press down the flow cell. **Note**: Do not touch the bottom of the flow cell. 
 
@@ -162,23 +162,23 @@ Before you run the flow cell check, you need to have a PC connected with interne
 [Step 6] The system detects MiinION Flow cell ID automatically. Click **Start**. 
 <img src="{{site.baseSite}}/fig/FlowCellCheck_1.png" align="center" width="700">
 
-[Step 7] It will takes about 5 minutes to finish flow cell check.
+[Step 7] It will take about 5 minutes to finish flow cell check.
 Two types of output:
 
-**Yellow exclamation mark**: The numbe of active pores is below warranty number.
+**Yellow exclamation mark**: The number of active pores is below warranty number.
 
-**Green tick**: The number of active proes is above warranty number. **[Need a picture here]**
+**Green tick**: The number of active pores is above warranty number. 
 <img src="{{site.baseSite}}/fig/FlowCellCheck_out.png" align="center" width="700">
 
-Do not panic when you see a yellow exclamation mark in this workshop. We provided eveybody **used** flow cell. 
+Do not panic when you see a yellow exclamation mark in this workshop. We provided everybody **used** flow cell. 
 
-## Priming and loding the flow cell
-Please review this video for demonstration (you might might start from 00:18 to skip th intro):
+## Priming and loading the flow cell
+Please review this video for demonstration (you might start from 00:18 to skip the intro):
 <iframe width="500" height="480" src="https://www.youtube.com/embed/Pt-iaemrM88" title="Priming and loading your flow cell" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 > ## Loading the flow cell
-> **DO NOT** pipette while you priming or loading the flowcell. Pipetting might lead to irreversibly damage to the membrane.
+> **DO NOT** pipette while you are priming or loading the flow cell. Pipetting might lead to irreversibly damage to the membrane.
 {: .caution}
 
 ## [Start sequencing]
@@ -222,7 +222,7 @@ Click **Start**
 
 <img src="{{site.baseSite}}/fig/SeqExp_9.png" align="center" width="700">
 
-[Step 9] Click **Experiments**. You can access to the realtime report of the sequencing report. 
+[Step 9] Click **Experiments**. You can access to the real-time report of the sequencing report. 
 <img src="{{site.baseSite}}/fig/SeqExp_10.png" align="center" width="700">
 
 <img src="{{site.baseSite}}/fig/SeqExp_11.png" align="center" width="700">
@@ -233,8 +233,8 @@ Click **Start**
 
 
 > ## The multiplexer (MUX) scan
-> Once the sequencing protocol is initiated, a pore scan will start before sequencing. MUX run allows MinKNOW to divide active pores into four groups, which let MinION to prioritise the order of the pores to be used for sequencing. Group 1 will be used in the first 8-hour run. Pore prioritising maximize the data output. 
-> To have maximum number of pores that are avalible for sequencing, you should selction **Active channel selection**. When **Active channel selection** is on, MinKNOW will try to switch to a new pore once the pore is in the 'Saturated' or 'Multiple' state. 
+> Once the sequencing protocol is initiated, a pore scan will start before sequencing. MUX run allows MinKNOW to divide active pores into four groups, which let MinION to prioritize the order of the pores to be used for sequencing. Group 1 will be used in the first 8-hour run. Pore prioritizing maximize the data output. 
+> To have maximum number of pores that are available for sequencing, you should selection **Active channel selection**. When **Active channel selection** is on, MinKNOW will try to switch to a new pore once the pore is in the 'Saturated' or 'Multiple' state. 
 {: .tips}
 
 > ## Addtional reading materials 
