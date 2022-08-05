@@ -16,7 +16,7 @@ keypoints:
 # Genome assembly
 
 ## An overview of Genome Assembly
- Once we have the "clean" Nanopore reads, we are ready to assemble those reads into contiguous sequences (contigs). There are many tools deployed different algorithms to assemble genomes with nanopore reads. Due to the nature of the Long-Read technologies, the pipeline of assembling error-prone Nanopore reads incooprate error correction to facilitate identifying ovelapping reads and improve assembly. 
+ Once we have the "clean" Nanopore reads, we are ready to assemble those reads into contiguous sequences (contigs). There are many tools which deploy different algorithms to assemble genomes with nanopore reads. Due to the nature of the Long-Read sequencing technologies, the pipeline for assembling error-prone Nanopore reads incorporate error correction to facilitate identifying ovelapping reads and improve assembly. 
 
 ### Genome assembly using SMARTdenovo
 We will assemble the draft assembly using *de novo* assembler for our Nanopore reads. This software does not include error correction steps. SMARTdenovo deploys 
@@ -67,7 +67,7 @@ $ nano Smartdenovo.sh
 #SBATCH --mail-user=<email_address>   # You need provide your email address
 #SBATCH --ntasks=1                    # Run on a single CPU
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=80gb                    # Job memory request
+#SBATCH --mem=8gb                    # Job memory request
 #SBATCH --time 12:00:00               # Time limit hrs:min:sec
 #SBATCH --output=SuwSamrtdenovo_%j.out   # Standard output and error log
 
@@ -76,7 +76,7 @@ pwd; hostname; date
 module load smartdenovo/20180219
 
 # Run genome assembly
-smartdenovo.pl -p Suw -c 1 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq > Suw.mak
+smartdenovo.pl -p -t 1 Suw -c 1 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq > Suw.mak
 
 make -f Suw.mak
 
@@ -87,6 +87,10 @@ make -f Suw.mak
 -----------------------------------------------------------------------------------------------
 ~~~
 {: .terminal}
+
+Change the &lt;email_address&gt; to your email address where you can check email.
+Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 
 ### Checking usage of `smartdenovo.pl`
 ~~~
@@ -110,12 +114,8 @@ Options:
 
 > ## Make: software build automation tool
 > The make program is an intelligent utility and works based on the changes you do in your source file (makefile), which is `Suw.mak`.
-> Makfile simplifies the process of building program. 
+> Makefile simplifies the process of building program. 
 {: .tips}
-
-Change the &lt;email_address&gt; to your email address where you can check email.
-Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
-Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 
 > ## Editing in nano
 > **nano** is a commandline editor. You can only move your cursor with 
@@ -295,7 +295,7 @@ $ nano bwa.sh
 #SBATCH --mail-user=<email_address>   # You need provide your email address
 #SBATCH --ntasks=1                    # Run on a single CPU
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=25gb                    # Job memory request
+#SBATCH --mem=8gb                    # Job memory request
 #SBATCH --time 12:00:00               # Time limit hrs:min:sec
 #SBATCH --output=Suw_index_%j.out     # Standard output and error log
 
@@ -307,7 +307,7 @@ module load bwa/0.7.17
 bwa index /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa
 
 # Align filtered Nanopore reads to the assembly
-bwa mem -t 14 -x ont2d /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa \
+bwa mem -t 1 -x ont2d /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa \
 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq > Suw.sam
 
 
@@ -317,6 +317,10 @@ bwa mem -t 14 -x ont2d /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg
 -----------------------------------------------------------------------------------------------
 ~~~
 {: .terminal}
+
+Change the &lt;email_address&gt; to your email address where you can check email.
+Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 
 ### Checking usage of `bwa mem`
 ~~~
@@ -343,10 +347,8 @@ Scoring options:
 
 **Note**: Due to the page size limitation, only partial options are shown.
 
-Change the &lt;email_address&gt; to your email address where you can check email. Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt. Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
-
 > ## A faster option fo mapping
-> [minimap2](https://github.com/lh3/minimap2) has relaced BWA-MEM for PacBio or Nanopore reads alignment. minimap2 retians major features of BWA-MEM, but abou 50 times faster, more accurate. 
+> [minimap2](https://github.com/lh3/minimap2) has relaced BWA-MEM for PacBio or Nanopore reads alignment. minimap2 retains major features of BWA-MEM, but about 50 times faster, more accurate. 
 {: .tips}
 
 ### Submitting a BWA job
@@ -358,7 +360,7 @@ $ squeue -u <username>
 ~~~
 {: .language-bash}
 
-To submit the job to SLURM, `sbatch` command is used
+To submit the job to SLURM, `sbatch` command is used.
 
 ~~~
 $ sbatch bwa.sh 
@@ -373,7 +375,7 @@ Submitted batch job <jobid>
 Constructing the index from the assembly only takes about a minute but alignment will take about an hours. Therefore, we will use pre-computed result to proceed to the next step.
 
 ## Run Racon
-Let's copy a submission script template from /blue/general_workshop/share/bash_files directory. 
+Let's copy a submission script template from `/blue/general_workshop/share/bash_files directory`. 
 
 Check your current working directory. 
 ~~~
@@ -381,7 +383,7 @@ $ pwd
 ~~~
 {: .language-bash}
 
-If for some reasons you are not at /blue/general_workshop/username/Polishing, navigate yourself to the right directory.
+If for some reasons you are not at `/blue/general_workshop/username/Polishing`, navigate yourself to the right directory.
 ~~~
 $ cd /blue/general_workshop/<username>/Polishing
 ~~~
@@ -411,7 +413,7 @@ $ nano Racon.sh
 #SBATCH --mail-user=<email_address>   # You need provide your email address
 #SBATCH --ntasks=1                    # Run on a single CPU
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=70gb                    # Job memory request
+#SBATCH --mem=8gb                    # Job memory request
 #SBATCH --time 12:00:00               # Time limit hrs:min:sec
 #SBATCH --output=Racon_Suw_%j.out     # Standard output and error log
 
@@ -419,7 +421,7 @@ pwd; hostname; date
 
 module load racon
 
-racon -t 14 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq \
+racon -t 1 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq \
 /blue/general_workshop/share/Suwannee/Polishing/Suw.sam \
 /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa\
 > ./SuwRacon.fasta
@@ -432,8 +434,14 @@ racon -t 14 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq
 ~~~
 {: .terminal}
 
+Change the &lt;email_address&gt; to your email address where you can check email.
+Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
+
 ### Checking usage of `racon`
 ~~~
+$ module load racon
+ b
 $ racon -h
 ~~~
 {: .language-bash}
@@ -461,8 +469,6 @@ usage: racon [options ...] <sequences> <overlaps> <target sequences>
 ~~~
 {: .output}
 
-Change the &lt;email_address&gt; to your email address where you can check email. Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt. Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
-
 ### Submitting a Racon job
 
 Before we submit a new job, we need to cancel your previous job. 
@@ -485,7 +491,7 @@ Submitted batch job <jobid>
 {: .output}
 
 ### Checking the log file
-Correction will take about 30 minutes. Let’s copy the output file from /blue/general_workshop/share/Suwanee/Polishing directory.
+Correction will take about 30 minutes. Let’s copy the output file from `/blue/general_workshop/share/Suwanee/Polishing` directory.
 
 ~~~
 $ cp /blue/general_workshop/share/Suwannee/Polishing/Racon_Suw_58629660.out .
@@ -524,13 +530,13 @@ Mon Sep 14 21:03:13 EDT 2020
 
 Racon will take about 30 minutes to finish correcting our assembly. We might not have enough time to finish the racon program. That is alright. We have also provided pre-computed output (corrected draft assembly) at /blue/general_workshop/share/Suwanee2/Polishing.
 
-# Assemblely polishing using Pilon
+# Assemblly polishing using Pilon
 [Pilon](https://github.com/broadinstitute/pilon/wiki) is a software aims to automatically improve draft assembly. Pilon requires two inputs: a FASTA file of assembly and BAM file of Illumina reads aligned to the assembly. Pilon identifies inconsistencies between the assembly and reads. Pilon aims to improve the input assembly including: 1) Single base differences, 2) Small indels, 3) Larger indel or block substitution events, 4) Gap filling, and 5) Identification of local misassemblies. Outputs from Pilon tool are: a FASTA file of improved assembly and optional VCF file to visulaize the discrepancy between FASTA file of assembly and Illumina reads.
 
-## Polishing Racon-correcred assembly using Pilon
+## Polishing Racon-corrected assembly using Pilon
 Three major steps are involved: 
 1. Align Illumina reads to Racon-correcred assembly using BWA 
-2. Covert SAM file to BAM file and sort the bam file based on reads position in the Racon assembly
+2. Convert SAM file to BAM file and sort the bam file based on reads position in the Racon assembly
 3. Correcting assembly using Pilon using sorted BAM file consisting of Illumina paired-end alignments, aligned to the Racon-corrected assembly.
 
 ### Run Pilon 
@@ -566,7 +572,7 @@ $ nano pilonRound1.sh
 #SBATCH --mail-user=<email_address>         # You need provide your email address
 #SBATCH --ntasks=1                          # Run on a single CPU
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=25gb                          # Job memory request
+#SBATCH --mem=8gb                          # Job memory request
 #SBATCH --time 12:00:00                     # Time limit hrs:min:sec
 #SBATCH --output=SuwGenome_pilon_%j.out     # Standard output and error log
 
@@ -580,10 +586,10 @@ bwa index /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta
 # Two steps here: 
 # 1. mapping illumina reads to Racon-corrected assembly
 # 2. sorted outout SAM file into BAM file sorted by the mapping evidence
-bwa mem -t 14 /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
+bwa mem -t 1 /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
 /blue/general_workshop/share/Suwannee/TrimFastX_R1.fq \
-/blue/general_workshop/share/Suwannee/TrimFastX_R2.fq | 
-samtools view - -Sb | samtools sort - -@14 -o pilon1.sorted.bam
+/blue/general_workshop/share/Suwannee/TrimFastX_R2.fq | \
+samtools view - -Sb | samtools sort - -@1 -o pilon1.sorted.bam
 
 # Create index of mapping evidence
 samtools index pilon1.sorted.bam
@@ -593,10 +599,8 @@ export _JAVA_OPTIONS="-Xmx45g"
 
 # Run pilon 
 pilon --genome /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
---fix all --changes --frags pilon1.sorted.bam --threads 8 --output Suw_pilon1 \
+--fix all --changes --frags pilon1.sorted.bam --threads 1 --output Suw_pilon1 \
 --outdir /blue/general_workshop/<username>/Polishing/Pilon
-
-
 
 -----------------------------------------------------------------------------------------------
 ^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
@@ -604,6 +608,10 @@ pilon --genome /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
 -----------------------------------------------------------------------------------------------
 ~~~
 {: .terminal}
+
+Change the &lt;email_address&gt; to your email address where you can check email.
+Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 
 ### Checking usage of `samtools view`
 ~~~
@@ -666,8 +674,6 @@ Usage: pilon --genome genome.fasta [--frags frags.bam] [--jumps jumps.bam] [--un
 ~~~
 {:. output}
 
-Change the &lt;email_address&gt; to your email address where you can check email. Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt. Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
-
 ### Submitting a Pilon job
 Before we submit a new job, we need to cancel your previous job. 
 ~~~
@@ -712,10 +718,10 @@ In our case, we will use the scaffolding function.
 {: .tips}
 
 ### Run RagTag
-First, create a RagTag folder under /blue/general_workshop/username/Polishing, then copy script from /blue/general_workshop/share/bash_files
+First, create a RagTag folder under `/blue/general_workshop/<username>/Polishing`, then copy script from `/blue/general_workshop/share/bash_files`
 
 ~~~
-$ cd /blue/general_workshop/username/Polishing
+$ cd /blue/general_workshop/<username>/Polishing
 $ mkdir RagTag
 $ cd RagTag
 $ cp /blue/general_workshop/share/bash_files/ragtag.sh .
@@ -727,7 +733,7 @@ $ cp /blue/general_workshop/share/bash_files/ragtag.sh .
 We have to modify some information in the template to provide more information to SLURM about the job.
 
 ~~~
-$ nano busco.sh
+$ nano ragtag.sh
 ~~~
 {: .language-bash}
 
@@ -748,7 +754,6 @@ $ nano busco.sh
 #SBATCH --output=Ragtag_%j.out        # Standard output and error log
 
 module load ragtag/2.0.1
-#module load minimap
  
 ragtag.py scaffold /blue/general_workshop/share/GCA_000497325.3/GCA_000497325.3_OldRef.fna \
 /blue/general_workshop/share/Suwannee/Polishing/pilon_round2/Suw_pilon2.fasta
@@ -782,10 +787,10 @@ Submitted batch job <jobid>
 ~~~
 {: .output}
 
-RagTag only takes a minutes, so let's check the output in /blue/general_workshop/username/Polishing/Ragtag/ragtag_output. 
+RagTag only takes a minutes, so let's check the output in `/blue/general_workshop/<username>/Polishing/Ragtag/ragtag_output`. 
 
 ~~~
-$ cd /blue/general_workshop/username/Polishing/Ragtag/ragtag_output
+$ cd /blue/general_workshop/<username>/Polishing/Ragtag/ragtag_output
 $ ls
 ~~~
 {: .language-bash}
@@ -820,10 +825,10 @@ placed_sequences        placed_bp       unplaced_sequences      unplaced_bp     
 To perform assembly evaluation, we will run QUAST. QUAST computes serveral common metrics including misassemblies, contig N50, genome fraction (aligned based in the assemblies/reference genome). QUAST provides several outputs including report.txt, assessement summary in plain text file, and HTML file, a report including interactive plots. You can read the complete manual [here](http://quast.sourceforge.net/docs/manual.html#sec3). 
 
 ### Run QUAST
-First, create a QUAST folder at /blue/general_workshop/username/, then copy a submision script from /blue/general_workshop/share/bash_files
+First, create a QUAST folder at `/blue/general_workshop/<username>/`, then copy a submision script from /blue/general_workshop/share/bash_files
 
 ~~~
-$ cd  /blue/general_workshop/username/
+$ cd  /blue/general_workshop/<username>/
 $ mkdir QUAST
 $ cd QUAST
 $ cp /blue/general_workshop/share/bash_files/quast.sh ./quast.sh
@@ -873,14 +878,14 @@ quast.py /blue/general_workshop/plyu/Polishing/Ragtag/ragtag_output/ragtag.scaff
 ~~~
 {: .terminal}
 
-*Fusarium circinatum* has 21 assemblies avalible on [NCBI Assembly](https://www.ncbi.nlm.nih.gov/assembly/).
-We will compared two most recent uploaded assemblies: [GCA_000497325.3 (Uploaded in 2018; previous reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_000497325.3/) and [GCA_024047395.1 (Uploded in July 2022; current reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_024047395.1/). 
-
-GCA_000497325.3 assembly was assembled from reads generated by ABI Solid Sequencing and 454 (Next-generation sequcing technologies); GCA_024047395.1 is a hybrid assembly using PacBio technology and Illumina HiSeq. 
-
 Change the &lt;email_address&gt; to your email address where you can check email.
 Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
 Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
+
+*Fusarium circinatum* has 21 assemblies avaliable on [NCBI Assembly](https://www.ncbi.nlm.nih.gov/assembly/).
+We will compared two most recent uploaded assemblies: [GCA_000497325.3 (Uploaded in 2018; previous reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_000497325.3/) and [GCA_024047395.1 (Uploded in July 2022; current reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_024047395.1/). 
+
+GCA_000497325.3 assembly was assembled from reads generated by ABI Solid Sequencing and 454 (Next-generation sequcing technologies); GCA_024047395.1 is a hybrid assembly using PacBio technology and Illumina HiSeq. 
 
 ## Running a job in SLURM
 
@@ -996,6 +1001,10 @@ busco -f -i /blue/general_workshop/share/Suwannee/Polishing/ragtag/ragtag_output
 ~~~
 {: .terminal}
 
+Change the &lt;email_address&gt; to your email address where you can check email.
+Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
+
 ### Checking usage of `busco`
 ~~~
 $ module load busco/5.3.0  
@@ -1018,10 +1027,6 @@ optional arguments:
                         - geno or genome, for genome assemblies (DNA)
 ~~~
 {: .output}
-
-Change the &lt;email_address&gt; to your email address where you can check email.
-Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
-Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 
 ## Running a job in SLURM
 

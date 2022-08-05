@@ -12,7 +12,7 @@
 | &nbsp;&nbsp;09:30 - 09:45 am | Coffee break |
 | &nbsp;&nbsp;09:45 - 10:30 am | [Overview of library preparation and demonstration](00-Demo){: target="_blank"} (by Dr. Pei-Ling Yu) |
 | &nbsp;&nbsp;10:30 - 12:00 pm | Hands on - Flow cell loading |
-| &nbsp;&nbsp;12:00 - 01:30 pm | Lunch Break **Not provided** |
+| &nbsp;&nbsp;12:00 - 01:30 pm | Lunch Break **Lunch not provided** |
 | **Part 2** | **Data analysis** |
 | &nbsp;&nbsp;01:30 - 01:50 pm | [Connecting to Hipergator and linux command](01-hpg){: target="_blank"} (by Josh Konkol) |
 | &nbsp;&nbsp;01:50 - 02:10 pm | [SLURM and script anatomy](02-slurm){: target="_blank"} (by Josh Konkol) |
