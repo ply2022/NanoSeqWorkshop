@@ -890,7 +890,7 @@ Chr_59.1        8234325823      C       T       intron_variant
 ~~~
 {: .output}
 
-> The `sed` command is very powerful and has a wide range of complex arguments that can be used to completely reformat data. You can find more information about `sed` here: [sed manual](https://www.gnu.org/software/sed/manual/sed.html){: target="_blank"}
+> The `sed` command is very powerful and has a wide range of complex arguments that can be used to completely reformat data. You can find more information about `sed` here: [sed manual](https://www.gnu.org/software/sed/manual/sed.html)
 {: .tips}
 
 The `grep` command will find a string within `""` and return lines that match the string.
@@ -918,7 +918,7 @@ grep -c "intron_variant" file2.txt
 ~~~
 {: .output}
 
-> The `grep` command is similar to `sed` in that it has a large number of arguments that make it very powerful and versatile. You can learn more about grep here: [grep manual](https://www.gnu.org/software/grep/manual/grep.html){: target="_blank"}
+> The `grep` command is similar to `sed` in that it has a large number of arguments that make it very powerful and versatile. You can learn more about grep here: [grep manual](https://www.gnu.org/software/grep/manual/grep.html)
 {: .tips}
 
 ## Piping commands
