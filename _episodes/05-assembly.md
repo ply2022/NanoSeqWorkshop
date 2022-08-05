@@ -57,19 +57,19 @@ $ nano Smartdenovo.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: Smartdenovo.sh
+ GNU nano 2.3.1                      File: Smartdenovo.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
-#SBATCH --job-name=Smartdenovo        # Job name
-#SBATCH --account=general_workshop    # Account to run the computational task
-#SBATCH --qos=general_workshop        # Account allocation
-#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=<email_address>   # You need provide your email address
-#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --job-name=Smartdenovo            # Job name
+#SBATCH --account=general_workshop        # Account to run the computational task
+#SBATCH --qos=general_workshop            # Account allocation
+#SBATCH --mail-type=END,FAIL              # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=<email_address>       # You need provide your email address
+#SBATCH --ntasks=1                        # Run on a single CPU
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=8gb                    # Job memory request
-#SBATCH --time 12:00:00               # Time limit hrs:min:sec
-#SBATCH --output=SuwSamrtdenovo_%j.out   # Standard output and error log
+#SBATCH --mem=8gb                         # Job memory request
+#SBATCH --time 12:00:00                   # Time limit hrs:min:sec
+#SBATCH --output=SuwSamrtdenovo_%j.out    # Standard output and error log
 
 pwd; hostname; date
 
@@ -87,6 +87,16 @@ make -f Suw.mak
 -----------------------------------------------------------------------------------------------
 ~~~
 {: .terminal}
+
+> ## Editing in nano
+> **nano** is a commandline editor. You can only move your cursor with 
+> arrow keys: <kbd>↑</kbd>, <kbd>↓</kbd>, <kbd>←</kbd> and <kbd>→</kbd>.
+> Clicking with mouse does not change the position of the cursor. 
+> Be careful, you may be editing in wrong place.
+>
+> If you accidentally edited in wrong place, exit nano, 
+> delete the script `slurm.sh` and copy again from share directory.
+{: .caution}
 
 Change the &lt;email_address&gt; to your email address where you can check email.
 Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
@@ -117,15 +127,7 @@ Options:
 > Makefile simplifies the process of building program. 
 {: .tips}
 
-> ## Editing in nano
-> **nano** is a commandline editor. You can only move your cursor with 
-> arrow keys: <kbd>↑</kbd>, <kbd>↓</kbd>, <kbd>←</kbd> and <kbd>→</kbd>.
-> Clicking with mouse does not change the position of the cursor. 
-> Be careful, you may be editing in wrong place.
->
-> If you accidentally edited in wrong place, exit nano, 
-> delete the script `slurm.sh` and copy again from share directory.
-{: .caution}
+
 
 ## Running a job in SLURM
 
@@ -161,11 +163,6 @@ $ squeue -u <username>
 ~~~
 {: .output}
 
-> If you do not see your job, it may have already been completed.
-> Run the job again and check within a minute.
-> Also, check your email to see if you received any messages from HiperGator.
-{: .tips}
-
 ~~~
 $ squeue -A general_workshop
 ~~~
@@ -195,7 +192,7 @@ The SLURM submission script containas a line `#SBATCH --output Samrtdenovo_%j.ou
 The job might takes about a day, so we **will not** have the output by the end of today. Let's copy the log file from `/blue/general_workshop/share/Suwanee2/Smartdenovo` directory.
 
 ~~~
-$ cp /blue/general_workshop/share/Suwannee/Smartdenovo/SuwSmartdenovo_58583802.out .
+$ cp /blue/general_workshop/share/Suwannee/Smartdenovo/SuwSmartdenovo_58583802.out ./SuwSmartdenovo_58583802.out
 ~~~
 {: .language-bash}
 
@@ -285,7 +282,7 @@ $ nano bwa.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: bwa.sh
+ GNU nano 2.3.1                      File: bwa.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=BWA                # Job name
@@ -403,7 +400,7 @@ $ nano Racon.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: Racon.sh
+ GNU nano 2.3.1                      File: Racon.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=Racon              # Job name
@@ -441,7 +438,6 @@ Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 ### Checking usage of `racon`
 ~~~
 $ module load racon
- b
 $ racon -h
 ~~~
 {: .language-bash}
@@ -494,7 +490,7 @@ Submitted batch job <jobid>
 Correction will take about 30 minutes. Let’s copy the output file from `/blue/general_workshop/share/Suwanee/Polishing` directory.
 
 ~~~
-$ cp /blue/general_workshop/share/Suwannee/Polishing/Racon_Suw_58629660.out .
+$ cp /blue/general_workshop/share/Suwannee/Polishing/Racon_Suw_58629660.out ./Racon_Suw_58629660.out
 ~~~
 {: .language-bash}
 
@@ -549,7 +545,7 @@ $ mkdir Pilon
 
 $ cd Pilon
 
-$ cp /blue/general_workshop/share/bash_files/pilonRound1.sh .
+$ cp /blue/general_workshop/share/bash_files/pilonRound1.sh ./pilonRound1.sh
 ~~~
 {: .language-bash}
 
@@ -562,7 +558,7 @@ $ nano pilonRound1.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: pilonRound1.sh
+ GNU nano 2.3.1                      File: pilonRound1.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=Pilon                    # Job name
@@ -575,7 +571,6 @@ $ nano pilonRound1.sh
 #SBATCH --mem=8gb                          # Job memory request
 #SBATCH --time 12:00:00                     # Time limit hrs:min:sec
 #SBATCH --output=SuwGenome_pilon_%j.out     # Standard output and error log
-
 pwd; hostname; date
 
 module load bwa/0.7.17 samtools/1.15 pilon/1.24
@@ -589,13 +584,13 @@ bwa index /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta
 bwa mem -t 1 /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
 /blue/general_workshop/share/Suwannee/TrimFastX_R1.fq \
 /blue/general_workshop/share/Suwannee/TrimFastX_R2.fq | \
-samtools view - -Sb | samtools sort - -@1 -o pilon1.sorted.bam
+samtools view - -Sb | samtools sort - -o pilon1.sorted.bam
 
 # Create index of mapping evidence
 samtools index pilon1.sorted.bam
 
-# Specifying Java options and system properties
-export _JAVA_OPTIONS="-Xmx45g"
+# Telling JAVA how much memory it should use (8 GB)
+export _JAVA_OPTIONS="-Xmx8g"
 
 # Run pilon 
 pilon --genome /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
@@ -609,8 +604,7 @@ pilon --genome /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
 ~~~
 {: .terminal}
 
-Change the &lt;email_address&gt; to your email address where you can check email.
-Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Change the &lt;email_address&gt; to your email address where you can check email. Also, replace &lt;username&gt; to your username. Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
 Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 
 ### Checking usage of `samtools view`
@@ -639,10 +633,8 @@ samtools sort
 Usage: samtools sort [options...] [in.bam]
 Options:
 -o FILE    Write final output to FILE rather than standard output
--@, --threads INT
-               Number of additional threads to use [0]
 ~~~
-{:. output}
+{: .output}
 **Note**: Due to the page size limitation, only partial options are shown.
 
 ~~~
@@ -675,6 +667,8 @@ Usage: pilon --genome genome.fasta [--frags frags.bam] [--jumps jumps.bam] [--un
 {:. output}
 
 ### Submitting a Pilon job
+Racon should be done by now. Check the job status first. 
+
 Before we submit a new job, we need to cancel your previous job. 
 ~~~
 $ squeue -u <username>
@@ -682,6 +676,8 @@ $ scancel <jobid>
 $ squeue -u <username>
 ~~~
 {: .language-bash}
+
+To avoid any potential error. We will submit the script using the Racon-corrected assembly computed by us previously. 
 
 To submit the job to SLURM, `sbatch` command is used
 
@@ -697,9 +693,8 @@ Submitted batch job <jobid>
 
 
 ## Further polishing Pilon assembly using Pilon
-Simpliy repeat the previous steps. Mapping Illumina reads to 1st Pilon-polished assembly to obtained 2nd Pilon-polished assembly. 
+We polished the Pilon assembly two times. We mapped Illumina reads to 1st Pilon-polished assembly to obtained 2nd Pilon-polished assembly. Pilon program takes about 30 minutes. We have prepared the 2nd Pilon-polished assembly for the next step. 
 
-Pilon program takes about 30 minutes. We might not be able to finish. We have prepared the pre-computed Pilon-corrected assembly.
 
 # Scaffolding: mapping the polished assembly to the reference genome
 RagTag is a collection of software tools for scaffolding and improving genome assemblies. RagTag performs:
@@ -724,7 +719,7 @@ First, create a RagTag folder under `/blue/general_workshop/<username>/Polishing
 $ cd /blue/general_workshop/<username>/Polishing
 $ mkdir RagTag
 $ cd RagTag
-$ cp /blue/general_workshop/share/bash_files/ragtag.sh .
+$ cp /blue/general_workshop/share/bash_files/ragtag.sh ./ragtag.sh
 ~~~
 {: .language-bash}
 
@@ -739,7 +734,7 @@ $ nano ragtag.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: ragtag.sh
+ GNU nano 2.3.1                      File: ragtag.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=RagTag             # Job name
@@ -774,6 +769,14 @@ Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 ## Running a job in SLURM
 
 ### Submitting a RagTag job
+
+Before we submit a new job, we need to cancel your previous job. 
+~~~
+$ squeue -u <username>
+$ scancel <jobid> 
+$ squeue -u <username>
+~~~
+{: .language-bash}
 
 To submit the job to SLURM, `sbatch` command is used.
 
@@ -820,15 +823,16 @@ placed_sequences        placed_bp       unplaced_sequences      unplaced_bp     
 ~~~
 {: .output}
 
+
 # Quality assessment of assemblies
 ## Computing metrics of assemblies using QUAST
 To perform assembly evaluation, we will run QUAST. QUAST computes serveral common metrics including misassemblies, contig N50, genome fraction (aligned based in the assemblies/reference genome). QUAST provides several outputs including report.txt, assessement summary in plain text file, and HTML file, a report including interactive plots. You can read the complete manual [here](http://quast.sourceforge.net/docs/manual.html#sec3). 
 
 ### Run QUAST
-First, create a QUAST folder at `/blue/general_workshop/<username>/`, then copy a submision script from /blue/general_workshop/share/bash_files
+First, create a QUAST folder at `/blue/general_workshop/<username>`, then copy a submision script from /blue/general_workshop/share/bash_files
 
 ~~~
-$ cd  /blue/general_workshop/<username>/
+$ cd  /blue/general_workshop/<username>
 $ mkdir QUAST
 $ cd QUAST
 $ cp /blue/general_workshop/share/bash_files/quast.sh ./quast.sh
@@ -846,7 +850,7 @@ $ nano quast.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: quast.sh
+ GNU nano 2.3.1                      File: quast.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=QUAST              # Job name
@@ -878,14 +882,12 @@ quast.py /blue/general_workshop/plyu/Polishing/Ragtag/ragtag_output/ragtag.scaff
 ~~~
 {: .terminal}
 
-Change the &lt;email_address&gt; to your email address where you can check email.
-Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
-Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
+Change the <email_address> to your email address where you can check email. Once you are done, press Ctrl+x to return to bash prompt. Press Y and Enter to save the changes made to the file.
 
-*Fusarium circinatum* has 21 assemblies avaliable on [NCBI Assembly](https://www.ncbi.nlm.nih.gov/assembly/).
-We will compared two most recent uploaded assemblies: [GCA_000497325.3 (Uploaded in 2018; previous reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_000497325.3/) and [GCA_024047395.1 (Uploded in July 2022; current reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_024047395.1/). 
+Fusarium circinatum has 21 assemblies available on [NCBI Assembly](https://www.ncbi.nlm.nih.gov/assembly/). We will compared two most recent uploaded assemblies: [GCA_000497325.3 (Uploaded in 2018; previous reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_000497325.3/) and [GCA_024047395.1 (Uploded in July 2022; current reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_024047395.1/).
 
-GCA_000497325.3 assembly was assembled from reads generated by ABI Solid Sequencing and 454 (Next-generation sequcing technologies); GCA_024047395.1 is a hybrid assembly using PacBio technology and Illumina HiSeq. 
+GCA_000497325.3 assembly was assembled from reads generated by ABI Solid Sequencing and 454 (Next-generation seducing technologies); GCA_024047395.1 is a hybrid assembly using PacBio technology and Illumina HiSeq.
+
 
 ## Running a job in SLURM
 
@@ -910,7 +912,7 @@ $ ls
 {: .language-bash}
 
 ~~~
-quastResult  quast.sh
+QUAST_<jobid>.out  quastResult  quast.sh
 ~~~
 {: .output}
 
@@ -933,7 +935,7 @@ quast.log           report.tx
 ~~~
 {: .output}
 
-Let's download `report.html` file. On your dashborad of UFRC OnDemand:
+Let's download `report.html` file. On your dashborad of [UFRC OnDemand](https://ondemand.rc.ufl.edu/):
 <img src="{{site.baseSite}}/fig/Dowload_1.png" align="center" width="700">
 
 1. Click Files, then /blue/general_workshop.
@@ -944,7 +946,8 @@ Let's download `report.html` file. On your dashborad of UFRC OnDemand:
 3. Select report.html, then click `Download`.
 <img src="{{site.baseSite}}/fig/Dowload_5.png" align="center" width="700">
 
-Open the HTML file where you saved it. 
+Open the HTML file locating in your local folder.
+<img src="{{site.baseSite}}/fig/quast_out.png" align="center" width="700">
 
 ## Evaluate assembly completeness using BUSCO
 A measure for quantitative assessment of genome assembly and annotation completeness based on evolutionarily informed expectations of gene content was proposed. A oopen-source software, with sets of Benchmarking Universal Single-Copy Orthologs, named BUSCO, is avalible [(Simao et al., 2015)](https://doi.org/10.1093/bioinformatics/btv351). 
@@ -956,7 +959,7 @@ First, create a BUSCO folder under your folder, then copy the configuration of B
 $ cd /blue/general_workshop/<username>
 $ mkdir BUSCO
 $ cd BUSCO
-$ cp -r /blue/general_workshop/share/BUSCO/augustus .
+$ cp -r /blue/general_workshop/share/BUSCO/augustus ./augustus
 $ cp /blue/general_workshop/share/bash_files/busco.sh ./busco.sh
 ~~~
 {: .language-bash}
@@ -972,7 +975,7 @@ $ nano busco.sh
 
 ~~~
 -----------------------------------------------------------------------------------------------
- GNU nano 3.3 beta 02                     File: busco.sh
+ GNU nano 2.3.1                      File: busco.sh
 -----------------------------------------------------------------------------------------------
 #!/bin/bash
 #SBATCH --job-name=BUSCO              # Job name
@@ -1048,9 +1051,11 @@ BUSCO analysis will take about an hour, so we prepared the pre-computed output.
 
 We will copy the output of BUSCO analyses from our assembly,refernece genome (GCA_024047395.1) and previous reference genome avalibled on NCBI (GCA_000497325.3). 
 ~~~
-$ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Suw/short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt .
-$ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Fc_ref/short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt .
-$ /blue/general_workshop/share/BUSCO/BUSCO_out_Fc_oldref/short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_oldref.txt .
+$ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Suw/short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt ./BUSCO_out_Suw.txt
+
+$ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Fc_ref/short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt ./BUSCO_out_Fc_ref.txt
+
+$ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Fc_oldref/short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_oldref.txt ./BUSCO_out_Fc_oldref.txt
 $ ls
 ~~~
 {: .language-bash}
@@ -1059,14 +1064,14 @@ $ ls
 augustus
 busco.sh
 BUSCO_<username>.out
-short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_oldref.txt
-short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt
-short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt
+BUSCO_out_Fc_oldref.txt
+BUSCO_out_Fc_ref.txt
+BUSCO_out_Suw.txt
 ~~~
 {: .output}
 
 ~~~
-$ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt
+$ cat BUSCO_out_Suw.txt
 ~~~
 {: .language-bash}
 
@@ -1094,7 +1099,7 @@ Dependencies and versions:
 {: .output}
 
 ~~~
-$ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_oldref.txt
+$ cat BUSCO_out_Fc_oldref.txt
 ~~~
 {: .language-bash}
 
@@ -1122,7 +1127,7 @@ Dependencies and versions:
 {: .output}
 
 ~~~
-$ cat short_summary.specific.hypocreales_odb10.BUSCO_out_Fc_ref.txt
+$ cat BUSCO_out_Fc_ref.txt
 ~~~
 {: .language-bash}
 
