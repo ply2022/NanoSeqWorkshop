@@ -16,14 +16,14 @@ keypoints:
 # Genome assembly
 
 ## An overview of Genome Assembly
- Once we have the "clean" Nanopore reads, we are ready to assemble those reads into contiguous sequences (contigs). There are many tools which deploy different algorithms to assemble genomes with nanopore reads. Due to the nature of the Long-Read sequencing technologies, the pipeline for assembling error-prone Nanopore reads incorporate error correction to facilitate identifying ovelapping reads and improve assembly. 
+ Once we have the "clean" Nanopore reads, we are ready to assemble those reads into contiguous sequences (contigs). There are many tools which deploy different algorithms to assemble genomes with nanopore reads. Due to the nature of the Long-Read sequencing technologies, the pipeline for assembling error-prone Nanopore reads incorporate error correction to facilitate identifying overlapping reads and improve assembly. 
 
 ### Genome assembly using SMARTdenovo
 We will assemble the draft assembly using *de novo* assembler for our Nanopore reads. This software does not include error correction steps. SMARTdenovo deploys 
 overlap-layout-consensus (OLC) algorithm. 
 
-> ## Overlap-Layout-Consensus (OLC) algorith
-> An assembly methods finds overlaps among all the reads, and then build the overlap graph to sort into the contigs. Align those contigs to make a concensus sequence.
+> ## Overlap-Layout-Consensus (OLC) algorithm
+> An assembly methods finds overlaps among all the reads, and then build the overlap graph to sort into the contigs. Align those contigs to make a consensus sequence.
 > <img src="{{site.baseSite}}/fig/OLC.svg" align="center" width="400">
 {: .tips}
 
@@ -41,7 +41,7 @@ $ cp /blue/general_workshop/share/bash_files/Smartdenovo.sh ./Smartdenovo.sh
 ~~~
 {: .language-bash}
 
-Note: `.sh` is commonly used extension for shell scripts. Using a extension is not mandatory.
+Note: `.sh` is commonly used extension for shell scripts. Using an extension is not mandatory.
 
 ### Adding information to SLURM script
 
@@ -80,7 +80,6 @@ smartdenovo.pl -p -t 1 Suw -c 1 /blue/general_workshop/share/Suwannee/Suw2_filte
 
 make -f Suw.mak
 
-
 -----------------------------------------------------------------------------------------------
 ^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
 ^X Exit         ^J Justify      ^W Where Is      ^V Next Page     ^U UnCut Text     ^T To Spell
@@ -89,7 +88,7 @@ make -f Suw.mak
 {: .terminal}
 
 > ## Editing in nano
-> **nano** is a commandline editor. You can only move your cursor with 
+> **nano** is a command line editor. You can only move your cursor with 
 > arrow keys: <kbd>↑</kbd>, <kbd>↓</kbd>, <kbd>←</kbd> and <kbd>→</kbd>.
 > Clicking with mouse does not change the position of the cursor. 
 > Be careful, you may be editing in wrong place.
@@ -126,7 +125,6 @@ Options:
 > The make program is an intelligent utility and works based on the changes you do in your source file (makefile), which is `Suw.mak`.
 > Makefile simplifies the process of building program. 
 {: .tips}
-
 
 
 ## Running a job in SLURM
@@ -187,9 +185,9 @@ $ squeue -A general_workshop
 
 ### Checking the log file
 
-The SLURM submission script containas a line `#SBATCH --output Samrtdenovo_%j.out`. Thus the output for this job with be in the file `Samrtdenovo_<jobid>.log`.
+The SLURM submission script contains a line `#SBATCH --output Samrtdenovo_%j.out`. Thus, the output for this job with be in the file `Samrtdenovo_<jobid>.log`.
 
-The job might takes about a day, so we **will not** have the output by the end of today. Let's copy the log file from `/blue/general_workshop/share/Suwanee2/Smartdenovo` directory.
+The job might take about a day, so we **will not** have the output by the end of today. Let's copy the log file from `/blue/general_workshop/share/Suwanee2/Smartdenovo` directory.
 
 ~~~
 $ cp /blue/general_workshop/share/Suwannee/Smartdenovo/SuwSmartdenovo_58583802.out ./SuwSmartdenovo_58583802.out
@@ -245,10 +243,10 @@ $ tail SuwSmartdenovo_58583802.out
 ~~~
 {: .output}
 
-The end of log file provides a important information that Nanopore reads were assembled into **21 unitgs**. 
+The end of log file provides an important information that Nanopore reads were assembled into **21 unitgs**. 
 
 > ## Unitig vs Contig
-> Contig is a set of overlapped DNA fragements. While unitig contains multiple contigs.
+> Contig is a set of overlapped DNA fragments. While unitig contains multiple contigs.
 {: .tips}
 
 # Polishing contigs using Racon
@@ -258,7 +256,7 @@ The SMARTdenovo does not include error correction/polishing steps. Racon aims to
 ## Mapping of Nanopore reads to the assembly
 To get started with Racon, we need to map the Nanopore reads to our genome assembly. 
 
-Burrows-Wheeler Alignment (BWA) tool aligns DNA fragments to genome assembly/reference genome. Three algorithm are avalible: BWA-backtrack (short-read alignment only), BWA-SW and BWA-MEM. To process the long reads, BWA-MEM is faster and more accurate than BWA-SW. 
+Burrows-Wheeler Alignment (BWA) tool aligns DNA fragments to genome assembly/reference genome. Three algorithms are available: BWA-backtrack (short-read alignment only), BWA-SW and BWA-MEM. To process the long reads, BWA-MEM is faster and more accurate than BWA-SW. 
 
 Let's create new directory in your work directory and copy a submission script template from /blue/general_workshop/share/bash_files directory.
 
@@ -307,7 +305,6 @@ bwa index /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa
 bwa mem -t 1 -x ont2d /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa \
 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq > Suw.sam
 
-
 -----------------------------------------------------------------------------------------------
 ^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
 ^X Exit         ^J Justify      ^W Where Is      ^V Next Page     ^U UnCut Text     ^T To Spell
@@ -344,7 +341,7 @@ Scoring options:
 
 **Note**: Due to the page size limitation, only partial options are shown.
 
-> ## A faster option fo mapping
+> ## A faster option for mapping
 > [minimap2](https://github.com/lh3/minimap2) has relaced BWA-MEM for PacBio or Nanopore reads alignment. minimap2 retains major features of BWA-MEM, but about 50 times faster, more accurate. 
 {: .tips}
 
@@ -422,7 +419,6 @@ racon -t 1 /blue/general_workshop/share/Suwannee/Suw2_filtered_3000bp_60X.fastq 
 /blue/general_workshop/share/Suwannee/Polishing/Suw.sam \
 /blue/general_workshop/share/Suwannee/Smartdenovo/Suw.utg.fa\
 > ./SuwRacon.fasta
-
 
 -----------------------------------------------------------------------------------------------
 ^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
@@ -526,12 +522,12 @@ Mon Sep 14 21:03:13 EDT 2020
 
 Racon will take about 30 minutes to finish correcting our assembly. We might not have enough time to finish the racon program. That is alright. We have also provided pre-computed output (corrected draft assembly) at /blue/general_workshop/share/Suwanee2/Polishing.
 
-# Assemblly polishing using Pilon
-[Pilon](https://github.com/broadinstitute/pilon/wiki) is a software aims to automatically improve draft assembly. Pilon requires two inputs: a FASTA file of assembly and BAM file of Illumina reads aligned to the assembly. Pilon identifies inconsistencies between the assembly and reads. Pilon aims to improve the input assembly including: 1) Single base differences, 2) Small indels, 3) Larger indel or block substitution events, 4) Gap filling, and 5) Identification of local misassemblies. Outputs from Pilon tool are: a FASTA file of improved assembly and optional VCF file to visulaize the discrepancy between FASTA file of assembly and Illumina reads.
+# Assembly polishing using Pilon
+[Pilon](https://github.com/broadinstitute/pilon/wiki) is a software aims to automatically improve draft assembly. Pilon requires two inputs: a FASTA file of assembly and BAM file of Illumina reads aligned to the assembly. Pilon identifies inconsistencies between the assembly and reads. Pilon aims to improve the input assembly including: 1) Single base differences, 2) Small indels, 3) Larger indel or block substitution events, 4) Gap filling, and 5) Identification of local mis-assemblies. Outputs from Pilon tool are a FASTA file of improved assembly and optional VCF file to visualize the discrepancy between FASTA file of assembly and Illumina reads.
 
 ## Polishing Racon-corrected assembly using Pilon
 Three major steps are involved: 
-1. Align Illumina reads to Racon-correcred assembly using BWA 
+1. Align Illumina reads to Racon-corrected assembly using BWA 
 2. Convert SAM file to BAM file and sort the bam file based on reads position in the Racon assembly
 3. Correcting assembly using Pilon using sorted BAM file consisting of Illumina paired-end alignments, aligned to the Racon-corrected assembly.
 
@@ -580,7 +576,7 @@ bwa index /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta
 
 # Two steps here: 
 # 1. mapping illumina reads to Racon-corrected assembly
-# 2. sorted outout SAM file into BAM file sorted by the mapping evidence
+# 2. sorted output SAM file into BAM file sorted by the mapping evidence
 bwa mem -t 1 /blue/general_workshop/share/Suwannee/Polishing/SuwRacon.fasta \
 /blue/general_workshop/share/Suwannee/TrimFastX_R1.fq \
 /blue/general_workshop/share/Suwannee/TrimFastX_R2.fq | \
@@ -691,14 +687,12 @@ Submitted batch job <jobid>
 ~~~
 {: .output}
 
-
 ## Further polishing Pilon assembly using Pilon
 We polished the Pilon assembly two times. We mapped Illumina reads to 1st Pilon-polished assembly to obtained 2nd Pilon-polished assembly. Pilon program takes about 30 minutes. We have prepared the 2nd Pilon-polished assembly for the next step. 
 
-
 # Scaffolding: mapping the polished assembly to the reference genome
 RagTag is a collection of software tools for scaffolding and improving genome assemblies. RagTag performs:
-1. Homology-based misassembly correction
+1. Homology-based misassemble correction
 2. Homology-based assembly scaffolding and patching
 3. Scaffold merging
 
@@ -706,9 +700,9 @@ In our case, we will use the scaffolding function.
 
 > ## RagTag
 > <img src="https://raw.githubusercontent.com/malonge/RagTag/master/logo/descriptive_diagram.svg" align="center" width="900">
-> 1. Correction: RagTag identies and correct protential misaassembles in the query assembly using referecne genome.
+> 1. Correction: RagTag identifies and correct potential misassembles in the query assembly using reference genome.
 > 2. Scaffold: RagTag orders and orients sequences of draft query assembly into longer sequences using reference genome. Sequences will be jointed with gap without altering the sequences. 
-> 3. Patch: RagTag fills the gaps in the query assembly using reference genomeor. 
+> 3. Patch: RagTag fills the gaps in the query assembly using reference genome. 
 > 4. Merge: RagTag merges different scaffoldings of the same query assembly, which can improve scaffolding using different scaffolding tools. 
 {: .tips}
 
@@ -752,7 +746,6 @@ module load ragtag/2.0.1
  
 ragtag.py scaffold /blue/general_workshop/share/GCA_000497325.3/GCA_000497325.3_OldRef.fna \
 /blue/general_workshop/share/Suwannee/Polishing/pilon_round2/Suw_pilon2.fasta
-
 
 
 -----------------------------------------------------------------------------------------------
@@ -823,16 +816,15 @@ placed_sequences        placed_bp       unplaced_sequences      unplaced_bp     
 ~~~
 {: .output}
 
-
 # Quality assessment of assemblies
 ## Computing metrics of assemblies using QUAST
-To perform assembly evaluation, we will run QUAST. QUAST computes serveral common metrics including misassemblies, contig N50, genome fraction (aligned based in the assemblies/reference genome). QUAST provides several outputs including report.txt, assessement summary in plain text file, and HTML file, a report including interactive plots. You can read the complete manual [here](http://quast.sourceforge.net/docs/manual.html#sec3). 
+To perform assembly evaluation, we will run QUAST. QUAST computes several common metrics including misassembles, contig N50, genome fraction (aligned based in the assemblies/reference genome). QUAST provides several outputs including report.txt, assessment summary in plain text file, and HTML file, a report including interactive plots. You can read the complete manual [here](http://quast.sourceforge.net/docs/manual.html#sec3). 
 
 ### Run QUAST
 First, create a QUAST folder at `/blue/general_workshop/<username>`, then copy a submision script from /blue/general_workshop/share/bash_files
 
 ~~~
-$ cd  /blue/general_workshop/<username>
+$ cd /blue/general_workshop/<username>
 $ mkdir QUAST
 $ cd QUAST
 $ cp /blue/general_workshop/share/bash_files/quast.sh ./quast.sh
@@ -874,7 +866,6 @@ quast.py /blue/general_workshop/plyu/Polishing/Ragtag/ragtag_output/ragtag.scaff
 -o quastResult 
 
 
-
 -----------------------------------------------------------------------------------------------
 ^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
 ^X Exit         ^J Justify      ^W Where Is      ^V Next Page     ^U UnCut Text     ^T To Spell
@@ -882,12 +873,13 @@ quast.py /blue/general_workshop/plyu/Polishing/Ragtag/ragtag_output/ragtag.scaff
 ~~~
 {: .terminal}
 
-Change the <email_address> to your email address where you can check email. Once you are done, press Ctrl+x to return to bash prompt. Press Y and Enter to save the changes made to the file.
+Change the &lt;email_address&gt; to your email address where you can check email.
+Once you are done, press <kbd>Ctrl</kbd>+<kbd>x</kbd> to return to bash prompt.
+Press <kbd>Y</kbd> and <kbd>Enter</kbd> to save the changes made to the file.
 
-Fusarium circinatum has 21 assemblies available on [NCBI Assembly](https://www.ncbi.nlm.nih.gov/assembly/). We will compared two most recent uploaded assemblies: [GCA_000497325.3 (Uploaded in 2018; previous reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_000497325.3/) and [GCA_024047395.1 (Uploded in July 2022; current reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_024047395.1/).
+*Fusarium circinatum* has 21 assemblies available on [NCBI Assembly](https://www.ncbi.nlm.nih.gov/assembly/). We will compared two most recent uploaded assemblies: [GCA_000497325.3 (Uploaded in 2018; previous reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_000497325.3/) and [GCA_024047395.1 (Uploaded in July 2022; current reference genome)](https://www.ncbi.nlm.nih.gov/data-hub/genome/GCA_024047395.1/).
 
 GCA_000497325.3 assembly was assembled from reads generated by ABI Solid Sequencing and 454 (Next-generation seducing technologies); GCA_024047395.1 is a hybrid assembly using PacBio technology and Illumina HiSeq.
-
 
 ## Running a job in SLURM
 
@@ -935,7 +927,7 @@ quast.log           report.tx
 ~~~
 {: .output}
 
-Let's download `report.html` file. On your dashborad of [UFRC OnDemand](https://ondemand.rc.ufl.edu/):
+Let's download `report.html` file. On your dashboard of [UFRC OnDemand](https://ondemand.rc.ufl.edu/):
 <img src="{{site.baseSite}}/fig/Dowload_1.png" align="center" width="700">
 
 1. Click Files, then /blue/general_workshop.
@@ -950,7 +942,7 @@ Open the HTML file locating in your local folder.
 <img src="{{site.baseSite}}/fig/quast_out.png" align="center" width="700">
 
 ## Evaluate assembly completeness using BUSCO
-A measure for quantitative assessment of genome assembly and annotation completeness based on evolutionarily informed expectations of gene content was proposed. A oopen-source software, with sets of Benchmarking Universal Single-Copy Orthologs, named BUSCO, is avalible [(Simao et al., 2015)](https://doi.org/10.1093/bioinformatics/btv351). 
+A measure for quantitative assessment of genome assembly and annotation completeness based on evolutionarily informed expectations of gene content was proposed. A oopen-source software, with sets of Benchmarking Universal Single-Copy Orthologs, named BUSCO, is available [(Simao et al., 2015)](https://doi.org/10.1093/bioinformatics/btv351). 
 
 ### Run BUSCO analysis
 First, create a BUSCO folder under your folder, then copy the configuration of BUSCO containing all the required dependencies from /blue/general_workshop/share/BUSCO/augustus. 
@@ -995,7 +987,6 @@ module load busco/5.3.0
 
 busco -f -i /blue/general_workshop/share/Suwannee/Polishing/ragtag/ragtag_output/ragtag.scaffolds.fasta\
 -o BUSCO_out_Suw --lineage_dataset hypocreales_odb10 -m genome 
-
 
 -----------------------------------------------------------------------------------------------
 ^G Get Help     ^O WriteOut     ^R Read File     ^Y Prev Page     ^K Cut Text       ^C Cur Pos
@@ -1049,7 +1040,7 @@ Submitted batch job <jobid>
 
 BUSCO analysis will take about an hour, so we prepared the pre-computed output. 
 
-We will copy the output of BUSCO analyses from our assembly,refernece genome (GCA_024047395.1) and previous reference genome avalibled on NCBI (GCA_000497325.3). 
+We will copy the output of BUSCO analyses from our assembly, reference genome (GCA_024047395.1) and previous reference genome available on NCBI (GCA_000497325.3). 
 ~~~
 $ cp /blue/general_workshop/share/BUSCO/BUSCO_out_Suw/short_summary.specific.hypocreales_odb10.BUSCO_out_Suw.txt ./BUSCO_out_Suw.txt
 
@@ -1154,7 +1145,7 @@ Dependencies and versions:
 ~~~
 {:. output}
 
-> ## References and addtional reading
+> ## References and additional reading
 > 1. [SMARTdenovo](https://github.com/ruanjue/smartdenovo)
 > 2. [Overlap Layout Consensus assembly](https://www.cs.jhu.edu/~langmea/resources/lecture_notes/assembly_olc.pdf)
 > 3. [BWA](https://github.com/lh3/bwa)
@@ -1166,3 +1157,4 @@ Dependencies and versions:
 > 9. [BUSCO](https://gitlab.com/ezlab/busco#how-to-cite-busco)
 > 10. [Comparative Genomics of Fusarium circinatum Isolates Used to Screen Southern Pines for Pitch Canker Resistance](https://doi.org/10.1094/mpmi-10-21-0247-r)
 {: .tips}
+
