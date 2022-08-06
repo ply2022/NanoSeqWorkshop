@@ -277,8 +277,8 @@ Be careful when copying files that a file does not exist with the same name in t
 You can also use the `cp` command with the `-r` option to perform a recursive copy, which can copy entire directories and all of the subdirectories and folders. We will copy a directory of scripts that we will use later on.
 
 ~~~
-cp -r blue/general_workshop/share/bash_files  ./bash_files
-cp -r blue/general_workshop/share/demo ./demo
+cp -r /blue/general_workshop/share/bash_files  ./bash_files
+cp -r /blue/general_workshop/share/demo ./demo
 ls
 ~~~
 {: .language-bash}
