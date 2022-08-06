@@ -362,7 +362,9 @@ A new screen will load. Click on `Go To...` at the top left, which will load a t
   
 <img src="{{site.baseSite}}/fig/go_to_nanoplot.png" align="center" width="700">
   
-Now enter the following location: `/blue/general_workshop/<your_username>/Suwannee2/`
+Now enter the following location: `/blue/general_workshop/share/Suwannee/NanoplotOUT`
+
+And also check out: '/blue/general_workshop/share/Suwannee/Nanoplot_Suw2_filtered_out'
 
 Click on the directory "Nanoplot_Suw2_filtered_out" and then click on the download button:
 
