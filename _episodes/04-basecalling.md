@@ -99,9 +99,8 @@ FLO-MIN107     SQK-RNA001                  rna_r9.4.1_70bps_hac           2020-0
 ~~~
 {: .output}
 
-~~~
-Note that when we load modules we load specific versions of the applications `cuda/11.0.207` and `guppy/4.4.1`. When you publish your results, you will need to indicate which version of an application you used. HPCs will routinely update applications without notice, so you could run a different version of the basecaller the same day, which could potentially have an effect on the results. You can look up which versions of an application are currently available on the HPC using the command `module spider` followed the the name of the application.
-~~~
+> Note that when we load modules we load specific versions of the applications `cuda/11.0.207` and `guppy/4.4.1`. When you publish your results, you will need to indicate which version of an application you used. HPCs will routinely update applications without notice, so you could run a different version of the basecaller the same day, which could potentially have an effect on the results. You can look up which versions of an application are currently available on the HPC using the command `module spider` followed the the name of the application.
+
 {: .tips}
 
 ~~~
@@ -253,6 +252,14 @@ After Filtlong has run, the quality of the sequences is improved for downstream 
 #### After
 <img src="{{site.baseSite}}/fig/filtlong_after.png" align="left" width="700">
 
+
+  
+  
+  
+  
+  
+
+  
 Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: [Filtlong]https://github.com/rrwick/Filtlong{: target="_blank"}
 
 ### Producing reports with Nanoplot
