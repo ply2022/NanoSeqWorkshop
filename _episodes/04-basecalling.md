@@ -250,7 +250,7 @@ After Filtlong has run, the quality of the sequences is improved for downstream 
 > <img src="{{site.baseSite}}/fig/filtlong_before.png" align="center" width="700">
 
 #### After
-> <img src="{{site.baseSite}}/fig/filtlong_after.png" align="left" width="700">
+> <img src="{{site.baseSite}}/fig/filtlong_after.png" align="center" width="700">
   
 Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: [Filtlong]https://github.com/rrwick/Filtlong{: target="_blank"}
 
