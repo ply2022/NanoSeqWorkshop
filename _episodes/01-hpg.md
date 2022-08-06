@@ -101,7 +101,7 @@ pwd
 {: .language-bash}
 
 ~~~
-/blue/genera_workshop/<username>
+/blue/general_workshop/<username>
 ~~~
 {: .output}
 
