@@ -27,7 +27,7 @@ The application Guppy converts the fast5 files we viewed earlier into fastQ file
 
 Whether you use a CPU or GPU, 0's and 1's are interpreted by each processing core in a linear fashion. However, CPUs typically have 4-8 cores that are very powerful and can execute a relatively large number of tasks. GPUs, on the other hand, usually have at least 300 cores upwards to a thousand that are less powerful and can execute more simplistic and repetitive tasks. Since processing the fast5 electrical signals into nucleotides `ATGC` is a very simple and repetitive task, a GPU will outperform the CPU by a very large margin, although a CPU will work (much more slowly) if your work group does not have access to a GPU on the cluster.
 
-You can include a GPU in your SLURM script using `#SBATCH --partition=gpu` and `#SBATCH --gpus=<number>` where <number> is how many GPUs you want to allocate. Since we are using a GPU we will also load the application CUDA, which facilitates the parallelization of processing data with a GPU to increase performance. We can see these options and more in the Guppy script:
+You can include a GPU in your SLURM script using `#SBATCH --partition=gpu` and `#SBATCH --gpus=<number>` where `number` is how many GPUs you want to allocate. Since we are using a GPU we will also load the application CUDA, which facilitates the parallelization of processing data with a GPU to increase performance. We can see these options and more in the Guppy script:
 
 ~~~
 cat ./bash_files/guppy_basecall.sh
@@ -252,7 +252,7 @@ After Filtlong has run, the quality of the sequences is improved for downstream 
 #### After
 <img src="{{site.baseSite}}/fig/filtlong_after.png" align="center" width="700">
   
-Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: [Filtlong]https://github.com/rrwick/Filtlong
+> Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: [Filtlong]https://github.com/rrwick/Filtlong
 
 ### Producing reports with Nanoplot
 
