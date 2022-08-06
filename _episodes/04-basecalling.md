@@ -27,10 +27,16 @@ The application Guppy converts the fast5 files we viewed earlier into fastQ file
 
 Whether you use a CPU or GPU, 0's and 1's are interpreted by each processing core in a linear fashion. However, CPUs typically have 4-8 cores that are very powerful and can execute a relatively large number of tasks. GPUs, on the other hand, usually have at least 300 cores upwards to a thousand that are less powerful and can execute more simplistic and repetitive tasks. Since processing the fast5 electrical signals into nucleotides `ATGC` is a very simple and repetitive task, a GPU will outperform the CPU by a very large margin, although a CPU will work (much more slowly) if your work group does not have access to a GPU on the cluster.
 
-You can include a GPU in your SLURM script using `#SBATCH --partition=gpu` and `#SBATCH --gpus=<number>` where `number` is how many GPUs you want to allocate. Since we are using a GPU we will also load the application CUDA, which facilitates the parallelization of processing data with a GPU to increase performance. We can see these options and more in the Guppy script:
+You can include a GPU in your SLURM script using `#SBATCH --partition=gpu` and `#SBATCH --gpus=<number>` where `number` is how many GPUs you want to allocate. Since we are using a GPU we will also load the application CUDA, which facilitates the parallelization of processing data with a GPU to increase performance. We can see these options and more in the Guppy script below. First, we will run guppy on a subset of samples and review the script while it is running:
 
 ~~~
-cat ./bash_files/guppy.sh
+cd demo
+sbatch guppy.sh
+~~~
+{: .language-bash}
+
+~~~
+cat guppy.sh
 ~~~
 {: .language-bash}
 
