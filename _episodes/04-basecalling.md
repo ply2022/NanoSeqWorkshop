@@ -316,7 +316,7 @@ sbatch nanoplot.sh
 {: .language-bash}
 
 ~~~
-cat nanoplot_filtered.sh
+cat /blue/general_workshop/share/bash_files/nanoplot_filtered.sh
 ~~~
   
 ~~~
