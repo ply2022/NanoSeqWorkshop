@@ -247,12 +247,12 @@ The `--target_bases` option assumes that there is very high coverage of the geno
 After Filtlong has run, the quality of the sequences is improved for downstream analysis. Filtlong provides the following example of 1.3 Gbp of reads before and after it was filtered using the `target_bases` argument to reduce the data to 0.5 Gbp of reads.
 
 #### Before
-> <img src="{{site.baseSite}}/fig/filtlong_before.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/filtlong_before.png" align="center" width="700">
 
 #### After
-> <img src="{{site.baseSite}}/fig/filtlong_after.png" align="center" width="700">
+<img src="{{site.baseSite}}/fig/filtlong_after.png" align="center" width="700">
   
-Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: [Filtlong]https://github.com/rrwick/Filtlong{: target="_blank"}
+Reads with low identity percentages were removed from the dataset, leaving fewer reads with a much higher quality. Finally, we can use Nanoplot to view our results. You can read more about Filtlong and some of its other arguments on its github site: [Filtlong]https://github.com/rrwick/Filtlong
 
 ### Producing reports with Nanoplot
 
