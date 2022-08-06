@@ -83,6 +83,11 @@ Let's review some of the options:
 - `-c` is the configuration file indicating what flowcell and kit were used for sequencing. We will discuss this more below.
 - `-x` specifies the basecalling device, which is a GPU using cuda in this case, `cuda:0`.
 
+~~~
+Guppy will save each fast5 file as a corresponding fastq file during basecalling. You can lump all of these results into a single fastq file at the end of basecalling using the final `cat` command, which uses a wildcard to write all of the files with the `*.fastq` extension to a single fastq file. This can make processing the data much easier downstream because you will only need to reference one file instead of an entire folder of files.
+~~~
+{: .tips}
+
 You may use a different type of flowcell or sequencing kit for your own work in the future than what is listed above. You can load the guppy application and run a command to list all of the available flowcell and kit combinations to determine which configuration file name to use. This list is very long, so we will pipe the results to the `| head` command and list the first few options.
 
 ~~~
@@ -144,11 +149,6 @@ module spider guppy
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 ~~~
 {: .output}
-
-~~~
-Guppy will save each fast5 file as a corresponding fastq file during basecalling. You can lump all of these results into a single fastq file at the end of basecalling using the final `cat` command, which uses a wildcard to write all of the files with the `*.fastq` extension to a single fastq file. This can make processing the data much easier downstream because you will only need to reference one file instead of an entire folder of files.
-~~~
-{: .tips}
 
 Finally, before moving on we can take a quick look at one of the fastq files with the results that we can now read as the nucleotide sequence and coding for the quality of each basecall:
 
