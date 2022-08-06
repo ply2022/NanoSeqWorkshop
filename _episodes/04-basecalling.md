@@ -30,7 +30,7 @@ Whether you use a CPU or GPU, 0's and 1's are interpreted by each processing cor
 You can include a GPU in your SLURM script using `#SBATCH --partition=gpu` and `#SBATCH --gpus=<number>` where `number` is how many GPUs you want to allocate. Since we are using a GPU we will also load the application CUDA, which facilitates the parallelization of processing data with a GPU to increase performance. We can see these options and more in the Guppy script:
 
 ~~~
-cat ./bash_files/guppy_basecall.sh
+cat ./bash_files/guppy.sh
 ~~~
 {: .language-bash}
 
