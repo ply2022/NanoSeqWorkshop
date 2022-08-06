@@ -150,6 +150,40 @@ module spider guppy
 ~~~
 {: .output}
 
+~~~
+guppy_basecaller --help | head -n 25
+~~~
+{: .language-bash}
+
+~~~
+: Guppy Basecalling Software, (C) Oxford Nanopore Technologies plc. Version 6.1.7+21b93d1, minimap2 version 2.22-r1101
+
+Use of this software is permitted solely under the terms of the end user license agreement (EULA).By running, copying or accessing this software, you are demonstrating your acceptance of the EULA.
+The EULA may be found in /apps/guppy/6.1.7/bin
+
+Usage:
+
+With config file:
+  guppy_basecaller -i <input path> -s <save path> -c <config file> [options]
+With flowcell and kit name:
+  guppy_basecaller -i <input path> -s <save path> --flowcell <flowcell name>
+    --kit <kit name>
+List supported flowcells and kits:
+  guppy_basecaller --print_workflows
+
+Command line parameters:
+-c [ --config ]
+        Configuration file for application.
+-d [ --data_path ]
+        Path to use for loading any data files the application requires.
+-x [ --device ]
+        Specify GPU device: 'auto', or 'cuda:<device_id>'.
+-s [ --save_path ]
+        Path to save output files.
+--ping_url
+~~~
+{: .output}
+
 Finally, before moving on we can take a quick look at one of the fastq files with the results that we can now read as the nucleotide sequence and coding for the quality of each basecall:
 
 ~~~
