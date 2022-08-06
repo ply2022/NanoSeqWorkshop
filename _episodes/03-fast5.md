@@ -69,7 +69,7 @@ module load hdf5
 You won't receive any output from this command, but if you do not get an error message, you have successfully loaded the application. Now we can call commands used by hdf5 in the shell. The command `h5dump` followed by the file name will list all of the contents of the fast5 file. Instead, we will just view the top few lines first:
 
 ~~~
-h5dump h5dump FAL75110_0b0467ce_152.fast5 | head -n 10
+h5dump FAL75110_0b0467ce_152.fast5 | head -n 10
 ~~~
 {: .language-bash}
 
