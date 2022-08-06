@@ -278,12 +278,13 @@ You can also use the `cp` command with the `-r` option to perform a recursive co
 
 ~~~
 cp -r blue/general_workshop/share/bash_files  ./bash_files
+cp -r blue/general_workshop/share/demo ./demo
 ls
 ~~~
 {: .language-bash}
 
 ~~~
-bash_files  file1.txt  file2.txt  newdir
+bash_files  demo  file1.txt  file2.txt  newdir
 ~~~
 {: .output}
 
@@ -298,7 +299,7 @@ ls
 {: .language-bash}
 
 ~~~
-bash_files  file1.txt  newdir  newfile.txt
+bash_files  demo  file1.txt  newdir  newfile.txt
 ~~~
 {: .output}
 
@@ -315,7 +316,7 @@ ls
 {: .language-bash}
 
 ~~~
-bash_files  file1.txt  newdir
+bash_files  demo  file1.txt  newdir
 ~~~
 {: .output}
 
@@ -330,7 +331,7 @@ ls
 {: .language-bash}
 
 ~~~
-bash_files  file1.txt
+bash_files  demo  file1.txt
 ~~~
 
 ## Reading and writing files
@@ -618,7 +619,7 @@ ls
 {: .language-bash}
 
 ~~~
-bash_files  bottom.txt  file1.txt  top.txt
+bash_files  bottom.txt  demo file1.txt  top.txt
 ~~~
 {: .output}
 
@@ -644,7 +645,7 @@ ls
 {: .language-bash}
 
 ~~~
-bash_files  bottom.txt  bye.move.txt  file1.txt  hi.move.txt  top.txt
+bash_files  bottom.txt  bye.move.txt  demo  file1.txt  hi.move.txt  top.txt
 ~~~
 {: .output}
 
@@ -700,6 +701,7 @@ aloha.move.txt
 bash_files
 bottom.txt
 bye.move.txt
+demo
 file1.txt
 hi.move.txt
 top.txt
@@ -718,9 +720,9 @@ ls aloha/
 {: .language-bash}
 
 ~~~
-aloha  aloha.move.txt  bash_files  bottom.txt  bye.move.txt  file1.txt  hi.move.txt  movelist.txt  top.txt
-aloha  bash_files  bottom.txt  file1.txt  movelist.txt  top.txt
-aloha.move.txt  bye.move.txt  hi.move.txt
+aloha  aloha.move.txt  bash_files  bottom.txt  bye.move.txt  demo  file1.txt  hi.move.txt  movelist.txt  top.txt
+aloha  bash_files  bottom.txt  demo  file1.txt  movelist.txt  top.txt
+aloha.move.txt  bye.move.txt  demo  hi.move.txt
 ~~~
 {: .output}
 
@@ -740,7 +742,7 @@ ls
 {: .language-bash}
 
 ~~~
-aloha  bash_files  bottom.txt  file1.txt  file2.txt  movelist.txt  top.txt
+aloha  bash_files  bottom.txt  demo  file1.txt  file2.txt  movelist.txt  top.txt
 ~~~
 {: .output}
 
