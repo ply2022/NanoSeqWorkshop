@@ -172,7 +172,11 @@ AGTATGCTTCGTTCAGTTACGTATTGCTCGGCTGATCTGAGCTTGTAAAAGAGAATCGATGTGGCATATGTGGATAGCAT
 During library preparation, you attach adapters to the nucleotide strands in your sample to prepare them for sequencing. Since these are not part of the original sequences, we will remove them using Porechop.
 
 ~~~
-cat ./bash_files/porechop.sh
+sbatch porechop.sh
+~~~
+
+~~~
+cat porechop.sh
 ~~~
 {: .language-bash}
 
@@ -214,7 +218,12 @@ Now that Porechop is finsihed we can filter our reads for quality.
 We can filter our results for both length and quality using the application Filtlong. Let's take a look at the script:
 
 ~~~
-cat ./bash_files/filtlong.sh
+sbatch filtlong.sh
+~~~
+{: .language-bash}
+
+~~~
+cat filtlong.sh
 ~~~
 {: .language-bash}
 
@@ -265,9 +274,15 @@ After Filtlong has run, the quality of the sequences is improved for downstream 
 We can produce a report that summarizes our results using the application Nanoplot. We are going to create our own before and after reports to view how Porechop and Filtlong have changed our sequencing data for downstream analysis. First, we will produce a report for our filtered reads.
   
 Let's take a look at the script:
-  
+
 ~~~
-cat ./bash_files/nanoplot_filtered.sh
+sbatch nanoplot_filtered.sh
+sbatch nanoplot.sh
+~~~
+{: .language-bash}
+
+~~~
+cat nanoplot_filtered.sh
 ~~~
   
 ~~~
@@ -286,8 +301,8 @@ pwd; hostname; date
 module purge
 module load nanoplot
 
-NanoPlot --fastq /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/PorechopOutSuw2.fastq \
--o /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/Nanoplot_Suw2_filtered_out -t 1
+NanoPlot --fastq ./Suwannee2/PorechopOutSuw2.fastq \
+-o ./Suwannee2/Nanoplot_Suw2_filtered_out -t 1
 ~~~
 {: .output}
 
@@ -299,7 +314,7 @@ Let's review the options above:
 We have included another script that produces a report from the reads prior to sending them to Porechop and Filtlong, but it is identical except the input source and output directory are different. We won't view this script now, but if you want to view it later you can view it using the following command:
   
 ~~~
-cat /blue/general_workshop/share/bash_files/nanoplot.sh
+cat nanoplot.sh
 ~~~
 {: .language-bash}
   
@@ -313,12 +328,7 @@ A new screen will load. Click on `Go To...` at the top left, which will load a t
   
 <img src="{{site.baseSite}}/fig/go_to_nanoplot.png" align="center" width="700">
   
-Now enter the following location:
-  
-~~~
-/blue/general_workshop/share/Suwannee/
-~~~
-{: .language-bash}
+Now enter the following location: `/blue/general_workshop/<your_username>/Suwannee2/`
 
 Click on the directory "Nanoplot_Suw2_filtered_out" and then click on the download button:
 
