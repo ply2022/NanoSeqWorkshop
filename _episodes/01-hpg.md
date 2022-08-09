@@ -247,7 +247,7 @@ We will use some of these shortcuts soon.
 You can copy a file with the command `cp` followed by the location of the file you want to copy and the location you want to put the new copy.
 
 ~~~
-cp blue/general_workshop/share/file1.txt ./file1.txt
+cp /blue/general_workshop/share/file1.txt ./file1.txt
 ls
 ~~~
 {: .language-bash}
