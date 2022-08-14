@@ -211,3 +211,103 @@ Sat Sep 06 02:04:55 EDT 2022
 
 The output of our commands were written to the log file. Applications may submit results in the log file, but this will vary by application, and some may not write anything to it. Including some header and footer information for each job can be helpful. For example, you can include the command `pwd; hostname; date` at the beginning of a script, and `date` at the end of the script to frame the results in the log file. Then, if an application does not include any feedback, you will at least see if the script was completed.
 
+## More Complex SLURM Scripts
+
+### Reading multiple files
+
+The script below was written in response to a question in the workshop about using a script to read multiple files.
+
+Oftentimes, you will need to perform the same analysis on a large number of files. Rather than running the same SLURM script multiple times, it is usually easier to run one script that will perform the same task on multiple files. You can do this if the input file names are different, or if the input directory names are different. An example below uses the `guppy.sh` script, and can be found as the script `guppy_multifile.sh`.
+
+~~~
+#!/bin/bash
+#SBATCH --job-name=guppy_multi_test
+#SBATCH --account=plantpath
+#SBATCH --qos=plantpath
+#SBATCH --time=24:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=8gb
+#SBATCH --mail-type=BEGIN,END,FAIL,TIME_LIMIT
+#SBATCH --mail-user=USERNAME@ufl.edu
+#SBATCH --output=guppy_%j.out
+#SBATCH --error=guppy_%j.err
+#SBATCH --partition=gpu
+#SBATCH --gpus=1
+
+# This just puts a stamp on the header of the output log file
+date;hostname;pwd; echo "Guppy multifile basecall"
+
+# Purge unnecessary modules, this can resolve conflicts
+module purge
+
+# This will load the guppy basecaller program
+module load cuda/11.0.207 guppy/4.4.1
+
+# We will use a couple variables that can be combined to produce file directory names and not need
+        # to rewrite them over and over again. You can see how these combine to form the full
+        # directories below.
+
+basedir="./Suwannee2/"
+indir="/fast5"
+outdir="/basecall_out"
+cp_file="20200808_1457_MN33357_FAL75110_031a874e"
+
+# Normally you would have several directories with your sequencing results.
+        # Since only one is provided, we will copy the sequencing results
+        # and rename them with a couple more file names. Then we will have several
+        # directories of results to use as input. Normally this would not be in the script.
+          # Note that you can combine variables with the rest of a file name in between "".
+
+cp -r $basedir$cp_file $basedir$cp_file"_1"
+cp -r $basedir$cp_file $basedir$cp_file"_2"
+cp -r $basedir$cp_file $basedir$cp_file"_3"
+
+# We also need to produce a list with all of the sequence files in it. We will use the > operator to write a new file
+        # and then use the >> operator afterwards to apend data to it.
+
+echo $cp_file > sequence_file_list.txt
+echo $cp_file"_1" >> sequence_file_list.txt
+echo $cp_file"_2" >> sequence_file_list.txt
+echo $cp_file"_3" >> sequence_file_list.txt
+
+
+# This command produces a loop that will use the command cat to read each line of
+        # the input file sequence_file_list.txt. The input sequences will be the directory
+        # names output by the sequencer.
+
+for x in `cat sequence_file_list.txt`
+
+do
+
+#Before basecalling, create a folder names basecall_out
+mkdir $basedir$x$outdir
+
+guppy_basecaller \
+    --recursive \
+        --input_path $basedir$x$indir \
+        --save_path $basedir$x$outdir \
+        -c dna_r9.4.1_450bps_hac.cfg \
+        -x cuda:0
+## Then we concatenate all the fastq files into one big file
+cat $basedir$x$outdir"/"*".fastq" \
+> $basedir$x$outdir"/bigfile.fastq"
+
+done
+~~~
+{: .terminal}
+
+If you have already run the `guppy.sh` script in the sections ahead, the script could produce errors because it will try to write files and directories you have written before.
+
+Note the line:
+
+~~~
+for x in `cat sequence_file_list.txt`
+~~~
+{: .terminal}
+
+The line uses a backtick symbol **not** an apostrophe for the phrase `cat sequence_file_list.txt`. A command within a backtick symbol is processed first and the results are produced for the commands that precede or follow it. Therefore, it is using the `cat` command to list the directory names on each line of that file, which are being used as input for the `for` loop. It will assign each line as the variable `x` and complete the commands in the script until it reaches `done`, after which it will repeat the process for the next directory name listed in the next line of the file sequence_file_list.txt. Once the entire list is completed, the loop will end at the word `done`.
+
+The example above uses variables combined with text for some of the file names. You can write several variables in a row, such as `$basedir$x$outdir` to string names together, but sometimes it is necessary to include additional information about the file name. `$basedir$x$outdir"/"*".fastq"` is a great example. It uses three variables followed by a `/` symbol in `""` marks because that is not part of the variable name. We want to select all fastq files, but if we include the `*` wildcard in between the quotation marks it will be read literally instead of as a wildcard. To prevent this we include the `*` symbol outside of the quotation marks, followed by ".fastq" inside of quotation marks to select all files with this extension.
+
+Pay careful attention to things like the `/` symbol in directory names when assigning variables to ensure the directory locations are assembled correctly when read by the script. You can try converting other scripts in this workshop so they can read multiple files as input as well.
