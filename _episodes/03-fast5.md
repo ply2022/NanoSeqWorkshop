@@ -54,7 +54,7 @@ asic_id
 ~~~
 {: .output}
 
-> If you accidently tried to look at the fast5 file using the command `cat`, your shell will continuously scroll through the random characters for a long period of time. Remember that you can press <kbd>Ctrl</kbd> <kdb>c</kbd> to terminate processes in the shell.
+> If you accidently tried to look at the fast5 file using the command `cat`, your shell will continuously scroll through the random characters for a long period of time. Remember that you can press <kbd>Ctrl</kbd> <kbd>c</kbd> to terminate processes in the shell.
 {: .tips}
 
 You can instead use the application HDF5 to read the encoded file. You can load applications using the `module load` command followed by the application name. HiPerGator and other HPCs have a large number of applications installed that you can use. You can view a full list of applications available on HiPerGator here: https://help.rc.ufl.edu/doc/Applications
