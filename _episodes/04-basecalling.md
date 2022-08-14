@@ -48,7 +48,7 @@ cat guppy.sh
 #SBATCH --time=24:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=5gb
+#SBATCH --mem=8gb
 #SBATCH --mail-type=BEGIN,END,FAIL,TIME_LIMIT
 #SBATCH --mail-user=USERNAME@ufl.edu
 #SBATCH --output=guppy_%j.out
@@ -59,20 +59,20 @@ cat guppy.sh
 date;hostname;pwd
 
 module purge
-module load cuda/11.4.3 guppy/6.1.7
+module load cuda/11.0.207 guppy/4.4.1
 
 #Before basecalling, create a folder names basecall_out
-mkdir /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out
+mkdir ./Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out
 
 guppy_basecaller \
     --recursive \
-        --input_path /blue/genera_workshop/share/Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/fast5 \
-        --save_path /blue/genera_workshop/share/Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out \
+        --input_path ./Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/fast5 \
+        --save_path ./Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out \
         -c dna_r9.4.1_450bps_hac.cfg \
         -x cuda:0
 ## Then we concatenate all the fastq files into one big file
-cat /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/fast5/*.fastq \
-> /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out/bigfile.fastq
+cat ./Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out/*.fastq \
+> ./Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out/bigfile.fastq
 ~~~
 {: .output}
 
@@ -222,17 +222,17 @@ cat porechop.sh
 #SBATCH --output=porechop_%j.out
 #SBATCH --error=porechop_%j.err
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=USERNAME@ufl.edu
+#SBATCH --mail-user=jkonkol@ufl.edu
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=40gb
+#SBATCH --mem=8gb
 #SBATCH --time=96:00:00
 pwd; hostname; date
 
-module load gcc/9.3.0 porechop/0.2.4
+module load gcc/5.2.0 porechop/0.2.4
 
-porechop -i /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out/bigfile.fastq\
--o /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/PorechopOutSuw2.fastq -t 1
+porechop -i ./Suwannee2/20200808_1457_MN33357_FAL75110_031a874e/basecall_out/bigfile.fastq \
+        -o ./Suwannee2/PorechopOutSuw2.fastq -t 1
 ~~~
 {: .output}
 
@@ -267,19 +267,19 @@ cat filtlong.sh
 #SBATCH --account=general_workshop
 #SBATCH --qos=general_workshop
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=USERNAME@ufl.edu
+#SBATCH --mail-user=jkonkol@ufl.edu
 #SBATCH --time=24:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=1gb
+#SBATCH --mem=8gb
 #SBATCH --output=filtlong_%j.out
 #SBATCH --error=filtlong_%j.err
 
 pwd; hostname; date
 
 module load  filtlong/0.2.0
-filtlong --min_length 3000 --target_bases 3600000000 /orange/jeremybrawner/plyu/APS_workshop/Suwannee2/PorechopOutSuw2.fastq \
-> Suw2_filtered_3000bp_60X.fastq
+filtlong --min_length 3000 --target_bases 6000 ./Suwannee2/PorechopOutSuw2.fastq \
+> ./Suwannee2/Suw2_filtered_3000bp_60X.fastq
 
 # --min_length minimum length threshold
 # --target_bases keep only the best reads up to this many total bases
@@ -327,7 +327,7 @@ cat /blue/general_workshop/share/bash_files/nanoplot_filtered.sh
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=USERNAME@ufl.edu
 #SBATCH --ntasks=1
-#SBATCH --mem=1gb
+#SBATCH --mem=8gb
 #SBATCH --time=12:00:00
 #SBATCH --output=nanoplot_%j.out
 pwd; hostname; date
@@ -335,7 +335,7 @@ pwd; hostname; date
 module purge
 module load nanoplot
 
-NanoPlot --fastq ./Suwannee2/PorechopOutSuw2.fastq \
+NanoPlot --fastq ./Suwannee2/Suw2_filtered_3000bp_60X.fastq \
 -o ./Suwannee2/Nanoplot_Suw2_filtered_out -t 1
 ~~~
 {: .output}
